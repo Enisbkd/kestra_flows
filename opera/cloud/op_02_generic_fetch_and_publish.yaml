@@ -1,0 +1,148 @@
+id: generic-fetch-and-publish
+namespace: opera.cloud
+
+description: >
+  Generic reusable flow: fetches any GraphQL data type, transforms it, and publishes to Kafka.
+
+inputs:
+  - id: from_update_date
+    type: STRING
+    defaults: 2021-01-01
+
+  - id: to_update_date
+    type: STRING
+    defaults: 2028-01-01
+
+  # --- What changes per data type ---
+  - id: kafka_topic
+    type: STRING
+    # e.g. "opera.financial-transactions"
+
+  - id: graphql_query
+    type: STRING
+    # The full GraphQL query string
+
+  - id: gql_input_json
+    type: STRING
+    # JSON-serialized filter input, e.g. '{"financialtransDetailsResort": {"_in": ["HPDEV"]}}'
+
+  - id: record_key_field
+    type: STRING
+    defaults: ""
+    # Dot-notation path to the Kafka message key, e.g. "nameId" or "profilePreferenceDetails.nameId"
+    # Leave empty to use empty string as key
+
+  - id: data_root_key
+    type: STRING
+    # Top-level key in GraphQL response.data, e.g. "financialTransactionDetails"
+
+
+variables:
+  opera_base_url: "{{ envs.OPERA_API_BASE_URL ?? 'https://apm-dev0.sbm.interne' }}"
+  graphql_path: "/operara/v1/rna/v1/graphql/"
+  page_size: 500
+  kafka_bootstrap: "broker:29092"
+
+tasks:
+  - id: get_token
+    type: io.kestra.plugin.core.flow.Subflow
+    namespace: opera.cloud
+    flowId: manage_token
+    wait: true
+
+  - id: fetch_all_pages
+    type: io.kestra.plugin.scripts.python.Script
+    beforeCommands:
+      - pip install requests --proxy http://10.62.1.10:3128
+    outputFiles:
+      - "records.jsonl"
+    script: |
+      import requests, json
+
+      url        = "{{ vars.opera_base_url }}{{ vars.graphql_path }}"
+      page_size  = {{ vars.page_size }}
+      gql_input  = json.loads("""{{ inputs.gql_input_json }}""")
+      query      = """{{ inputs.graphql_query }}"""
+
+      headers = {
+          "Content-Type":  "application/json",
+          "x-app-key":     "{{ kv('app_key') }}",
+          "x-api-key":     "{{ kv('api_key_ra') }}",
+          "Authorization": "Bearer {{ outputs.get_token.outputs.token }}"
+      }
+
+      data_root_key   = "{{ inputs.data_root_key }}"
+
+      offset = 0
+      total  = 0
+
+      with open("records.jsonl", "w") as f:
+          while True:
+              variables = {"limit": page_size, "offset": offset, "input": gql_input}
+              resp = requests.post(url, json={"query": query, "variables": variables},
+                                   headers=headers, timeout=30, verify=False)
+              resp.raise_for_status()
+
+              root    = resp.json().get("data", {}).get(data_root_key, [])
+              records = root
+              count   = len(records)
+              print(f"offset={offset} -> {count} records")
+
+              for rec in records:
+                  f.write(json.dumps(rec) + "\n")
+
+              total  += count
+              offset += page_size
+
+              if count < page_size:
+                  break
+
+      print(f"Total records: {total}")
+
+  - id: convert_to_ion
+    type: io.kestra.plugin.scripts.python.Script
+    inputFiles:
+      records.jsonl: "{{ outputs.fetch_all_pages.outputFiles['records.jsonl'] }}"
+    outputFiles:
+      - "records.ion"
+    script: |
+      import json
+
+      key_path = "{{ inputs.record_key_field }}".strip()
+
+      def extract_key(record, path):
+          if not path:
+              return ""
+          parts = path.split(".")
+          val = record
+          for p in parts:
+              if isinstance(val, dict):
+                  val = val.get(p, "")
+              else:
+                  return ""
+          return str(val)
+
+      with open("records.jsonl") as infile, open("records.ion", "w") as outfile:
+          for line in infile:
+              line = line.strip()
+              if not line:
+                  continue
+              record = json.loads(line)
+              outfile.write(json.dumps({
+                  "key":   extract_key(record, key_path),
+                  "value": record
+              }) + "\n")
+
+  - id: publish_to_kafka
+    type: io.kestra.plugin.kafka.Produce
+    from: "{{ outputs.convert_to_ion.outputFiles['records.ion'] }}"
+    topic: "{{ inputs.kafka_topic }}"
+    properties:
+      bootstrap.servers: "{{ vars.kafka_bootstrap }}"
+      compression.type: gzip
+    keySerializer: STRING
+    valueSerializer: JSON
+
+  - id: log_done
+    type: io.kestra.plugin.core.log.Log
+    message: "Published {{ outputs.publish_to_kafka.messagesCount }} records to {{ inputs.kafka_topic }}"
