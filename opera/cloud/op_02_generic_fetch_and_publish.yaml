@@ -5,6 +5,10 @@ description: >
   Generic reusable flow: fetches any GraphQL data type, transforms it, and publishes to Kafka.
 
 inputs:
+  - id: chain_code
+    type: STRING
+    defaults: SBMDEVE
+
   - id: from_update_date
     type: STRING
     defaults: 2021-01-01
@@ -32,13 +36,9 @@ inputs:
     # Dot-notation path to the Kafka message key, e.g. "nameId" or "profilePreferenceDetails.nameId"
     # Leave empty to use empty string as key
 
-  - id: data_root_key
-    type: STRING
-    # Top-level key in GraphQL response.data, e.g. "financialTransactionDetails"
-
 
 variables:
-  opera_base_url: "{{ envs.OPERA_API_BASE_URL ?? 'https://apm-dev0.sbm.interne' }}"
+  opera_base_url: "https://apm-dev0.sbm.interne"
   graphql_path: "/operara/v1/rna/v1/graphql/"
   page_size: 500
   kafka_bootstrap: "broker:29092"
@@ -56,49 +56,7 @@ tasks:
       - pip install requests --proxy http://10.62.1.10:3128
     outputFiles:
       - "records.jsonl"
-    script: |
-      import requests, json
-
-      url        = "{{ vars.opera_base_url }}{{ vars.graphql_path }}"
-      page_size  = {{ vars.page_size }}
-      gql_input  = json.loads("""{{ inputs.gql_input_json }}""")
-      query      = """{{ inputs.graphql_query }}"""
-
-      headers = {
-          "Content-Type":  "application/json",
-          "x-app-key":     "{{ kv('app_key') }}",
-          "x-api-key":     "{{ kv('api_key_ra') }}",
-          "Authorization": "Bearer {{ outputs.get_token.outputs.token }}"
-      }
-
-      data_root_key   = "{{ inputs.data_root_key }}"
-
-      offset = 0
-      total  = 0
-
-      with open("records.jsonl", "w") as f:
-          while True:
-              variables = {"limit": page_size, "offset": offset, "input": gql_input}
-              resp = requests.post(url, json={"query": query, "variables": variables},
-                                   headers=headers, timeout=30, verify=False)
-              resp.raise_for_status()
-
-              root    = resp.json().get("data", {}).get(data_root_key, [])
-              records = root
-              count   = len(records)
-              print(f"offset={offset} -> {count} records")
-
-              for rec in records:
-                  f.write(json.dumps(rec) + "\n")
-
-              total  += count
-              offset += page_size
-
-              if count < page_size:
-                  break
-
-      print(f"Total records: {total}")
-
+    script: "{{ read('fetch_all_pages.py') }}"
   - id: convert_to_ion
     type: io.kestra.plugin.scripts.python.Script
     inputFiles:
