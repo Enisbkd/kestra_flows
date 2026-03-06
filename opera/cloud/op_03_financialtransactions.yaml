@@ -1,0 +1,132 @@
+id: op_03_financialtransactions
+namespace: opera.cloud
+
+inputs:
+  - id: chain_code
+    type: STRING
+    defaults: SBMDEVE
+  - id: from_update_date
+    type: STRING
+    defaults: 2021-01-01
+  - id: to_update_date
+    type: STRING
+    defaults: 2028-01-01
+
+tasks:
+  - id: run
+    type: io.kestra.plugin.core.flow.Subflow
+    namespace: opera.cloud
+    flowId: generic-fetch-and-publish
+    wait: true
+    inputs:
+      chain_code: "{{ inputs.chain_code }}"
+      from_update_date: "{{ inputs.from_update_date }}"
+      to_update_date: "{{ inputs.to_update_date }}"
+      kafka_topic: "opera.financial-transactions"
+      data_root_key: "financialTransactionDetails"
+      records_list_key: "financialTransactionDetails"
+      record_key_field: "nameId"
+      gql_input_json: |
+        {
+          "financialtransDetailsResort": {"_in": ["HPDEV"]},
+          "financialtransDetailsBusinessDate": {
+            "_gte": "{{ inputs.from_update_date }}",
+            "_lte": "{{ inputs.to_update_date }}"
+          }
+        }
+      graphql_query: |
+        query FinancialTransactionDetails(
+          $input: FinancialTransactionDetailsQueryArgumentsType!
+          $limit: Int
+          $offset: Int
+        ) {
+          financialTransactionDetails(limit: $limit, offset: $offset, input: $input) {
+            financialTransactionDetails {
+              aRLedgerCredit
+              aRLedgerDebit
+              aRState
+              arrangementId
+              fiscalBillNo
+              businessDate
+              cashierCredit
+              cashierDebit
+              cashierID
+              cashierOpeningBalance
+              checkNumber
+              currencyCode
+              depositLedgerCredit
+              depositLedgerDebit
+              exchangeRate
+              financialDmlSeqNumber
+              folioNo
+              folioType
+              folioView
+              transferfromresvid
+              ftSubtype
+              grossAmount
+              guestAccountLedgerCredit
+              guestAccountLedgerDebit
+              hotelAcct
+              insertDate
+              insertUser
+              invoiceCloseDate
+              invoiceType
+              marketCode
+              membershipID
+              nameId
+              netAmount
+              numberDialed
+              orgPostedAmount
+              originalRoom
+              packageAllowance
+              packageArrangementCode
+              package
+              packageTrxType
+              postingDate
+              postingType
+              pricePerUnit
+              quantity
+              rateCode
+              associatedReceiptNo
+              receiptType
+              revenueAmount
+              roomClass
+              routingInstrnId
+              sourceCode
+              sourceCommissionNetYn
+              taCommissionNetYn
+              targetResort
+              taxGeneratedYN
+              taxInclusiveYN
+              tcGroup
+              tcSubgroup
+              tranActionId
+              trxCode
+              trxNo
+              trxNoAgainstPackage
+              updateDate
+              updateUser
+              transactionPostingDate
+            }
+            reservationDetails {
+              resort
+              resvNameid
+              preference
+            }
+            roomDetails {
+              room
+              roomStatusRemarks
+            }
+            transactionCodeDetails {
+              eInvoiceYn
+            }
+            rateCodeDetails {
+              commissionableYn
+            }
+            folioTaxDetails {
+              deposit
+              taxAmount9
+            }
+            financialTransactionDetailsRecordCount
+          }
+        }

@@ -1,0 +1,100 @@
+id: op_05_reservationnames
+namespace: opera.cloud
+
+inputs:
+  - id: chain_code
+    type: STRING
+    defaults: SBMDEVE
+  - id: from_update_date
+    type: STRING
+    defaults: 2021-01-01
+  - id: to_update_date
+    type: STRING
+    defaults: 2028-01-01
+  - id: hotel_id
+    type: STRING
+    defaults: HPDEV
+
+tasks:
+  - id: run
+    type: io.kestra.plugin.core.flow.Subflow
+    namespace: opera.cloud
+    flowId: generic-fetch-and-publish
+    wait: true
+    inputs:
+      chain_code: "{{ inputs.chain_code }}"
+      from_update_date: "{{ inputs.from_update_date }}"
+      to_update_date: "{{ inputs.to_update_date }}"
+      kafka_topic: "opera.reservation-names"
+      data_root_key: "bookingsReservation"
+      records_list_key: "bookingsReservation"
+      record_key_field: "resvNameid"
+      gql_input_json: |
+        {
+            "reservationDetailsResort": {
+              "_in": ["{{inputs.hotel_id}}"]
+            },
+            "reservationDetailsTruncBeginDate": {
+              "_gte": "{{inputs.from_update_date}}"
+            },
+            "reservationDetailsTruncEndDate": {
+              "_lte": "{{inputs.to_update_date}}"
+            }
+          }
+
+      graphql_query: |
+        query BookingsReservation_ReservationName($input: BookingsReservationQueryArgumentsType!) {
+          bookingsReservation(input: $input) {
+            reservationDetails {
+
+              resort
+              resvNameid
+              reservationNameID          
+              guestprofileid             
+              nameUsageType
+
+
+              reservationStatus          
+
+
+              confirmationNo
+              partyCode
+              eventId
+              externalReference
+
+
+              beginDatetime              
+              arrivalDate                
+              departureDate              
+              cancellationDate
+              folioCloseDate
+              businessDateCreated        
+              reservationDate            
+
+
+              guestFirstName
+              guestLastNameSdx
+              sguestFirstname
+              sguestName                 
+              emailAddress
+
+
+              membershipId
+              financiallyResponsibleYn
+              postingAllowedYN
+              resInsertSource
+              insertDate
+              insertUser
+              updateDate
+              updateUser
+
+
+              roomClass
+              feature
+
+
+              guaranteeCodePreCi         
+              guaranteecodeid            
+            }
+          }
+        }

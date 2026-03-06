@@ -1,0 +1,68 @@
+id: op_01_manage_tokens
+namespace: opera.cloud
+
+tasks:
+  - id: get_cached_data
+    type: io.kestra.plugin.core.kv.Get
+    key: auth_token_data
+    allowFailure: true
+
+  - id: check_expiry
+    type: io.kestra.plugin.scripts.python.Script
+    env:
+      CACHED_VALUE: "{{ outputs.get_cached_data.value ?? '' }}"
+    script: "{{ read('is_token_valid.py') }}"
+    runner: PROCESS
+
+  - id: check_and_refresh
+    type: io.kestra.plugin.core.flow.If
+    condition: "{{ outputs.check_expiry.vars.needs_refresh }}"
+    then:
+      - id: get_token_api
+        type: io.kestra.plugin.core.http.Request
+        uri: https://apm-dev0.sbm.interne/operapropertymodule/v1/oauth/v1/tokens
+        method: POST
+        headers:
+          Content-Type: application/x-www-form-urlencoded
+          x-app-key: "{{ kv('app_key') }}"
+          x-api-key: "{{ kv('api_key_auth') }}"
+          enterpriseId: "{{ kv('enterprise_id') }}"
+        body: grant_type=client_credentials&scope=urn:opc:hgbu:ws:__myscopes__
+        options:
+          auth:
+            type: BASIC
+            username: "{{ kv('client_id') }}"
+            password: "{{ kv('client_secret') }}"
+
+      - id: log_new_token
+        type: io.kestra.plugin.core.log.Log
+        message: >
+          New token fetched and cached.
+          Expires at (Paris):
+          {{ now()
+            | dateAdd(json(outputs.get_token_api.body).expires_in, 'SECONDS')
+            | date("yyyy-MM-dd'T'HH:mm:ssXXX", "Europe/Paris") }}
+
+      - id: save_to_kv
+        type: io.kestra.plugin.core.kv.Set
+        key: auth_token_data
+        value: >
+          {{
+            {
+              "access_token": json(outputs.get_token_api.body).access_token,
+              "expiry_timestamp":
+                now()
+                | dateAdd(json(outputs.get_token_api.body).expires_in, 'SECONDS')
+                | date("yyyy-MM-dd'T'HH:mm:ssXXX", "Europe/Paris")
+            } | json
+          }}
+
+outputs:
+  - id: token
+    type: STRING
+    value: >
+      {{
+        outputs.get_token_api is defined
+        ? json(outputs.get_token_api.body).access_token
+        : json(outputs.get_cached_data.value).access_token
+      }}
