@@ -4,16 +4,15 @@ from typing import Dict, Any, List
 
 import requests
 
-
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-
-PAGE_SIZE = {{ vars.page_size }}
+PAGE_SIZE = {{vars.page_size}}
 URL = "{{ vars.opera_base_url }}{{ vars.graphql_path }}"
 
 GQL_INPUT = json.loads("""{{ inputs.gql_input_json }}""")
 QUERY = """{{ inputs.graphql_query }}"""
+KEY_PATH = "{{ inputs.record_key_field }}".strip()
 
 HEADERS = {
     "Content-Type": "application/json",
@@ -68,13 +67,31 @@ def execute_query(
     return extract_root_field(body)
 
 
-def fetch_all_records() -> int:
-    """Fetch paginated records and write them to JSONL."""
+def extract_key(record: Dict[str, Any], path: str) -> str:
+    """Extract Kafka key from record using dot-notation path."""
+
+    if not path:
+        return ""
+
+    parts = path.split(".")
+    val = record
+
+    for p in parts:
+        if isinstance(val, dict):
+            val = val.get(p, "")
+        else:
+            return ""
+
+    return str(val)
+
+
+def fetch_and_transform_records() -> int:
+    """Fetch paginated records, transform them, and write to ION format."""
 
     offset = 0
     total_records = 0
 
-    with requests.Session() as session, open("records.jsonl", "w") as output_file:
+    with requests.Session() as session, open("records.ion", "w") as output_file:
 
         while True:
             records = execute_query(session, offset, PAGE_SIZE)
@@ -83,7 +100,11 @@ def fetch_all_records() -> int:
             logger.info("offset=%s -> %s records", offset, count)
 
             for record in records:
-                output_file.write(json.dumps(record))
+                # Write in key-value format for Kafka
+                output_file.write(json.dumps({
+                    "key": extract_key(record, KEY_PATH),
+                    "value": record
+                }))
                 output_file.write("\n")
 
             total_records += count
@@ -96,8 +117,8 @@ def fetch_all_records() -> int:
 
 
 def main() -> None:
-    total = fetch_all_records()
-    logger.info("Total records: %s", total)
+    total = fetch_and_transform_records()
+    logger.info("Total records fetched and transformed: %s", total)
 
 
 if __name__ == "__main__":

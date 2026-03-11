@@ -7,9 +7,14 @@ volumes:
     driver: local
   minio_data:
     driver: local
+networks:
+  lakehouse:
+
 
 services:
   zookeeper:
+    networks:
+      lakehouse:
     image: confluentinc/cp-zookeeper:latest
     hostname: zookeeper
     container_name: zookeeper_kestra
@@ -18,6 +23,8 @@ services:
       ZOOKEEPER_TICK_TIME: 2000
 
   broker:
+    networks:
+      lakehouse:
     image: confluentinc/cp-kafka:latest
     hostname: broker
     container_name: broker
@@ -62,6 +69,8 @@ services:
       KAFKA_HEAP_OPTS: '-Xmx1G -Xms1G'
 
   akhq-local:
+    networks:
+      lakehouse:
     image: tchiotludo/akhq
     container_name: akhq_local_simphony
     ports:
@@ -77,6 +86,8 @@ services:
       - broker
 
   pgdatabase:
+    networks:
+      lakehouse:
     image: postgres:18
     environment:
       POSTGRES_USER: root
@@ -88,6 +99,8 @@ services:
       - ny_taxi_postgres_data:/var/lib/postgresql
 
   pgadmin:
+    networks:
+      lakehouse:
     image: dpage/pgadmin4
     environment:
       - PGADMIN_DEFAULT_EMAIL=admin@admin.com
@@ -96,6 +109,8 @@ services:
       - "8085:80"
 
   kestra_postgres:
+    networks:
+      lakehouse:
     image: postgres:18
     volumes:
       - kestra_postgres_data:/var/lib/postgresql
@@ -110,6 +125,8 @@ services:
       retries: 10
 
   kestra:
+    networks:
+      lakehouse:
     image: kestra/kestra:v1.1
     container_name: kestra
     pull_policy: always
@@ -126,16 +143,17 @@ services:
       - /etc/pki/ca-trust/extracted/java/cacerts:/opt/java/openjdk/lib/security/cacerts
     environment:
       # Proxy configuration
-#      HTTP_PROXY: "http://10.62.1.10:3128"
-#      HTTPS_PROXY: "http://10.62.1.10:3128"
-#      http_proxy: "http://10.62.1.10:3128"
-#      https_proxy: "http://10.62.1.10:3128"
+      HTTP_PROXY: "http://10.62.1.10:3128"
+      HTTPS_PROXY: "http://10.62.1.10:3128"
+      http_proxy: "http://10.62.1.10:3128"
+      https_proxy: "http://10.62.1.10:3128"
 #      NO_PROXY: "localhost,127.0.0.1,kestra_postgres,pgdatabase,minio,broker,zookeeper"
 #      no_proxy: "localhost,127.0.0.1,kestra_postgres,pgdatabase,minio,broker,zookeeper"
 #      # Java-specific proxy settings (Kestra runs on JVM)
 #      JAVA_OPTS: "-Dhttp.proxyHost=10.62.1.10 -Dhttp.proxyPort=3128 -Dhttps.proxyHost=10.62.1.10 -Dhttps.proxyPort=3128"
-#      JAVA_OPTS: "-Dcom.sun.net.ssl.checkRevocation=false -DtrustAllCertificates=true -Djavax.net.ssl.trustStore=/path/truststore.jks -Djavax.net.ssl.trustStorePassword=changeit"
-      JAVA_OPTS: "-Djavax.net.ssl.trustStore=/path/truststore.jks -Djavax.net.ssl.trustStorePassword=changeit -Duser.timezone=Europe/Paris"
+#      JAVA_OPTS: "-Dcom.sun.net.ssl.checkRevocation=false -DtrustAllCertificates=true -Djavax.net.ssl.trustStore=/opt/java/openjdk/lib/security/cacerts -Djavax.net.ssl.trustStorePassword=changeit"
+      JAVA_OPTS: "-Dhttp.proxyHost=10.62.1.10 -Dhttp.proxyPort=3128 -Dhttps.proxyHost=10.62.1.10 -Dhttps.proxyPort=3128 -Djavax.net.ssl.trustStore=/opt/java/openjdk/lib/security/cacerts -Djavax.net.ssl.trustStorePassword=changeit -Duser.timezone=Europe/Paris"
+      SECRET_GITHUB_ACCESS_TOKEN: "Z2hwX0JBcE1qU1FIWVh0Z1VuTjhiVkZDWjVDY3RTM0tOWDBVaGxSSQ=="
 
 
       KESTRA_CONFIGURATION: |
@@ -173,6 +191,8 @@ services:
       kestra_postgres:
         condition: service_started
   minio:
+    networks:
+      lakehouse:
     image: minio/minio:latest
     container_name: minio
     ports:
@@ -189,4 +209,65 @@ services:
       test: [ "CMD", "curl", "-f", "http://localhost:9000/minio/health/live" ]
       interval: 30s
       timeout: 20s
-      retries: 3
+      retries: 5
+  iceberg-rest:
+    networks:
+      lakehouse:
+    image: tabulario/iceberg-rest
+    container_name: iceberg
+    ports:
+      - "8181:8181"
+    environment:
+      CATALOG_WAREHOUSE: s3://warehouse/
+      CATALOG_IO__IMPL: org.apache.iceberg.aws.s3.S3FileIO
+      AWS_ACCESS_KEY_ID: minioadmin
+      AWS_SECRET_ACCESS_KEY: minioadmin
+      AWS_REGION: us-east-1
+      CATALOG_S3_ENDPOINT: http://minio:9000
+      CATALOG_S3_PATH__STYLE__ACCESS: "true"
+    depends_on:
+      - minio
+
+
+  kafka-connect:
+    networks:
+      lakehouse:
+    image: confluentinc/cp-kafka-connect:7.5.0
+    hostname: kafka-connect
+    container_name: kafka-connect
+    depends_on:
+      minio:
+        condition: service_healthy
+    ports:
+      - "8083:8083"
+    volumes:
+      - ./kafka-connect-plugins:/usr/share/confluent-hub-components
+    environment:
+      CONNECT_BOOTSTRAP_SERVERS: broker:29092
+      CONNECT_REST_ADVERTISED_HOST_NAME: kafka-connect
+      CONNECT_REST_PORT: 8083
+      CONNECT_GROUP_ID: kafka-connect-group
+      CONNECT_CONFIG_STORAGE_TOPIC: _connect-configs
+      CONNECT_OFFSET_STORAGE_TOPIC: _connect-offsets
+      CONNECT_STATUS_STORAGE_TOPIC: _connect-status
+      CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR: 1
+      CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: 1
+      CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: 1
+      CONNECT_KEY_CONVERTER: org.apache.kafka.connect.storage.StringConverter
+      CONNECT_VALUE_CONVERTER: org.apache.kafka.connect.json.JsonConverter
+      CONNECT_VALUE_CONVERTER_SCHEMAS_ENABLE: "false"
+      CONNECT_PLUGIN_PATH: /usr/share/java,/usr/share/confluent-hub-components
+      AWS_ACCESS_KEY_ID: minioadmin
+      AWS_SECRET_ACCESS_KEY: minioadmin
+      CONNECT_LOG4J_ROOT_LOGLEVEL: INFO
+      CONNECT_LOG4J_LOGGERS: org.apache.kafka.connect.runtime.isolation.DelegatingClassLoader=DEBUG,org.reflections=ERROR
+  trino:
+    networks:
+      lakehouse:
+    image: trinodb/trino:445
+    container_name: trino
+    ports:
+      - "8075:8080"
+    volumes:
+      - ./trino/catalog:/etc/trino/catalog
+

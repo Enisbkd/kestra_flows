@@ -50,50 +50,17 @@ tasks:
     flowId: manage_token
     wait: true
 
-  - id: fetch_all_pages
+  - id: fetch_and_transform
     type: io.kestra.plugin.scripts.python.Script
     beforeCommands:
       - pip install requests --proxy http://10.62.1.10:3128
     outputFiles:
-      - "records.jsonl"
-    script: "{{ read('fetch_all_pages.py') }}"
-  - id: convert_to_ion
-    type: io.kestra.plugin.scripts.python.Script
-    inputFiles:
-      records.jsonl: "{{ outputs.fetch_all_pages.outputFiles['records.jsonl'] }}"
-    outputFiles:
       - "records.ion"
-    script: |
-      import json
-
-      key_path = "{{ inputs.record_key_field }}".strip()
-
-      def extract_key(record, path):
-          if not path:
-              return ""
-          parts = path.split(".")
-          val = record
-          for p in parts:
-              if isinstance(val, dict):
-                  val = val.get(p, "")
-              else:
-                  return ""
-          return str(val)
-
-      with open("records.jsonl") as infile, open("records.ion", "w") as outfile:
-          for line in infile:
-              line = line.strip()
-              if not line:
-                  continue
-              record = json.loads(line)
-              outfile.write(json.dumps({
-                  "key":   extract_key(record, key_path),
-                  "value": record
-              }) + "\n")
+    script: "{{ read('fetch_all_pages.py') }}"
 
   - id: publish_to_kafka
     type: io.kestra.plugin.kafka.Produce
-    from: "{{ outputs.convert_to_ion.outputFiles['records.ion'] }}"
+    from: "{{ outputs.fetch_and_transform.outputFiles['records.ion'] }}"
     topic: "{{ inputs.kafka_topic }}"
     properties:
       bootstrap.servers: "{{ vars.kafka_bootstrap }}"
