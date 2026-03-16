@@ -1,0 +1,68 @@
+﻿TABLE: GEM$EVENT_REVENUE
+R&A FAMILY: R&A - UNKNOWN
+R&A MODULE (schema file): CateringEventPostings.graphql
+REQUEST TYPE (Query field): cateringEventPostings
+ENDPOINT: /rna/v1/graphql/
+
+========================
+GRAPHQL QUERY
+========================
+query cateringEventPostingsForGEMEVENTREVENUE($limit: Int, $offset: Int, $input: CateringEventPostingsQueryArgumentsType!) {
+  cateringEventPostings(limit: $limit, offset: $offset, input: $input) {
+    eventDetails {
+      evResort
+      evType
+      expectedAttendees
+      forecastRevenueOnlyYn
+    }
+    eventPostingDetails {
+      bookId
+      eventId
+      revenueType
+    }
+  }
+}
+
+========================
+VARIABLES (JSON)
+========================
+
+{
+  "limit": 1,
+  "offset": 0,
+  "input": {
+    "eventpostingDetailsResort": {
+      "_eq": "{{inputs.hotel_id}}"
+    }
+  }
+}
+
+========================
+RESPONSE (EXAMPLE)
+========================
+
+{
+  "data": {
+    "cateringEventPostings": [
+      {
+        "eventDetails": {
+          "evResort": "CSEPROP1",
+          "evType": "BKFST",
+          "expectedAttendees": 10,
+          "forecastRevenueOnlyYn": "N"
+        },
+        "eventPostingDetails": {
+          "bookId": 268949,
+          "eventId": 77349,
+          "revenueType": "BEV"
+        },
+        "cateringEventPostingsRecordCount": 1
+      }
+    ]
+  },
+  "extensions": {
+    "count": {
+      "CateringEventPostings_cateringEventPostings": 1
+    }
+  }
+}

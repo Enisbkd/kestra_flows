@@ -1,0 +1,18 @@
+query bookingsReservationForBOOKNOTES($limit: Int, $offset: Int, $input: BookingsReservationQueryArgumentsType!) {
+  bookingsReservation(limit: $limit, offset: $offset, input: $input) {
+    reservationDetails {
+      blockID
+      insertDate
+      insertUser
+    }
+    reservationThresholdsDetails {
+      transactionDiversionNotes
+    }
+    reservationCommentDetails {
+      noteTitle
+    }
+    guestReservationTracesDetails {
+      noteCode
+    }
+  }
+}

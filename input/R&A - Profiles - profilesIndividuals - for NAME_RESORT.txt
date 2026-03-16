@@ -1,0 +1,74 @@
+﻿TABLE: NAME_RESORT
+R&A FAMILY: Profiles
+R&A MODULE (schema file): ProfilesIndividuals.graphql
+REQUEST TYPE (Query field): profilesIndividuals
+ENDPOINT: /rna/v1/graphql/
+
+========================
+GRAPHQL QUERY
+========================
+query profilesIndividualsForNAMERESORT($limit: Int, $offset: Int, $input: ProfilesIndividualsQueryArgumentsType!) {
+  profilesIndividuals(limit: $limit, offset: $offset, input: $input) {
+    profileAllInformationDetails {
+      actionCode
+      priority
+      repCompetitionCode
+      roomsPotential
+    }
+    profileNoteDetails {
+      resort
+    }
+    profilePreferenceDetails {
+      nameId
+    }
+  }
+}
+
+========================
+VARIABLES (JSON)
+========================
+
+{
+  "limit": 1,
+  "offset": 0,
+  "input": {
+    "profileallDetailsChainCode": {
+      "_eq": "{{ChainCode}}"
+    },
+    "profileallDetailsUpdateDate": {
+      "_gte": "{{FromBusinessDate}}",
+      "_lte": "{{ToBusinessDate}}"
+    }
+  }
+}
+
+========================
+RESPONSE (EXAMPLE)
+========================
+
+{
+  "data": {
+    "profilesIndividuals": [
+      {
+        "profileAllInformationDetails": {
+          "actionCode": null,
+          "priority": null,
+          "repCompetitionCode": null,
+          "roomsPotential": null
+        },
+        "profileNoteDetails": {
+          "resort": null
+        },
+        "profilePreferenceDetails": {
+          "nameId": null
+        },
+        "profilesIndividualsRecordCount": 1
+      }
+    ]
+  },
+  "extensions": {
+    "count": {
+      "ProfilesIndividuals_profilesIndividuals": 1
+    }
+  }
+}

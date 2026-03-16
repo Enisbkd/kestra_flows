@@ -1,0 +1,82 @@
+﻿TABLE: DAILYELEMENT
+R&A FAMILY: Configuration
+R&A MODULE (schema file): ConfigurationResort.graphql
+REQUEST TYPE (Query field): configurationResort
+ENDPOINT: /rna/v1/graphql/
+
+========================
+GRAPHQL QUERY
+========================
+query configurationResortForDAILYELEMENT($limit: Int, $offset: Int, $input: ConfigurationResortQueryArgumentsType!) {
+  configurationResort(limit: $limit, offset: $offset, input: $input) {
+    chainDetails {
+      nameId
+    }
+    closingScriptDetails {
+      resortType
+    }
+    codeGeneratesDetails {
+      id
+    }
+    barScheduleDetails {
+      date
+    }
+    sellMessagesDetails {
+      roomCategory
+    }
+    preferenceDetails {
+      source
+    }
+  }
+}
+
+========================
+VARIABLES (JSON)
+========================
+
+{
+  "limit": 1,
+  "offset": 0,
+  "input": {
+    "resortDetailsResort": {
+      "_eq": "{{inputs.hotel_id}}"
+    }
+  }
+}
+
+========================
+RESPONSE (EXAMPLE)
+========================
+
+{
+  "data": {
+    "configurationResort": [
+      {
+        "chainDetails": {
+          "nameId": null
+        },
+        "closingScriptDetails": {
+          "resortType": null
+        },
+        "codeGeneratesDetails": {
+          "id": 27562
+        },
+        "barScheduleDetails": {
+          "date": null
+        },
+        "sellMessagesDetails": {
+          "roomCategory": null
+        },
+        "preferenceDetails": {
+          "source": null
+        },
+        "configurationResortRecordCount": 1
+      }
+    ]
+  },
+  "extensions": {
+    "count": {
+      "ConfigurationResort_configurationResort": 1
+    }
+  }
+}

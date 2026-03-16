@@ -1,0 +1,13 @@
+query configurationResortForTURNAWAYTEMPLATE($limit: Int, $offset: Int, $input: ConfigurationResortQueryArgumentsType!) {
+  configurationResort(limit: $limit, offset: $offset, input: $input) {
+    membershipClaimOriginDetails {
+      canDeleteYn
+    }
+    membershipPointsDetails {
+      description
+    }
+    propertyPropertyDetails {
+      turnawayCode
+    }
+  }
+}

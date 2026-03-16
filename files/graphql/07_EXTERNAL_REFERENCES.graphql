@@ -1,0 +1,15 @@
+query bookingsReservationForEXTERNALREFERENCES($limit: Int, $offset: Int, $input: BookingsReservationQueryArgumentsType!) {
+  bookingsReservation(limit: $limit, offset: $offset, input: $input) {
+    externalReferencesDetails {
+      externalReferenceType
+    }
+    reservationDetails {
+      externalReference
+      insertDate
+      insertUser
+      resort
+      resvNameid
+      updateDate
+    }
+  }
+}

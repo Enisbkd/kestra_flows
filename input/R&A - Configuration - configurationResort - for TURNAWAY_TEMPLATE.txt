@@ -1,0 +1,69 @@
+﻿TABLE: TURNAWAY_TEMPLATE
+R&A FAMILY: Configuration
+R&A MODULE (schema file): ConfigurationResort.graphql
+REQUEST TYPE (Query field): configurationResort
+ENDPOINT: /rna/v1/graphql/
+
+========================
+GRAPHQL QUERY
+========================
+query configurationResortForTURNAWAYTEMPLATE($limit: Int, $offset: Int, $input: ConfigurationResortQueryArgumentsType!) {
+  configurationResort(limit: $limit, offset: $offset, input: $input) {
+    membershipClaimOriginDetails {
+      canDeleteYn
+    }
+    membershipPointsDetails {
+      description
+    }
+    propertyPropertyDetails {
+      turnawayCode
+    }
+  }
+}
+
+========================
+VARIABLES (JSON)
+========================
+
+{
+  "limit": 1,
+  "offset": 0,
+  "input": {
+    "resortDetailsResort": {
+      "_eq": "{{inputs.hotel_id}}"
+    }
+  }
+}
+
+========================
+RESPONSE (EXAMPLE)
+========================
+
+{
+  "data": {
+    "configurationResort": [
+      {
+        "membershipClaimOriginDetails": {
+          "canDeleteYn": null
+        },
+        "membershipPointsDetails": {
+          "description": null
+        },
+        "propertyPropertyDetails": {
+          "turnawayCode": null
+        },
+        "configurationResortRecordCount": 1
+      }
+    ]
+  },
+  "extensions": {
+    "count": {
+      "ConfigurationResort_configurationResort": 1
+    }
+  }
+}
+========================
+NOTES
+========================
+WARNING: These mapped payload fields were NOT found in the GraphQL schema (searched up to depth 4 from the query return type), so they are NOT included in the selection set:
+configurationResort

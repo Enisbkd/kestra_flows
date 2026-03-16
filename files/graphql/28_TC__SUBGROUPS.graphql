@@ -1,0 +1,9 @@
+query financialTransactionCodesForTCSUBGROUPS($limit: Int, $offset: Int, $input: FinancialTransactionCodesQueryArgumentsType!) {
+  financialTransactionCodes(limit: $limit, offset: $offset, input: $input) {
+    transactionCodeDetails {
+      group
+      sgDescription
+      tcResort2
+    }
+  }
+}

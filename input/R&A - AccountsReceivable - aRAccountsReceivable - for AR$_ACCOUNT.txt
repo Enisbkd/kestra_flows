@@ -1,0 +1,88 @@
+﻿TABLE: AR$_ACCOUNT
+R&A FAMILY: Accounts Receivable
+R&A MODULE (schema file): ARAccountsReceivable.graphql
+REQUEST TYPE (Query field): aRAccountsReceivable
+ENDPOINT: /rna/v1/graphql/
+
+========================
+GRAPHQL QUERY
+========================
+query aRAccountsReceivableForARACCOUNT($limit: Int, $offset: Int, $input: ARAccountsReceivableQueryArgumentsType!) {
+  aRAccountsReceivable(limit: $limit, offset: $offset, input: $input) {
+    accountDetails {
+      accountStatus
+      accountTypeId
+      addressId
+      balance
+      emailId
+      faxId
+      inactiveDate
+      insertDate
+      lastActivityDate
+      nameId
+      phoneId
+      primaryYn
+      updateDate
+    }
+    propertyPropertyDetails {
+      aRAccountNoFormat
+    }
+    profileAllInformationDetails {
+      allResorts
+    }
+  }
+}
+
+========================
+VARIABLES (JSON)
+========================
+
+{
+  "limit": 1,
+  "offset": 0,
+  "input": {
+    "accountDetailsResort": {
+      "_eq": "{{inputs.hotel_id}}"
+    }
+  }
+}
+
+========================
+RESPONSE (EXAMPLE)
+========================
+
+{
+  "data": {
+    "aRAccountsReceivable": [
+      {
+        "accountDetails": {
+          "accountStatus": null,
+          "accountTypeId": 20043,
+          "addressId": 73834,
+          "balance": null,
+          "emailId": null,
+          "faxId": null,
+          "inactiveDate": null,
+          "insertDate": "2023-11-30 15:24:10",
+          "lastActivityDate": null,
+          "nameId": 130093,
+          "phoneId": 114702,
+          "primaryYn": "N",
+          "updateDate": "2023-11-30 15:24:10"
+        },
+        "propertyPropertyDetails": {
+          "aRAccountNoFormat": null
+        },
+        "profileAllInformationDetails": {
+          "allResorts": null
+        },
+        "aRAccountsReceivableRecordCount": 1
+      }
+    ]
+  },
+  "extensions": {
+    "count": {
+      "ARAccountsReceivable_aRAccountsReceivable": 1
+    }
+  }
+}

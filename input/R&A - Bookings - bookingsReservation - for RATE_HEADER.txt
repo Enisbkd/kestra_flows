@@ -1,0 +1,116 @@
+﻿TABLE: RATE_HEADER
+R&A FAMILY: Bookings
+R&A MODULE (schema file): BookingsReservation.graphql
+REQUEST TYPE (Query field): bookingsReservation
+ENDPOINT: /rna/v1/graphql/
+
+========================
+GRAPHQL QUERY
+========================
+query bookingsReservationForRATEHEADER($limit: Int, $offset: Int, $input: BookingsReservationQueryArgumentsType!) {
+  bookingsReservation(limit: $limit, offset: $offset, input: $input) {
+    accompanyingGuestDetails {
+      nameID
+    }
+    fixedChargesDetails {
+      endDate
+    }
+    guestReservationMessagesDetails {
+      description
+    }
+    locatorsDetails {
+      beginDate
+    }
+    marketDetails {
+      trxCode
+    }
+    rateCodeDetails {
+      rateCategory
+      sdowBeginBookingDate
+      sdowEndBookingDate
+    }
+    reservationDetailDetails {
+      resvStatus
+    }
+    reservationDetails {
+      confirmationNo
+      insertUser
+      rateCode
+      resort
+      resvNameid
+      updateDate
+      yieldableYn
+    }
+  }
+}
+
+========================
+VARIABLES (JSON)
+========================
+
+{
+  "limit": 1,
+  "offset": 0,
+  "input": {
+    "reservationDetailsTruncBeginDate": {
+      "_gte": "{{FromBusinessDate}}"
+    },
+    "reservationDetailsTruncEndDate": {
+      "_lte": "{{ToBusinessDate}}"
+    },
+    "reservationDetailsResort": {
+      "_eq": "{{inputs.hotel_id}}"
+    }
+  }
+}
+
+========================
+RESPONSE (EXAMPLE)
+========================
+
+{
+  "data": {
+    "bookingsReservation": [
+      {
+        "accompanyingGuestDetails": {
+          "nameID": null
+        },
+        "fixedChargesDetails": {
+          "endDate": null
+        },
+        "guestReservationMessagesDetails": {
+          "description": null
+        },
+        "locatorsDetails": {
+          "beginDate": null
+        },
+        "marketDetails": {
+          "trxCode": null
+        },
+        "rateCodeDetails": {
+          "rateCategory": "RACK",
+          "sdowBeginBookingDate": null,
+          "sdowEndBookingDate": null
+        },
+        "reservationDetailDetails": {
+          "resvStatus": "CANCELLED"
+        },
+        "reservationDetails": {
+          "confirmationNo": "1088250",
+          "insertUser": 15760,
+          "rateCode": "GRP1",
+          "resort": "CSEPROP1",
+          "resvNameid": 124191,
+          "updateDate": "2025-07-18 23:04:10",
+          "yieldableYn": null
+        },
+        "bookingsReservationRecordCount": 1
+      }
+    ]
+  },
+  "extensions": {
+    "count": {
+      "BookingsReservation_bookingsReservation": 1
+    }
+  }
+}

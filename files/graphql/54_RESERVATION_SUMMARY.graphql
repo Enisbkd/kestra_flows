@@ -1,0 +1,57 @@
+query statisticsReservationsSummaryForRESERVATIONSUMMARY($limit: Int, $offset: Int, $input: StatisticsReservationsSummaryQueryArgumentsType!) {
+  statisticsReservationsSummary(limit: $limit, offset: $offset, input: $input) {
+    parentCompanyProfileDeatils {
+      nationality
+    }
+    reservationDetails {
+      beginState
+      rdResvStatus
+      repChannel
+      resort
+      room
+      roomCategory
+    }
+    reservationSummaryDetails {
+      adults
+      agentId
+      allotmentHeaderId
+      arrivalPersons
+      blockStatus
+      bookedRoomCategory
+      bookingStatus
+      businessDateCreated
+      children
+      consideredDate
+      country
+      dayUsePersons
+      dayUseRooms
+      departurePersons
+      endDate
+      eventID
+      eventType
+      extraRevenue
+      foodRevenue
+      foodRevenueTax
+      groupId
+      marketCode
+      multipleOccupancyRooms
+      netRoomRevenue
+      nonRevenue
+      otherRevenue
+      otherRevenueTax
+      pickedUpBlockRooms
+      rateCode
+      regionCode
+      reservationType
+      roomClass
+      roomRevenue
+      roomRevenueTax
+      singleOccupancyRooms
+      sourceCode
+      sourceProfId
+      totalRevenue
+      totalRevenueTax
+      vipStatus
+    }
+  }
+}

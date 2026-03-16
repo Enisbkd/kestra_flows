@@ -1,0 +1,11 @@
+query exportMappingsForENTITYDETAIL($limit: Int, $offset: Int, $input: ExportMappingsQueryArgumentsType!) {
+  exportMappings(limit: $limit, offset: $offset, input: $input) {
+    exportMappingDetails {
+      chainCode
+    }
+    propertyPropertyDetails {
+      insertDate
+      updateDate
+    }
+  }
+}

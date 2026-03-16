@@ -1,0 +1,60 @@
+﻿TABLE: REVENUE$TYPES
+R&A FAMILY: R&A - UNKNOWN
+R&A MODULE (schema file): RevenueGroupsAndTypes.graphql
+REQUEST TYPE (Query field): revenueGroupsAndTypes
+ENDPOINT: /rna/v1/graphql/
+
+========================
+GRAPHQL QUERY
+========================
+query revenueGroupsAndTypesForREVENUETYPES($limit: Int, $offset: Int, $input: RevenueGroupsAndTypesQueryArgumentsType!) {
+  revenueGroupsAndTypes(limit: $limit, offset: $offset, input: $input) {
+    propertyPropertyDetails {
+      cityDescription
+    }
+    revenueGroupTypesDetails {
+      revType
+      revenueGroup
+    }
+  }
+}
+
+========================
+VARIABLES (JSON)
+========================
+
+{
+  "limit": 1,
+  "offset": 0,
+  "input": {
+    "revenuegrptypesDetailsResort": {
+      "_eq": "{{inputs.hotel_id}}"
+    }
+  }
+}
+
+========================
+RESPONSE (EXAMPLE)
+========================
+
+{
+  "data": {
+    "revenueGroupsAndTypes": [
+      {
+        "propertyPropertyDetails": {
+          "cityDescription": null
+        },
+        "revenueGroupTypesDetails": {
+          "revType": "ADE",
+          "revenueGroup": "AV"
+        },
+        "revenueGroupsAndTypesRecordCount": 1
+      }
+    ]
+  },
+  "extensions": {
+    "count": {
+      "RevenueGroupsAndTypes_revenueGroupsAndTypes": 1
+    }
+  }
+}

@@ -1,0 +1,3562 @@
+TABLE: MARKET_STAT_DAILY
+R&A FAMILY: Statistics
+R&A MODULE (schema file): StatisticsReservationsDaily.graphql
+REQUEST TYPE (Query field): StatisticsReservationsDaily
+ENDPOINT: /rna/v1/graphql/
+
+========================
+GRAPHQL QUERY
+========================
+query StatisticsReservationsDaily_MarketStatDaily(
+  $input: StatisticsReservationsDailyQueryArgumentsType!
+  $limit: Int
+  $offset: Int
+) {
+  statisticsReservationsDaily(limit: $limit, offset: $offset, input: $input) {
+
+    reservationDailyStatisticsDetails {
+      businessDate
+      room
+      noShowReservations
+      gueststatusid
+    }
+
+    reservationDetails {
+      resort
+      marketCode
+    }
+  }
+}
+
+
+
+========================
+VARIABLES (JSON)
+========================
+{
+  "limit": 500,
+  "offset": 0,
+  "input": {
+    "resvdailystatsDetailsResort": {
+      "_in": ["{{inputs.hotel_id}}"]
+    },
+    "resvdailystatsDetailsBusinessDate": {
+      "_gte": "2025-12-01",
+      "_lte": "2026-12-01"
+    }
+  }
+}
+
+
+
+========================
+RESPONSE (EXAMPLE)
+========================
+{
+    "data": {
+        "statisticsReservationsDaily": [
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-04",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 1
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-05",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 2
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-06",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 3
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-23",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "GRP"
+                },
+                "statisticsReservationsDailyRecordCount": 4
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-24",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "GRP"
+                },
+                "statisticsReservationsDailyRecordCount": 5
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-25",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "GCO"
+                },
+                "statisticsReservationsDailyRecordCount": 6
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-25",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "GRP"
+                },
+                "statisticsReservationsDailyRecordCount": 7
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-26",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "GCO"
+                },
+                "statisticsReservationsDailyRecordCount": 8
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-26",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "GRP"
+                },
+                "statisticsReservationsDailyRecordCount": 9
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-27",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "GCO"
+                },
+                "statisticsReservationsDailyRecordCount": 10
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-23",
+                    "room": "9001",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 11
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-24",
+                    "room": "9001",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 12
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-24",
+                    "room": "103",
+                    "noShowReservations": 1,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 13
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-25",
+                    "room": "9001",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 14
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-25",
+                    "room": "103",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 15
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-26",
+                    "room": "9001",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 16
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-26",
+                    "room": "103",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 17
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-23",
+                    "room": "9002",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "GCO"
+                },
+                "statisticsReservationsDailyRecordCount": 18
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-23",
+                    "room": "101",
+                    "noShowReservations": 1,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "GCO"
+                },
+                "statisticsReservationsDailyRecordCount": 19
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-23",
+                    "room": "105",
+                    "noShowReservations": 1,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "GCO"
+                },
+                "statisticsReservationsDailyRecordCount": 20
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-23",
+                    "room": "104",
+                    "noShowReservations": 1,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "GCO"
+                },
+                "statisticsReservationsDailyRecordCount": 21
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-23",
+                    "room": "102",
+                    "noShowReservations": 1,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "GCO"
+                },
+                "statisticsReservationsDailyRecordCount": 22
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-24",
+                    "room": "9002",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "GCO"
+                },
+                "statisticsReservationsDailyRecordCount": 23
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-24",
+                    "room": "101",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "GCO"
+                },
+                "statisticsReservationsDailyRecordCount": 24
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-24",
+                    "room": "105",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "GCO"
+                },
+                "statisticsReservationsDailyRecordCount": 25
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-24",
+                    "room": "104",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "GCO"
+                },
+                "statisticsReservationsDailyRecordCount": 26
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-24",
+                    "room": "102",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "GCO"
+                },
+                "statisticsReservationsDailyRecordCount": 27
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-25",
+                    "room": "9002",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "GCO"
+                },
+                "statisticsReservationsDailyRecordCount": 28
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-25",
+                    "room": "101",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "GCO"
+                },
+                "statisticsReservationsDailyRecordCount": 29
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-25",
+                    "room": "105",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "GCO"
+                },
+                "statisticsReservationsDailyRecordCount": 30
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-25",
+                    "room": "104",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "GCO"
+                },
+                "statisticsReservationsDailyRecordCount": 31
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-25",
+                    "room": "102",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "GCO"
+                },
+                "statisticsReservationsDailyRecordCount": 32
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-26",
+                    "room": "9002",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "GCO"
+                },
+                "statisticsReservationsDailyRecordCount": 33
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-26",
+                    "room": "101",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "GCO"
+                },
+                "statisticsReservationsDailyRecordCount": 34
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-26",
+                    "room": "105",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "GCO"
+                },
+                "statisticsReservationsDailyRecordCount": 35
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-26",
+                    "room": "104",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "GCO"
+                },
+                "statisticsReservationsDailyRecordCount": 36
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-26",
+                    "room": "102",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "GCO"
+                },
+                "statisticsReservationsDailyRecordCount": 37
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-27",
+                    "room": "9002",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "GCO"
+                },
+                "statisticsReservationsDailyRecordCount": 38
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-27",
+                    "room": "101",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "GCO"
+                },
+                "statisticsReservationsDailyRecordCount": 39
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-27",
+                    "room": "105",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "GCO"
+                },
+                "statisticsReservationsDailyRecordCount": 40
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-27",
+                    "room": "104",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "GCO"
+                },
+                "statisticsReservationsDailyRecordCount": 41
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-27",
+                    "room": "102",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "GCO"
+                },
+                "statisticsReservationsDailyRecordCount": 42
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-28",
+                    "room": "9002",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "GCO"
+                },
+                "statisticsReservationsDailyRecordCount": 43
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-28",
+                    "room": "101",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "GCO"
+                },
+                "statisticsReservationsDailyRecordCount": 44
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-28",
+                    "room": "105",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "GCO"
+                },
+                "statisticsReservationsDailyRecordCount": 45
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-28",
+                    "room": "104",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "GCO"
+                },
+                "statisticsReservationsDailyRecordCount": 46
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-28",
+                    "room": "102",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "GCO"
+                },
+                "statisticsReservationsDailyRecordCount": 47
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-02-01",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 48
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-02-02",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 49
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-02-03",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 50
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-31",
+                    "room": null,
+                    "noShowReservations": 1,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 51
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-31",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 52
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-31",
+                    "room": "102",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 53
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-02-01",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 54
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-02-01",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 55
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-02-09",
+                    "room": "9001",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "EMAL"
+                },
+                "statisticsReservationsDailyRecordCount": 56
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-02-09",
+                    "room": "9002",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "EMAL"
+                },
+                "statisticsReservationsDailyRecordCount": 57
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-02-10",
+                    "room": "9001",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "EMAL"
+                },
+                "statisticsReservationsDailyRecordCount": 58
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-02-10",
+                    "room": "9002",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "EMAL"
+                },
+                "statisticsReservationsDailyRecordCount": 59
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-02-11",
+                    "room": "9001",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "EMAL"
+                },
+                "statisticsReservationsDailyRecordCount": 60
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-02-09",
+                    "room": "9003",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 61
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-02-10",
+                    "room": "9003",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 62
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-02-09",
+                    "room": "9004",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 63
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-02-10",
+                    "room": "9004",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 64
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-01",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 65
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-02",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 66
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-03",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 67
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-04",
+                    "room": "102",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 68
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-04",
+                    "room": "103",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 69
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-04",
+                    "room": "104",
+                    "noShowReservations": 1,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 70
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-04",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 71
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-05",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 72
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-05",
+                    "room": "103",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 73
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-05",
+                    "room": "104",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 74
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-06",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 75
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-07",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 76
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-08",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 77
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-09",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 78
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-09",
+                    "room": "201",
+                    "noShowReservations": 1,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "ALMC10"
+                },
+                "statisticsReservationsDailyRecordCount": 79
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-10",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 80
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-10",
+                    "room": "201",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "ALMC10"
+                },
+                "statisticsReservationsDailyRecordCount": 81
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-11",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 82
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-11",
+                    "room": "201",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "ALMC10"
+                },
+                "statisticsReservationsDailyRecordCount": 83
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-12",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 84
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-13",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 85
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-14",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 86
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-15",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 87
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-16",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 88
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-17",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 89
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-18",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 90
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-19",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 91
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-20",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 92
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-21",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 93
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-22",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 94
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-23",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 95
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-24",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 96
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-25",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 97
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-26",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 98
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-27",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 99
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-28",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 100
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-29",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 101
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-30",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 102
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-31",
+                    "room": "101",
+                    "noShowReservations": 1,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 103
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-31",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 104
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2025-12-31",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 105
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-01",
+                    "room": "101",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 106
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-01",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 107
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-01",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 108
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-01",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 109
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-02",
+                    "room": "101",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 110
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-02",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 111
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-02",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 112
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-03",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 113
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-04",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 114
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-05",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 115
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-06",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 116
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-07",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 117
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-07",
+                    "room": null,
+                    "noShowReservations": 1,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 118
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-07",
+                    "room": null,
+                    "noShowReservations": 1,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 119
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-08",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 120
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-08",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 121
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-08",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 122
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-09",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 123
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-09",
+                    "room": "101",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 124
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-10",
+                    "room": null,
+                    "noShowReservations": 1,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 125
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-10",
+                    "room": null,
+                    "noShowReservations": 1,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 126
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-10",
+                    "room": null,
+                    "noShowReservations": 1,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 127
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-10",
+                    "room": null,
+                    "noShowReservations": 1,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 128
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-10",
+                    "room": null,
+                    "noShowReservations": 1,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 129
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-10",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 130
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-10",
+                    "room": null,
+                    "noShowReservations": 1,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 131
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-10",
+                    "room": null,
+                    "noShowReservations": 1,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 132
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-11",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 133
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-11",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 134
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-11",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 135
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-11",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 136
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-11",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 137
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-11",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 138
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-11",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 139
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-11",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 140
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-11",
+                    "room": null,
+                    "noShowReservations": 1,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "ALMC1"
+                },
+                "statisticsReservationsDailyRecordCount": 141
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-11",
+                    "room": null,
+                    "noShowReservations": 1,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "ALMC1"
+                },
+                "statisticsReservationsDailyRecordCount": 142
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-11",
+                    "room": null,
+                    "noShowReservations": 1,
+                    "gueststatusid": "VIPE1"
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "ALMC7"
+                },
+                "statisticsReservationsDailyRecordCount": 143
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-11",
+                    "room": "197",
+                    "noShowReservations": 1,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "ALMC17"
+                },
+                "statisticsReservationsDailyRecordCount": 144
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-11",
+                    "room": null,
+                    "noShowReservations": 1,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "ALMC20"
+                },
+                "statisticsReservationsDailyRecordCount": 145
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-12",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 146
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-12",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "ALMC1"
+                },
+                "statisticsReservationsDailyRecordCount": 147
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-12",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "ALMC1"
+                },
+                "statisticsReservationsDailyRecordCount": 148
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-12",
+                    "room": null,
+                    "noShowReservations": 1,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "ALMC14"
+                },
+                "statisticsReservationsDailyRecordCount": 149
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-12",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": "VIPE1"
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "ALMC7"
+                },
+                "statisticsReservationsDailyRecordCount": 150
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-12",
+                    "room": "197",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "ALMC17"
+                },
+                "statisticsReservationsDailyRecordCount": 151
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-12",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "ALMC20"
+                },
+                "statisticsReservationsDailyRecordCount": 152
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-12",
+                    "room": null,
+                    "noShowReservations": 1,
+                    "gueststatusid": "VIP4"
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "ALMC4"
+                },
+                "statisticsReservationsDailyRecordCount": 153
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-12",
+                    "room": "102",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 154
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-13",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 155
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-13",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "ALMC1"
+                },
+                "statisticsReservationsDailyRecordCount": 156
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-13",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "ALMC14"
+                },
+                "statisticsReservationsDailyRecordCount": 157
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-13",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": "VIPE1"
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "ALMC7"
+                },
+                "statisticsReservationsDailyRecordCount": 158
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-13",
+                    "room": "197",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "ALMC17"
+                },
+                "statisticsReservationsDailyRecordCount": 159
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-13",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "ALMC20"
+                },
+                "statisticsReservationsDailyRecordCount": 160
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-13",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": "VIP4"
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "ALMC4"
+                },
+                "statisticsReservationsDailyRecordCount": 161
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-13",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "ALMC1"
+                },
+                "statisticsReservationsDailyRecordCount": 162
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-14",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 163
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-14",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "ALMC1"
+                },
+                "statisticsReservationsDailyRecordCount": 164
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-14",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "ALMC1"
+                },
+                "statisticsReservationsDailyRecordCount": 165
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-14",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": "VIPE1"
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "ALMC7"
+                },
+                "statisticsReservationsDailyRecordCount": 166
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-14",
+                    "room": "197",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "ALMC17"
+                },
+                "statisticsReservationsDailyRecordCount": 167
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-14",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "ALMC20"
+                },
+                "statisticsReservationsDailyRecordCount": 168
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-14",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": "VIP4"
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "ALMC4"
+                },
+                "statisticsReservationsDailyRecordCount": 169
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-15",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 170
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-15",
+                    "room": "101",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 171
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-16",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 172
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-17",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 173
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-18",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 174
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-19",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 175
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-19",
+                    "room": "101",
+                    "noShowReservations": 0,
+                    "gueststatusid": "1"
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 176
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-20",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 177
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-20",
+                    "room": "101",
+                    "noShowReservations": 0,
+                    "gueststatusid": "1"
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 178
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-20",
+                    "room": "9001",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 179
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-21",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 180
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-21",
+                    "room": "9001",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 181
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-22",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 182
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-23",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 183
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-24",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 184
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-25",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 185
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-26",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 186
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-26",
+                    "room": null,
+                    "noShowReservations": 1,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 187
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-26",
+                    "room": "210",
+                    "noShowReservations": 1,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 188
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-26",
+                    "room": "218",
+                    "noShowReservations": 1,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 189
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-26",
+                    "room": null,
+                    "noShowReservations": 1,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 190
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-27",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 191
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-27",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 192
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-27",
+                    "room": "210",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 193
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-27",
+                    "room": "218",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 194
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-27",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 195
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-27",
+                    "room": "312",
+                    "noShowReservations": 1,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 196
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-27",
+                    "room": "420",
+                    "noShowReservations": 1,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 197
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-27",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 198
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-27",
+                    "room": "301",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 199
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-28",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 200
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-28",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 201
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-28",
+                    "room": null,
+                    "noShowReservations": 1,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 202
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-28",
+                    "room": "202",
+                    "noShowReservations": 1,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 203
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-28",
+                    "room": "114",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 204
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-28",
+                    "room": "312",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 205
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-28",
+                    "room": "107",
+                    "noShowReservations": 1,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 206
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-28",
+                    "room": null,
+                    "noShowReservations": 1,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 207
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-28",
+                    "room": "420",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 208
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-28",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 209
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-28",
+                    "room": "301",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 210
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-29",
+                    "room": "202",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 211
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-29",
+                    "room": "114",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 212
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-29",
+                    "room": "312",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 213
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-29",
+                    "room": "107",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 214
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-29",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 215
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-29",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 216
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-29",
+                    "room": "301",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 217
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-29",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 218
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-29",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 219
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-30",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 220
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-30",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 221
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-30",
+                    "room": "202",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 222
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-30",
+                    "room": "114",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 223
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-30",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 224
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-30",
+                    "room": "103",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 225
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-30",
+                    "room": "101",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 226
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-31",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 227
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-31",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 228
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-31",
+                    "room": "202",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 229
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-31",
+                    "room": "114",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 230
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-31",
+                    "room": "103",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 231
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-01-31",
+                    "room": "101",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 232
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-02-01",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 233
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-02-01",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": "3"
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 234
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-02-01",
+                    "room": "101",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 235
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-02-01",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 236
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-02-01",
+                    "room": "202",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 237
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-02-01",
+                    "room": "114",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 238
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-02-02",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 239
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-02-02",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": "3"
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 240
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-02-02",
+                    "room": "101",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 241
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-02-03",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 242
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-02-04",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 243
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-02-05",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 244
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-02-06",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 245
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-02-07",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 246
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-02-08",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 247
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-02-08",
+                    "room": "101",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 248
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-02-08",
+                    "room": "102",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 249
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-02-08",
+                    "room": "103",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 250
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-02-08",
+                    "room": "104",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 251
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-02-08",
+                    "room": "105",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 252
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-02-09",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 253
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-02-09",
+                    "room": "101",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 254
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-02-09",
+                    "room": "102",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 255
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-02-09",
+                    "room": "103",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 256
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-02-09",
+                    "room": "104",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 257
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-02-09",
+                    "room": "105",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 258
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-02-09",
+                    "room": null,
+                    "noShowReservations": 1,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 259
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-02-10",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 260
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-02-10",
+                    "room": null,
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 261
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-02-11",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 262
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-02-12",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 263
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-02-13",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 264
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-02-14",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 265
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-02-15",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 266
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-02-16",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 267
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-02-17",
+                    "room": "9500",
+                    "noShowReservations": 0,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 268
+            },
+            {
+                "reservationDailyStatisticsDetails": {
+                    "businessDate": "2026-02-17",
+                    "room": null,
+                    "noShowReservations": 1,
+                    "gueststatusid": null
+                },
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "marketCode": "BAR"
+                },
+                "statisticsReservationsDailyRecordCount": 269
+            }
+        ]
+    },
+    "extensions": {
+        "count": {
+            "StatisticsReservationsDaily_statisticsReservationsDaily": 269
+        }
+    }
+}

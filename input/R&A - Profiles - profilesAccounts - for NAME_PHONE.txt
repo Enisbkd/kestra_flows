@@ -1,0 +1,96 @@
+﻿TABLE: NAME_PHONE
+R&A FAMILY: Profiles
+R&A MODULE (schema file): ProfilesAccounts.graphql
+REQUEST TYPE (Query field): profilesAccounts
+ENDPOINT: /rna/v1/graphql/
+
+========================
+GRAPHQL QUERY
+========================
+query profilesAccountsForNAMEPHONE($limit: Int, $offset: Int, $input: ProfilesAccountsQueryArgumentsType!) {
+  profilesAccounts(limit: $limit, offset: $offset, input: $input) {
+    profileAccountsDetails {
+      inactiveDate
+      nameId
+      updateDate
+      updateUser
+    }
+    profileCommunicationDetails {
+      addressId
+      beginDate
+      defaultMethodYN
+      displaySequence
+      emailFormat
+      endDate
+      indexPhone
+      insertDate
+      insertUser
+      phoneId
+      phoneType
+      primaryYN
+    }
+    profileForecastDetails {
+      laptopChange
+    }
+  }
+}
+
+========================
+VARIABLES (JSON)
+========================
+
+{
+  "limit": 1,
+  "offset": 0,
+  "input": {
+    "profileaccountsDetailsChainCode": {
+      "_eq": "{{ChainCode}}"
+    },
+    "profileaccountsDetailsUpdateDate": {
+      "_gte": "{{FromBusinessDate}}",
+      "_lte": "{{ToBusinessDate}}"
+    }
+  }
+}
+
+========================
+RESPONSE (EXAMPLE)
+========================
+
+{
+  "data": {
+    "profilesAccounts": [
+      {
+        "profileAccountsDetails": {
+          "inactiveDate": null,
+          "nameId": 5475893,
+          "updateDate": "2026-01-08 12:27:08",
+          "updateUser": "MARTINA.HOFFMANN@ORACLE"
+        },
+        "profileCommunicationDetails": {
+          "addressId": null,
+          "beginDate": null,
+          "defaultMethodYN": null,
+          "displaySequence": 1,
+          "emailFormat": null,
+          "endDate": null,
+          "indexPhone": "EMAID ADD",
+          "insertDate": "2026-01-08 12:27:08",
+          "insertUser": 13498,
+          "phoneId": 13362959,
+          "phoneType": "EMAIL",
+          "primaryYN": "Y"
+        },
+        "profileForecastDetails": {
+          "laptopChange": null
+        },
+        "profilesAccountsRecordCount": 1
+      }
+    ]
+  },
+  "extensions": {
+    "count": {
+      "ProfilesAccounts_profilesAccounts": 1
+    }
+  }
+}

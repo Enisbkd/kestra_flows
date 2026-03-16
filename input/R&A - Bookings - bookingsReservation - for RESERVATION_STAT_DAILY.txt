@@ -1,0 +1,207 @@
+﻿TABLE: RESERVATION_STAT_DAILY
+R&A FAMILY: Bookings
+R&A MODULE (schema file): BookingsReservation.graphql
+REQUEST TYPE (Query field): bookingsReservation
+ENDPOINT: /rna/v1/graphql/
+
+========================
+GRAPHQL QUERY
+========================
+query bookingsReservationForRESERVATIONSTATDAILY($limit: Int, $offset: Int, $input: BookingsReservationQueryArgumentsType!) {
+  bookingsReservation(limit: $limit, offset: $offset, input: $input) {
+    accompanyingGuestDetails {
+      birthDate
+      nationality
+    }
+    fixedChargesDetails {
+      businessDate
+      endDate
+    }
+    locatorsDetails {
+      beginDate
+    }
+    marketDetails {
+      centralMarketGroupCode
+    }profileAllInformationDetails {
+      country
+      state
+      vIPCode
+      vIPDescription
+      nameTaxType
+    }
+    propertyPropertyDetails {
+      maxAdultsInFamilyRoom
+      maxChildrenInFamilyRoom
+      regionCode
+    }
+    rateCodeDetails {
+      centralSourceGroupCode
+      dayUseYN
+      houseUseYN
+    }
+    reservationDepositScheduleDetails {
+      totalDepositPayments
+    }
+    reservationDetailDetails {
+      allotmentHeaderId
+      groupId
+      resvStatus
+      travelAgentId
+    }
+    reservationDetails {
+      adults
+      allotmentRecordType
+      bookedRoomCategory
+      cancellationDate
+      cancelledBy
+      centralProjectedTotalRevenue
+      children
+      companyID
+      complimentaryYN
+      contactProfileID
+      insertDate
+      marketCode
+      membershipId
+      numberOfRooms
+      originalEndDate
+      rateCode
+      registrationCardNo
+      repChannel
+      resort
+      resvNameid
+      revenueTypeCode
+      room
+      roomCategory
+      roomClass
+      roomRevenue
+      sourceCode
+      sourceProfileID
+      totalRevenue
+      walkInYN
+    }
+    roomCategoryDetails {
+      pseudoRoomType
+      pseudoRoomYN
+    }
+    rotationPointAdjustments {
+      numberOfNights
+    }
+  }
+}
+
+========================
+VARIABLES (JSON)
+========================
+
+{
+  "limit": 1,
+  "offset": 0,
+  "input": {
+    "reservationDetailsTruncBeginDate": {
+      "_gte": "{{FromBusinessDate}}"
+    },
+    "reservationDetailsTruncEndDate": {
+      "_lte": "{{ToBusinessDate}}"
+    },
+    "reservationDetailsResort": {
+      "_eq": "{{inputs.hotel_id}}"
+    }
+  }
+}
+
+========================
+RESPONSE (EXAMPLE)
+========================
+
+{
+  "data": {
+    "bookingsReservation": [
+      {
+        "accompanyingGuestDetails": {
+          "birthDate": null,
+          "nationality": null
+        },
+        "fixedChargesDetails": {
+          "businessDate": null,
+          "endDate": null
+        },
+        "locatorsDetails": {
+          "beginDate": null
+        },
+        "marketDetails": {
+          "centralMarketGroupCode": "GRP"
+        },
+        "profileAllInformationDetails": {
+          "country": null,
+          "state": null,
+          "vIPCode": null,
+          "vIPDescription": null,
+          "nameTaxType": null
+        },
+        "propertyPropertyDetails": {
+          "maxAdultsInFamilyRoom": null,
+          "maxChildrenInFamilyRoom": null,
+          "regionCode": "EAM"
+        },
+        "rateCodeDetails": {
+          "centralSourceGroupCode": null,
+          "dayUseYN": null,
+          "houseUseYN": null
+        },
+        "reservationDepositScheduleDetails": {
+          "totalDepositPayments": null
+        },
+        "reservationDetailDetails": {
+          "allotmentHeaderId": 25011,
+          "groupId": 244225,
+          "resvStatus": "CANCELLED",
+          "travelAgentId": 244006
+        },
+        "reservationDetails": {
+          "adults": 1,
+          "allotmentRecordType": null,
+          "bookedRoomCategory": "54571",
+          "cancellationDate": "2025-01-25 14:34:17",
+          "cancelledBy": "GISELA.HOEFER@PSALES",
+          "centralProjectedTotalRevenue": null,
+          "children": 0,
+          "companyID": null,
+          "complimentaryYN": null,
+          "contactProfileID": null,
+          "insertDate": "2024-11-25 16:10:01",
+          "marketCode": "GRP",
+          "membershipId": null,
+          "numberOfRooms": 1,
+          "originalEndDate": null,
+          "rateCode": "OC1",
+          "registrationCardNo": null,
+          "repChannel": null,
+          "resort": "CSEPROP1",
+          "resvNameid": 157483,
+          "revenueTypeCode": null,
+          "room": "501",
+          "roomCategory": "54571",
+          "roomClass": "HTL",
+          "roomRevenue": null,
+          "sourceCode": null,
+          "sourceProfileID": null,
+          "totalRevenue": null,
+          "walkInYN": null
+        },
+        "roomCategoryDetails": {
+          "pseudoRoomType": null,
+          "pseudoRoomYN": null
+        },
+        "rotationPointAdjustments": {
+          "numberOfNights": null
+        },
+        "bookingsReservationRecordCount": 1
+      }
+    ]
+  },
+  "extensions": {
+    "count": {
+      "BookingsReservation_bookingsReservation": 1
+    }
+  }
+}

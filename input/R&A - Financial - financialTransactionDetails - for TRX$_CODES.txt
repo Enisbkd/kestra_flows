@@ -1,0 +1,95 @@
+﻿TABLE: TRX$_CODES
+R&A FAMILY: Financial
+R&A MODULE (schema file): FinancialTransactionDetails.graphql
+REQUEST TYPE (Query field): financialTransactionDetails
+ENDPOINT: /rna/v1/graphql/
+
+========================
+GRAPHQL QUERY
+========================
+query financialTransactionDetailsForTRXCODES($limit: Int, $offset: Int, $input: FinancialTransactionDetailsQueryArgumentsType!) {
+  financialTransactionDetails(limit: $limit, offset: $offset, input: $input) {
+    articleDetails {
+      description
+    }
+    financialTransactionDetails {
+      tcGroup
+      tcSubgroup
+      trxCode
+    }
+    folioTaxDetails {
+      taxCode10
+    }
+    propertyPropertyDetails {
+      aRBalanceTrxCode
+    }
+    reservationDetails {
+      resort
+    }
+    transactionCodeDetails {
+      tcTransactionType
+    }
+  }
+}
+
+========================
+VARIABLES (JSON)
+========================
+
+{
+  "limit": 1,
+  "offset": 0,
+  "input": {
+    "financialtransDetailsResort": {
+      "_eq": "{{inputs.hotel_id}}"
+    },
+    "financialtransDetailsTrxDate": {
+      "_gte": "{{FromBusinessDate}}",
+      "_lte": "{{ToBusinessDate}}"
+    }
+  }
+}
+
+========================
+RESPONSE (EXAMPLE)
+========================
+
+{
+  "data": {
+    "financialTransactionDetails": [
+      {
+        "articleDetails": {
+          "description": null
+        },
+        "financialTransactionDetails": {
+          "tcGroup": "PKG",
+          "tcSubgroup": "PKG",
+          "trxCode": "9200"
+        },
+        "folioTaxDetails": {
+          "taxCode10": null
+        },
+        "propertyPropertyDetails": {
+          "aRBalanceTrxCode": null
+        },
+        "reservationDetails": {
+          "resort": "CSEPROP1"
+        },
+        "transactionCodeDetails": {
+          "tcTransactionType": "PK   "
+        },
+        "financialTransactionDetailsRecordCount": 1
+      }
+    ]
+  },
+  "extensions": {
+    "count": {
+      "FinancialTransactionDetails_financialTransactionDetails": 1
+    }
+  }
+}
+========================
+NOTES
+========================
+WARNING: These mapped payload fields were NOT found in the GraphQL schema (searched up to depth 4 from the query return type), so they are NOT included in the selection set:
+financialTransactionDetails

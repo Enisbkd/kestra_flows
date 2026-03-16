@@ -1,0 +1,56 @@
+﻿TABLE: TC$_GROUPS
+R&A FAMILY: R&A - FINANCE
+R&A MODULE (schema file): FinancialTransactionCodes.graphql
+REQUEST TYPE (Query field): financialTransactionCodes
+ENDPOINT: /rna/v1/graphql/
+
+========================
+GRAPHQL QUERY
+========================
+query financialTransactionCodesForTCGROUPS($limit: Int, $offset: Int, $input: FinancialTransactionCodesQueryArgumentsType!) {
+  financialTransactionCodes(limit: $limit, offset: $offset, input: $input) {
+    transactionCodeDetails {
+      gDescription
+      group
+      tcResort2
+    }
+  }
+}
+
+========================
+VARIABLES (JSON)
+========================
+
+{
+  "limit": 1,
+  "offset": 0,
+  "input": {
+    "transcodeDetailsResort": {
+      "_eq": "{{inputs.hotel_id}}"
+    }
+  }
+}
+
+========================
+RESPONSE (EXAMPLE)
+========================
+
+{
+  "data": {
+    "financialTransactionCodes": [
+      {
+        "transactionCodeDetails": {
+          "gDescription": "Room Revenue",
+          "group": "ROOM",
+          "tcResort2": null
+        },
+        "financialTransactionCodesRecordCount": 1
+      }
+    ]
+  },
+  "extensions": {
+    "count": {
+      "FinancialTransactionCodes_financialTransactionCodes": 1
+    }
+  }
+}

@@ -1,0 +1,70 @@
+query profilesIndividualsForNAME($limit: Int, $offset: Int, $input: ProfilesIndividualsQueryArgumentsType!) {
+  profilesIndividuals(limit: $limit, offset: $offset, input: $input) {
+    profileAddressDetails {
+      name
+    }
+    profileAllInformationDetails {
+      accountSource
+      accountType
+      actionCode
+      activeYN
+      birthCountry
+      birthDate
+      birthDateStr
+      birthPlace
+      blMsg
+      businessTitle
+      chainCode
+      clientID
+      competition
+      contactYN
+      department
+      emailYN
+      firstName
+      gender
+      guestMiddleName
+      guestTitleCode
+      immigrationStatus
+      inactiveDate
+      industryCode
+      influence
+      languageCode
+      lastUpdatedResort
+      mailList
+      mailType
+      nameType
+      nationalityCode
+      priority
+      productInterest
+      profession
+      region
+      roomsPotential
+      salutation
+      scope
+      scopeCity
+      sfirst
+      territory
+      traceCode
+      updateDate
+      updateUser
+    }
+    profileCommunicationDetails {
+      insertDate
+      insertUser
+      lastName
+    }
+    profileMembershipDetails {
+      expirationDate
+      membershipStatus
+    }
+    profileNoteDetails {
+      resort
+    }
+    profilePreferenceDetails {
+      nameId
+    }
+    profileRelationshipDetails {
+      company
+    }
+  }
+}

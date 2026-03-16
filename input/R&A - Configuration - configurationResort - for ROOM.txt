@@ -1,0 +1,78 @@
+﻿TABLE: ROOM
+R&A FAMILY: Configuration
+R&A MODULE (schema file): ConfigurationResort.graphql
+REQUEST TYPE (Query field): configurationResort
+ENDPOINT: /rna/v1/graphql/
+
+========================
+GRAPHQL QUERY
+========================
+query configurationResortForROOM($limit: Int, $offset: Int, $input: ConfigurationResortQueryArgumentsType!) {
+  configurationResort(limit: $limit, offset: $offset, input: $input) {
+    membershipPointsDetails {
+      description
+      pseudoRuleYn
+      roomClass
+    }
+    propertyPropertyDetails {
+      insertDate
+      maxOccupancy
+      updateDate
+    }
+    sellMessagesDetails {
+      roomCategory
+    }
+    transactionDiversionRuleDetails {
+      room
+    }
+  }
+}
+
+========================
+VARIABLES (JSON)
+========================
+
+{
+  "limit": 1,
+  "offset": 0,
+  "input": {
+    "resortDetailsResort": {
+      "_eq": "{{inputs.hotel_id}}"
+    }
+  }
+}
+
+========================
+RESPONSE (EXAMPLE)
+========================
+
+{
+  "data": {
+    "configurationResort": [
+      {
+        "membershipPointsDetails": {
+          "description": null,
+          "pseudoRuleYn": null,
+          "roomClass": null
+        },
+        "propertyPropertyDetails": {
+          "insertDate": "2022-06-14 16:06:12",
+          "maxOccupancy": null,
+          "updateDate": "2025-09-09 16:45:30"
+        },
+        "sellMessagesDetails": {
+          "roomCategory": null
+        },
+        "transactionDiversionRuleDetails": {
+          "room": null
+        },
+        "configurationResortRecordCount": 1
+      }
+    ]
+  },
+  "extensions": {
+    "count": {
+      "ConfigurationResort_configurationResort": 1
+    }
+  }
+}

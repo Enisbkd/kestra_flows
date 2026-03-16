@@ -1,0 +1,20 @@
+query bookingsReservationForRESERVATIONCOMMENT($limit: Int, $offset: Int, $input: BookingsReservationQueryArgumentsType!) {
+  bookingsReservation(limit: $limit, offset: $offset, input: $input) {
+    channelDetails {
+      comments
+    }
+    reservationCommentDetails {
+      commentType
+      externalCommentId
+      internalYN
+    }
+    reservationDetails {
+      insertDate
+      insertUser
+      resort
+      resvNameid
+      updateDate
+      updateUser
+    }
+  }
+}

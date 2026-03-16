@@ -1,0 +1,66 @@
+﻿TABLE: NAME_KEYWORDS
+R&A FAMILY: Profiles
+R&A MODULE (schema file): ProfilesIndividuals.graphql
+REQUEST TYPE (Query field): profilesIndividuals
+ENDPOINT: /rna/v1/graphql/
+
+========================
+GRAPHQL QUERY
+========================
+query profilesIndividualsForNAMEKEYWORDS($limit: Int, $offset: Int, $input: ProfilesIndividualsQueryArgumentsType!) {
+  profilesIndividuals(limit: $limit, offset: $offset, input: $input) {
+    profileKeywordsDetails {
+      keyword
+      keywordSoundex
+      keywordType
+    }
+    profilePreferenceDetails {
+      nameId
+    }
+  }
+}
+
+========================
+VARIABLES (JSON)
+========================
+
+{
+  "limit": 1,
+  "offset": 0,
+  "input": {
+    "profileallDetailsChainCode": {
+      "_eq": "{{ChainCode}}"
+    },
+    "profileallDetailsUpdateDate": {
+      "_gte": "{{FromBusinessDate}}",
+      "_lte": "{{ToBusinessDate}}"
+    }
+  }
+}
+
+========================
+RESPONSE (EXAMPLE)
+========================
+
+{
+  "data": {
+    "profilesIndividuals": [
+      {
+        "profileKeywordsDetails": {
+          "keyword": null,
+          "keywordSoundex": null,
+          "keywordType": null
+        },
+        "profilePreferenceDetails": {
+          "nameId": null
+        },
+        "profilesIndividualsRecordCount": 1
+      }
+    ]
+  },
+  "extensions": {
+    "count": {
+      "ProfilesIndividuals_profilesIndividuals": 1
+    }
+  }
+}

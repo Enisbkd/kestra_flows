@@ -1,0 +1,60 @@
+﻿TABLE: MARKET_GROUPS
+R&A FAMILY: Configuration
+R&A MODULE (schema file): ConfigurationResort.graphql
+REQUEST TYPE (Query field): configurationResort
+ENDPOINT: /rna/v1/graphql/
+
+========================
+GRAPHQL QUERY
+========================
+query configurationResortForMARKETGROUPS($limit: Int, $offset: Int, $input: ConfigurationResortQueryArgumentsType!) {
+  configurationResort(limit: $limit, offset: $offset, input: $input) {
+    closingScriptDetails {
+      resortType
+    }
+    membershipPointsDetails {
+      description
+      marketGroup
+    }
+  }
+}
+
+========================
+VARIABLES (JSON)
+========================
+
+{
+  "limit": 1,
+  "offset": 0,
+  "input": {
+    "resortDetailsResort": {
+      "_eq": "{{inputs.hotel_id}}"
+    }
+  }
+}
+
+========================
+RESPONSE (EXAMPLE)
+========================
+
+{
+  "data": {
+    "configurationResort": [
+      {
+        "closingScriptDetails": {
+          "resortType": null
+        },
+        "membershipPointsDetails": {
+          "description": null,
+          "marketGroup": null
+        },
+        "configurationResortRecordCount": 1
+      }
+    ]
+  },
+  "extensions": {
+    "count": {
+      "ConfigurationResort_configurationResort": 1
+    }
+  }
+}

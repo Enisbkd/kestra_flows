@@ -1,0 +1,102 @@
+﻿TABLE: RESERVATION_DAILY_ELEMENTS
+R&A FAMILY: Bookings
+R&A MODULE (schema file): BookingsReservation.graphql
+REQUEST TYPE (Query field): bookingsReservation
+ENDPOINT: /rna/v1/graphql/
+
+========================
+GRAPHQL QUERY
+========================
+query bookingsReservationForRESERVATIONDAILYELEMENTS($limit: Int, $offset: Int, $input: BookingsReservationQueryArgumentsType!) {
+  bookingsReservation(limit: $limit, offset: $offset, input: $input) {
+    fixedChargesDetails {
+      percentage
+    }
+    marketDetails {
+      trxCode
+    }
+    reservationDetailDetails {
+      allotmentHeaderId
+      dueOutYn
+      resvDailyElSequence
+      resvStatus
+    }
+    reservationDetails {
+      bookedRoomCategory
+      marketCode
+      originOfBooking
+      reservationDate
+      resort
+      room
+      roomCategory
+      roomClass
+    }
+    reservationItemsDetails {
+      startDate
+    }
+  }
+}
+
+========================
+VARIABLES (JSON)
+========================
+
+{
+  "limit": 1,
+  "offset": 0,
+  "input": {
+    "reservationDetailsTruncBeginDate": {
+      "_gte": "{{FromBusinessDate}}"
+    },
+    "reservationDetailsTruncEndDate": {
+      "_lte": "{{ToBusinessDate}}"
+    },
+    "reservationDetailsResort": {
+      "_eq": "{{inputs.hotel_id}}"
+    }
+  }
+}
+
+========================
+RESPONSE (EXAMPLE)
+========================
+
+{
+  "data": {
+    "bookingsReservation": [
+      {
+        "fixedChargesDetails": {
+          "percentage": null
+        },
+        "marketDetails": {
+          "trxCode": null
+        },
+        "reservationDetailDetails": {
+          "allotmentHeaderId": null,
+          "dueOutYn": "Y",
+          "resvDailyElSequence": 359820,
+          "resvStatus": "CANCELLED"
+        },
+        "reservationDetails": {
+          "bookedRoomCategory": "-1",
+          "marketCode": "GRP",
+          "originOfBooking": "OTB",
+          "reservationDate": "2023-02-01 00:00:00",
+          "resort": "CSEPROP1",
+          "room": null,
+          "roomCategory": "-1",
+          "roomClass": "PSE"
+        },
+        "reservationItemsDetails": {
+          "startDate": null
+        },
+        "bookingsReservationRecordCount": 1
+      }
+    ]
+  },
+  "extensions": {
+    "count": {
+      "BookingsReservation_bookingsReservation": 1
+    }
+  }
+}

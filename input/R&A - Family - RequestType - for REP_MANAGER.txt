@@ -1,0 +1,206 @@
+TABLE: REP_MANAGER
+R&A FAMILY: 
+R&A MODULE (schema file): 
+REQUEST TYPE (Query field): 
+ENDPOINT: /rna/v1/graphql/
+
+========================
+GRAPHQL QUERY
+========================
+query StatisticsManagersReport_REP_MANAGER(
+  $input: StatisticsManagersReportQueryArgumentsType!
+  $limit: Int
+  $offset: Int
+) {
+  statisticsManagersReport(limit: $limit, offset: $offset, input: $input) {
+
+    # == REP_MANAGER.RESORT (via property code, car pas de "resort" en output dans ce subject area)
+    propertyPropertyDetails {
+      propertyCode
+    }
+
+    # == REP_MANAGER.* (Managers Report Details)
+    managersReportDetails {
+      businessDate
+      guestsInHouse
+      adultsInHouse
+      childrenInHouse
+      arrivalPersons
+      arrivalRooms
+      departureRooms
+      occupiedRooms
+      availableRooms
+      oooRoomsWeek
+      osRoomsWeek
+    }
+  }
+}
+
+
+
+
+========================
+VARIABLES (JSON)
+========================
+{
+  "limit": 200,
+  "offset": 0,
+  "input": {
+    "managersreportDetailsResort": {
+      "_in": ["{{inputs.hotel_id}}"]
+    },
+    "managersreportDetailsBusinessDate": {
+      "_eq": "2024-12-01"
+    }
+  }
+}
+
+
+
+========================
+RESPONSE (EXAMPLE)
+========================
+{
+    "data": {
+        "statisticsManagersReport": [
+            {
+                "propertyPropertyDetails": {
+                    "propertyCode": "CSEPROP1"
+                },
+                "managersReportDetails": {
+                    "businessDate": "2024-12-01",
+                    "guestsInHouse": 0,
+                    "adultsInHouse": 0,
+                    "childrenInHouse": 0,
+                    "arrivalPersons": 0,
+                    "arrivalRooms": 0,
+                    "departureRooms": 0,
+                    "occupiedRooms": 0,
+                    "availableRooms": 0,
+                    "oooRoomsWeek": 0,
+                    "osRoomsWeek": 0
+                },
+                "statisticsManagersReportRecordCount": 1
+            },
+            {
+                "propertyPropertyDetails": {
+                    "propertyCode": "CSEPROP1"
+                },
+                "managersReportDetails": {
+                    "businessDate": "2024-12-01",
+                    "guestsInHouse": 0,
+                    "adultsInHouse": 0,
+                    "childrenInHouse": 0,
+                    "arrivalPersons": 0,
+                    "arrivalRooms": 0,
+                    "departureRooms": 0,
+                    "occupiedRooms": 0,
+                    "availableRooms": 0,
+                    "oooRoomsWeek": 0,
+                    "osRoomsWeek": 0
+                },
+                "statisticsManagersReportRecordCount": 2
+            },
+            {
+                "propertyPropertyDetails": {
+                    "propertyCode": "CSEPROP1"
+                },
+                "managersReportDetails": {
+                    "businessDate": "2024-12-01",
+                    "guestsInHouse": 0,
+                    "adultsInHouse": 0,
+                    "childrenInHouse": 0,
+                    "arrivalPersons": 0,
+                    "arrivalRooms": 0,
+                    "departureRooms": 0,
+                    "occupiedRooms": 0,
+                    "availableRooms": 14,
+                    "oooRoomsWeek": 0,
+                    "osRoomsWeek": 0
+                },
+                "statisticsManagersReportRecordCount": 3
+            },
+            {
+                "propertyPropertyDetails": {
+                    "propertyCode": "CSEPROP1"
+                },
+                "managersReportDetails": {
+                    "businessDate": "2024-12-01",
+                    "guestsInHouse": 0,
+                    "adultsInHouse": 0,
+                    "childrenInHouse": 0,
+                    "arrivalPersons": 0,
+                    "arrivalRooms": 0,
+                    "departureRooms": 0,
+                    "occupiedRooms": 0,
+                    "availableRooms": 0,
+                    "oooRoomsWeek": 0,
+                    "osRoomsWeek": 0
+                },
+                "statisticsManagersReportRecordCount": 4
+            },
+            {
+                "propertyPropertyDetails": {
+                    "propertyCode": "CSEPROP1"
+                },
+                "managersReportDetails": {
+                    "businessDate": "2024-12-01",
+                    "guestsInHouse": 0,
+                    "adultsInHouse": 0,
+                    "childrenInHouse": 0,
+                    "arrivalPersons": 0,
+                    "arrivalRooms": 0,
+                    "departureRooms": 0,
+                    "occupiedRooms": 0,
+                    "availableRooms": 0,
+                    "oooRoomsWeek": 0,
+                    "osRoomsWeek": 0
+                },
+                "statisticsManagersReportRecordCount": 5
+            },
+            {
+                "propertyPropertyDetails": {
+                    "propertyCode": "CSEPROP1"
+                },
+                "managersReportDetails": {
+                    "businessDate": "2024-12-01",
+                    "guestsInHouse": 0,
+                    "adultsInHouse": 0,
+                    "childrenInHouse": 0,
+                    "arrivalPersons": 0,
+                    "arrivalRooms": 0,
+                    "departureRooms": 0,
+                    "occupiedRooms": 0,
+                    "availableRooms": 0,
+                    "oooRoomsWeek": 0,
+                    "osRoomsWeek": 0
+                },
+                "statisticsManagersReportRecordCount": 6
+            },
+            {
+                "propertyPropertyDetails": {
+                    "propertyCode": "CSEPROP1"
+                },
+                "managersReportDetails": {
+                    "businessDate": "2024-12-01",
+                    "guestsInHouse": 0,
+                    "adultsInHouse": 0,
+                    "childrenInHouse": 0,
+                    "arrivalPersons": 0,
+                    "arrivalRooms": 0,
+                    "departureRooms": 0,
+                    "occupiedRooms": 0,
+                    "availableRooms": 0,
+                    "oooRoomsWeek": 0,
+                    "osRoomsWeek": 0
+                },
+                "statisticsManagersReportRecordCount": 7
+            }
+        ]
+    },
+    "extensions": {
+        "count": {
+            "StatisticsManagersReport_statisticsManagersReport": 7
+        }
+    }
+}

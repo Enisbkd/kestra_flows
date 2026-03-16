@@ -1,0 +1,19 @@
+query configurationResortForCOUNTRY($limit: Int, $offset: Int, $input: ConfigurationResortQueryArgumentsType!) {
+  configurationResort(limit: $limit, offset: $offset, input: $input) {
+    propertyPropertyDetails {
+      countryCode
+      insertDate
+      regionCode
+      updateDate
+    }
+    membershipClaimOriginDetails {
+      canDeleteYn
+      inactiveDate
+    }
+    propertyCountryDetails {
+      countryName
+      iSOCode
+      iSOName
+    }
+  }
+}

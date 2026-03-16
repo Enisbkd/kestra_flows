@@ -1,0 +1,160 @@
+﻿TABLE: ALLOTMENT$HEADER
+R&A FAMILY: Simple Reports
+R&A MODULE (schema file): SimpleReportsBookingBlocks.graphql
+REQUEST TYPE (Query field): simpleReportsBookingBlocks
+ENDPOINT: /rna/v1/graphql/
+
+========================
+GRAPHQL QUERY
+========================
+query simpleReportsBookingBlocksForALLOTMENTHEADER($limit: Int, $offset: Int, $input: SimpleReportsBookingBlocksQueryArgumentsType!) {
+  simpleReportsBookingBlocks(limit: $limit, offset: $offset, input: $input) {
+    salesEventBusinessBlockInformationDetails {
+      agentNameId
+      allotmentCode
+      allotmentHeaderId
+      attendees
+      beginDate
+      bookingStatus
+      bookingStatusorder
+      bookingtype
+      cancellationCode
+      cancellationDate
+      cancellationDescription
+      cancellationNo
+      catCanxCode
+      catCanxDate
+      catDecision
+      catOwnerCode
+      catStatus
+      cateringonlyYn
+      channel
+      companyNameId
+      conResort
+      contactNameId
+      description
+      endDate
+      inactiveDate
+      info
+      infoboard
+      insertDate
+      insertUser
+      marketCode
+      masterNameId
+      ownerCode
+      roomsDecision
+      source
+      sourceNameId
+      superBlockId
+      udfc01
+      udfc02
+      udfc03
+      udfc04
+      udfc05
+      udfc06
+      udfc07
+      udfc08
+      udfc09
+      udfc11
+      udfc12
+      udfc13
+      udfn02
+      updateDate
+      updateUser
+    }
+  }
+}
+
+========================
+VARIABLES (JSON)
+========================
+
+{
+  "limit": 1,
+  "offset": 0,
+  "input": {
+    "scbusblockinfoDetailsBeginDate": {
+      "_gte": "{{FromBusinessDate}}",
+      "_lte": "{{ToBusinessDate}}"
+    },
+    "scbusblockinfoDetailsEndDate": {
+      "_gte": "{{FromBusinessDate}}",
+      "_lte": "{{ToBusinessDate}}"
+    },
+    "scbusblockinfoDetailsResort": {
+      "_eq": "{{inputs.hotel_id}}"
+    }
+  }
+}
+
+========================
+RESPONSE (EXAMPLE)
+========================
+
+{
+  "data": {
+    "simpleReportsBookingBlocks": [
+      {
+        "salesEventBusinessBlockInformationDetails": {
+          "agentNameId": null,
+          "allotmentCode": "2601ORACLE_001",
+          "allotmentHeaderId": 269164,
+          "attendees": 0,
+          "beginDate": "2026-01-31",
+          "bookingStatus": "ACT",
+          "bookingStatusorder": 15,
+          "bookingtype": "TRA",
+          "cancellationCode": null,
+          "cancellationDate": null,
+          "cancellationDescription": null,
+          "cancellationNo": null,
+          "catCanxCode": null,
+          "catCanxDate": null,
+          "catDecision": null,
+          "catOwnerCode": "ALL",
+          "catStatus": "TEN",
+          "cateringonlyYn": "N",
+          "channel": null,
+          "companyNameId": 98975,
+          "conResort": "CSEPROP1",
+          "contactNameId": 130242,
+          "description": "Oracle Software GmbH (Schweiz)",
+          "endDate": "2026-02-01",
+          "inactiveDate": null,
+          "info": null,
+          "infoboard": null,
+          "insertDate": "2026-02-04 14:07:40",
+          "insertUser": 14110,
+          "marketCode": "BAR",
+          "masterNameId": 5558541,
+          "ownerCode": "ALL",
+          "roomsDecision": null,
+          "source": "EMA",
+          "sourceNameId": null,
+          "superBlockId": 0,
+          "udfc01": null,
+          "udfc02": null,
+          "udfc03": null,
+          "udfc04": null,
+          "udfc05": null,
+          "udfc06": null,
+          "udfc07": null,
+          "udfc08": null,
+          "udfc09": null,
+          "udfc11": null,
+          "udfc12": null,
+          "udfc13": null,
+          "udfn02": null,
+          "updateDate": "2026-02-04 15:17:22",
+          "updateUser": 15166
+        },
+        "simpleReportsBookingBlocksRecordCount": 1
+      }
+    ]
+  },
+  "extensions": {
+    "count": {
+      "SimpleReportsBookingBlocks_simpleReportsBookingBlocks": 1
+    }
+  }
+}

@@ -1,0 +1,10 @@
+query changesLogForRESERVATIONNAMEJRNL($limit: Int, $offset: Int, $input: ChangesLogQueryArgumentsType!) {
+  changesLog(limit: $limit, offset: $offset, input: $input) {
+    actionDetails {
+      parentActionInstanceId
+    }
+    reservationDetails {
+      confirmationNo
+    }
+  }
+}

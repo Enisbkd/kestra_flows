@@ -1,0 +1,128 @@
+﻿TABLE: RESERVATION_PRODUCTS
+R&A FAMILY: Bookings
+R&A MODULE (schema file): BookingsReservation.graphql
+REQUEST TYPE (Query field): bookingsReservation
+ENDPOINT: /rna/v1/graphql/
+
+========================
+GRAPHQL QUERY
+========================
+query bookingsReservationForRESERVATIONPRODUCTS($limit: Int, $offset: Int, $input: BookingsReservationQueryArgumentsType!) {
+  bookingsReservation(limit: $limit, offset: $offset, input: $input) {
+    fixedChargesDetails {
+      endDate
+    }
+    locatorsDetails {
+      beginDate
+    }
+    rateCodeDetails {
+      postingRhythm
+    }
+    reservationDepositScheduleDetails {
+      productId
+    }
+    reservationDetails {
+      currencyCode
+      insertDate
+      insertUser
+      quantity
+      resort
+      resvNameid
+      updateDate
+      updateUser
+    }
+    reservationItemsDetails {
+      reservationProductId
+    }
+    reservationProductsDetails {
+      calculationRule
+      cateringYn
+      excludedQuantity
+      forecastNextDayYN
+      fromValidTime
+      includedInRateYN
+      posAccountYn
+      posNextDayYn
+      printSeparateYn
+      ticketsYn
+      toValidTime
+    }
+  }
+}
+
+========================
+VARIABLES (JSON)
+========================
+
+{
+  "limit": 1,
+  "offset": 0,
+  "input": {
+    "reservationDetailsTruncBeginDate": {
+      "_gte": "{{FromBusinessDate}}"
+    },
+    "reservationDetailsTruncEndDate": {
+      "_lte": "{{ToBusinessDate}}"
+    },
+    "reservationDetailsResort": {
+      "_eq": "{{inputs.hotel_id}}"
+    }
+  }
+}
+
+========================
+RESPONSE (EXAMPLE)
+========================
+
+{
+  "data": {
+    "bookingsReservation": [
+      {
+        "fixedChargesDetails": {
+          "endDate": null
+        },
+        "locatorsDetails": {
+          "beginDate": null
+        },
+        "rateCodeDetails": {
+          "postingRhythm": null
+        },
+        "reservationDepositScheduleDetails": {
+          "productId": null
+        },
+        "reservationDetails": {
+          "currencyCode": "EUR",
+          "insertDate": "2023-09-20 14:45:48",
+          "insertUser": 15760,
+          "quantity": 1,
+          "resort": "CSEPROP1",
+          "resvNameid": 124191,
+          "updateDate": "2025-07-18 23:04:10",
+          "updateUser": 8334
+        },
+        "reservationItemsDetails": {
+          "reservationProductId": null
+        },
+        "reservationProductsDetails": {
+          "calculationRule": null,
+          "cateringYn": null,
+          "excludedQuantity": null,
+          "forecastNextDayYN": null,
+          "fromValidTime": null,
+          "includedInRateYN": null,
+          "posAccountYn": null,
+          "posNextDayYn": null,
+          "printSeparateYn": null,
+          "ticketsYn": null,
+          "toValidTime": null
+        },
+        "bookingsReservationRecordCount": 1
+      }
+    ]
+  },
+  "extensions": {
+    "count": {
+      "BookingsReservation_bookingsReservation": 1
+    }
+  }
+}

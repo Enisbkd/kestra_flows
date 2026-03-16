@@ -1,0 +1,76 @@
+﻿TABLE: COUNTRY$
+R&A FAMILY: Configuration
+R&A MODULE (schema file): ConfigurationResort.graphql
+REQUEST TYPE (Query field): configurationResort
+ENDPOINT: /rna/v1/graphql/
+
+========================
+GRAPHQL QUERY
+========================
+query configurationResortForCOUNTRY($limit: Int, $offset: Int, $input: ConfigurationResortQueryArgumentsType!) {
+  configurationResort(limit: $limit, offset: $offset, input: $input) {
+    propertyPropertyDetails {
+      countryCode
+      insertDate
+      regionCode
+      updateDate
+    }
+    membershipClaimOriginDetails {
+      canDeleteYn
+      inactiveDate
+    }
+    propertyCountryDetails {
+      countryName
+      iSOCode
+      iSOName
+    }
+  }
+}
+
+========================
+VARIABLES (JSON)
+========================
+
+{
+  "limit": 1,
+  "offset": 0,
+  "input": {
+    "resortDetailsResort": {
+      "_eq": "{{inputs.hotel_id}}"
+    }
+  }
+}
+
+========================
+RESPONSE (EXAMPLE)
+========================
+
+{
+  "data": {
+    "configurationResort": [
+      {
+        "propertyPropertyDetails": {
+          "countryCode": "DE",
+          "insertDate": "2022-06-14 16:06:12",
+          "regionCode": "EAM",
+          "updateDate": "2025-09-09 16:45:30"
+        },
+        "membershipClaimOriginDetails": {
+          "canDeleteYn": null,
+          "inactiveDate": null
+        },
+        "propertyCountryDetails": {
+          "countryName": "Andorra",
+          "iSOCode": "AD",
+          "iSOName": null
+        },
+        "configurationResortRecordCount": 1
+      }
+    ]
+  },
+  "extensions": {
+    "count": {
+      "ConfigurationResort_configurationResort": 1
+    }
+  }
+}

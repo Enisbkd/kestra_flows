@@ -1,0 +1,10 @@
+query configurationResortForSCROOMTYPES($limit: Int, $offset: Int, $input: ConfigurationResortQueryArgumentsType!) {
+  configurationResort(limit: $limit, offset: $offset, input: $input) {
+    qualifyingRatesDetails {
+      label
+    }
+    sellMessagesDetails {
+      roomCategory
+    }
+  }
+}

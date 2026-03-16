@@ -1,0 +1,55 @@
+﻿TABLE: ALLOTMENT_REVENUE$DETAIL
+R&A FAMILY: Statistics
+R&A MODULE (schema file): StatisticsReservationsSummary.graphql
+REQUEST TYPE (Query field): statisticsReservationsSummary
+ENDPOINT: /rna/v1/graphql/
+
+========================
+GRAPHQL QUERY
+========================
+query statisticsReservationsSummaryForALLOTMENTREVENUEDETAIL($limit: Int, $offset: Int, $input: StatisticsReservationsSummaryQueryArgumentsType!) {
+  statisticsReservationsSummary(limit: $limit, offset: $offset, input: $input) {
+    reservationSummaryDetails {
+      allotmentHeaderId
+      consideredDate
+    }
+    reservationDetails {
+      resort
+      roomCategory
+    }
+  }
+}
+
+========================
+VARIABLES (JSON)
+========================
+
+{
+  "limit": 1,
+  "offset": 0,
+  "input": {
+    "resvsummaryDetailsConsideredDate": {
+      "_eq": "{{FromBusinessDate}}"
+    },
+    "resvsummaryDetailsResort": {
+      "_eq": "{{inputs.hotel_id}}"
+    }
+  }
+}
+
+========================
+RESPONSE (EXAMPLE)
+========================
+
+{
+  "data": {
+    "statisticsReservationsSummary": [
+      
+    ]
+  },
+  "extensions": {
+    "count": {
+      "StatisticsReservationsSummary_statisticsReservationsSummary": 0
+    }
+  }
+}

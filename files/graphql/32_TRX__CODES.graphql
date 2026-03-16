@@ -1,0 +1,24 @@
+query financialTransactionDetailsForTRXCODES($limit: Int, $offset: Int, $input: FinancialTransactionDetailsQueryArgumentsType!) {
+  financialTransactionDetails(limit: $limit, offset: $offset, input: $input) {
+    articleDetails {
+      description
+    }
+    financialTransactionDetails {
+      tcGroup
+      tcSubgroup
+      trxCode
+    }
+    folioTaxDetails {
+      taxCode10
+    }
+    propertyPropertyDetails {
+      aRBalanceTrxCode
+    }
+    reservationDetails {
+      resort
+    }
+    transactionCodeDetails {
+      tcTransactionType
+    }
+  }
+}

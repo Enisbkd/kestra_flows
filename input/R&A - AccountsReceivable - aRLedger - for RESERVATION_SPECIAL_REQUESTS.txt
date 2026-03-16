@@ -1,0 +1,88 @@
+﻿TABLE: RESERVATION_SPECIAL_REQUESTS
+R&A FAMILY: Accounts Receivable
+R&A MODULE (schema file): ARLedger.graphql
+REQUEST TYPE (Query field): aRLedger
+ENDPOINT: /rna/v1/graphql/
+
+========================
+GRAPHQL QUERY
+========================
+query aRLedgerForRESERVATIONSPECIALREQUESTS($limit: Int, $offset: Int, $input: ARLedgerQueryArgumentsType!) {
+  aRLedger(limit: $limit, offset: $offset, input: $input) {
+    aRLedgerDetails {
+      comments
+      insertDate
+      insertUser
+      updateDate
+      updateUser
+    }
+    propertyPropertyDetails {
+      externalSCYN
+    }
+    reservationDetails {
+      dmlSeqNumber
+      insertActionInstanceId
+      preArrReviewedDt
+      resort
+      resvNameid
+      sourceid
+      specialRequest
+    }
+  }
+}
+
+========================
+VARIABLES (JSON)
+========================
+
+{
+  "limit": 1,
+  "offset": 0,
+  "input": {
+    "arledgerDetailsResort": {
+      "_eq": "{{inputs.hotel_id}}"
+    },
+    "arledgerDetailsTrxDate": {
+      "_gte": "{{FromBusinessDate}}",
+      "_lte": "{{ToBusinessDate}}"
+    }
+  }
+}
+
+========================
+RESPONSE (EXAMPLE)
+========================
+
+{
+  "data": {
+    "aRLedger": [
+      {
+        "aRLedgerDetails": {
+          "comments": null,
+          "insertDate": "2025-03-13 23:07:25",
+          "insertUser": 8334,
+          "updateDate": "2025-04-08 07:08:29",
+          "updateUser": 15166
+        },
+        "propertyPropertyDetails": {
+          "externalSCYN": null
+        },
+        "reservationDetails": {
+          "dmlSeqNumber": 339756,
+          "insertActionInstanceId": 1007031,
+          "preArrReviewedDt": null,
+          "resort": "CSEPROP1",
+          "resvNameid": 182855,
+          "sourceid": "CSEPROP1",
+          "specialRequest": null
+        },
+        "aRLedgerRecordCount": 1
+      }
+    ]
+  },
+  "extensions": {
+    "count": {
+      "ARLedger_aRLedger": 1
+    }
+  }
+}

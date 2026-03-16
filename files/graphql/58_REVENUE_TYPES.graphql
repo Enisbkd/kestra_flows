@@ -1,0 +1,11 @@
+query revenueGroupsAndTypesForREVENUETYPES($limit: Int, $offset: Int, $input: RevenueGroupsAndTypesQueryArgumentsType!) {
+  revenueGroupsAndTypes(limit: $limit, offset: $offset, input: $input) {
+    propertyPropertyDetails {
+      cityDescription
+    }
+    revenueGroupTypesDetails {
+      revType
+      revenueGroup
+    }
+  }
+}

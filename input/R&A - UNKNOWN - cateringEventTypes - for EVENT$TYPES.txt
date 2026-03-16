@@ -1,0 +1,48 @@
+﻿TABLE: EVENT$TYPES
+R&A FAMILY: R&A - UNKNOWN
+R&A MODULE (schema file): CateringEventTypes.graphql
+REQUEST TYPE (Query field): cateringEventTypes
+ENDPOINT: /rna/v1/graphql/
+
+========================
+GRAPHQL QUERY
+========================
+query cateringEventTypesForEVENTTYPES($limit: Int, $offset: Int, $input: CateringEventTypesQueryArgumentsType!) {
+  cateringEventTypes(limit: $limit, offset: $offset, input: $input) {
+    eventTypeDetails {
+      eventType
+      eventTypeDescription
+    }
+  }
+}
+
+========================
+VARIABLES (JSON)
+========================
+
+{
+  "limit": 1,
+  "offset": 0,
+  "input": {
+    "eventtypeDetailsChainCode": {
+      "_eq": "SBM01"
+    }
+  }
+}
+
+========================
+RESPONSE (EXAMPLE)
+========================
+
+{
+  "data": {
+    "cateringEventTypes": [
+      
+    ]
+  },
+  "extensions": {
+    "count": {
+      "CateringEventTypes_cateringEventTypes": 0
+    }
+  }
+}

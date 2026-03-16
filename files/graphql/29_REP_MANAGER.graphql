@@ -1,0 +1,8 @@
+query StatisticsManagersReport_REP_MANAGER(
+  $input: StatisticsManagersReportQueryArgumentsType!
+  $limit: Int
+  $offset: Int
+) {
+  statisticsManagersReport(limit: $limit, offset: $offset, input: $input) {
+
+    #

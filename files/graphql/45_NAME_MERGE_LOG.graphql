@@ -1,0 +1,20 @@
+query profilesIndividualsForNAMEMERGELOG($limit: Int, $offset: Int, $input: ProfilesIndividualsQueryArgumentsType!) {
+  profilesIndividuals(limit: $limit, offset: $offset, input: $input) {
+    profileAddressDetails {
+      name
+    }
+    profileAllInformationDetails {
+      addressType
+      displayName
+      fMembershipType
+      nameType
+    }
+    profileCommunicationDetails {
+      insertUser
+    }
+    profileRelationshipDetails {
+      fromProfileID
+      relationshipToNameID
+    }
+  }
+}

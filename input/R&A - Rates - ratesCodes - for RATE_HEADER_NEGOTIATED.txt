@@ -1,0 +1,80 @@
+﻿TABLE: RATE_HEADER_NEGOTIATED
+R&A FAMILY: Rates
+R&A MODULE (schema file): RatesCodes.graphql
+REQUEST TYPE (Query field): ratesCodes
+ENDPOINT: /rna/v1/graphql/
+
+========================
+GRAPHQL QUERY
+========================
+query ratesCodesForRATEHEADERNEGOTIATED($limit: Int, $offset: Int, $input: RatesCodesQueryArgumentsType!) {
+  ratesCodes(limit: $limit, offset: $offset, input: $input) {
+    blockDetails {
+      ownerResort
+    }
+    financialTransactionDetails {
+      nameId
+    }
+    rateCodeDetails {
+      commissionCode
+      endDate
+      insertDate
+      orderBy
+      sdowBeginBookingDate
+      updateDate
+    }
+    rateCodeDetailsDetails {
+      rateCode
+    }
+  }
+}
+
+========================
+VARIABLES (JSON)
+========================
+
+{
+  "limit": 1,
+  "offset": 0,
+  "input": {
+    "ratecodeDetailsResort": {
+      "_eq": "{{inputs.hotel_id}}"
+    }
+  }
+}
+
+========================
+RESPONSE (EXAMPLE)
+========================
+
+{
+  "data": {
+    "ratesCodes": [
+      {
+        "blockDetails": {
+          "ownerResort": null
+        },
+        "financialTransactionDetails": {
+          "nameId": 578232
+        },
+        "rateCodeDetails": {
+          "commissionCode": null,
+          "endDate": "2050-01-01",
+          "insertDate": "2023-09-18 12:11:10",
+          "orderBy": null,
+          "sdowBeginBookingDate": null,
+          "updateDate": "2025-08-18 08:44:40"
+        },
+        "rateCodeDetailsDetails": {
+          "rateCode": "EARLYB"
+        },
+        "ratesCodesRecordCount": 1
+      }
+    ]
+  },
+  "extensions": {
+    "count": {
+      "RatesCodes_ratesCodes": 1
+    }
+  }
+}

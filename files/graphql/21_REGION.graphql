@@ -1,0 +1,10 @@
+query configurationResortForREGION($limit: Int, $offset: Int, $input: ConfigurationResortQueryArgumentsType!) {
+  configurationResort(limit: $limit, offset: $offset, input: $input) {
+    membershipPointsDetails {
+      description
+    }
+    propertyPropertyDetails {
+      regionCode
+    }
+  }
+}

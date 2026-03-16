@@ -1,0 +1,104 @@
+﻿TABLE: NAME_ADDRESS
+R&A FAMILY: Profiles
+R&A MODULE (schema file): ProfilesIndividuals.graphql
+REQUEST TYPE (Query field): profilesIndividuals
+ENDPOINT: /rna/v1/graphql/
+
+========================
+GRAPHQL QUERY
+========================
+query profilesIndividualsForNAMEADDRESS($limit: Int, $offset: Int, $input: ProfilesIndividualsQueryArgumentsType!) {
+  profilesIndividuals(limit: $limit, offset: $offset, input: $input) {
+    profileAddressDetails {
+      primaryYN
+      province
+    }
+    profileAllInformationDetails {
+      address1
+      address2
+      address3
+      address4
+      addressId
+      addressType
+      city
+      country
+      inactiveDate
+      lastUpdatedResort
+      postalCode
+      state
+      updateDate
+      updateUser
+    }
+    profileCommunicationDetails {
+      insertDate
+      insertUser
+    }
+    profilePreferenceDetails {
+      nameId
+    }
+  }
+}
+
+========================
+VARIABLES (JSON)
+========================
+
+{
+  "limit": 1,
+  "offset": 0,
+  "input": {
+    "profileallDetailsChainCode": {
+      "_eq": "{{ChainCode}}"
+    },
+    "profileallDetailsUpdateDate": {
+      "_gte": "{{FromBusinessDate}}",
+      "_lte": "{{ToBusinessDate}}"
+    }
+  }
+}
+
+========================
+RESPONSE (EXAMPLE)
+========================
+
+{
+  "data": {
+    "profilesIndividuals": [
+      {
+        "profileAddressDetails": {
+          "primaryYN": "Y",
+          "province": null
+        },
+        "profileAllInformationDetails": {
+          "address1": null,
+          "address2": null,
+          "address3": null,
+          "address4": null,
+          "addressId": 293143,
+          "addressType": "HOME",
+          "city": null,
+          "country": null,
+          "inactiveDate": null,
+          "lastUpdatedResort": null,
+          "postalCode": null,
+          "state": null,
+          "updateDate": "2024-12-19 10:37:53",
+          "updateUser": "NABEEL.MULKI@ORACLE"
+        },
+        "profileCommunicationDetails": {
+          "insertDate": null,
+          "insertUser": null
+        },
+        "profilePreferenceDetails": {
+          "nameId": null
+        },
+        "profilesIndividualsRecordCount": 1
+      }
+    ]
+  },
+  "extensions": {
+    "count": {
+      "ProfilesIndividuals_profilesIndividuals": 1
+    }
+  }
+}

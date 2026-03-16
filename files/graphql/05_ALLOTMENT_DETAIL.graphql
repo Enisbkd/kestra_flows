@@ -1,0 +1,23 @@
+query bookingsBlockForALLOTMENTDETAIL($limit: Int, $offset: Int, $input: BookingsBlockQueryArgumentsType!) {
+  bookingsBlock(limit: $limit, offset: $offset, input: $input) {
+    blockDetails {
+      allotmentType
+    }
+    blockDetailDetails {
+      allotmentHeaderId
+      cPickupRate1
+      cPickupRate2
+      cPickupRate3
+      cPickupRate4
+      roomCategory
+      scRoomCategory
+      elasticSold
+    }
+    eventRevenueDetails {
+      forecastRevenue
+    }
+    sellMessagesDetails {
+      sellId
+    }
+  }
+}

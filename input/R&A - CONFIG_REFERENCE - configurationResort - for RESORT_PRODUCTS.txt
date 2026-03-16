@@ -1,0 +1,64 @@
+﻿TABLE: RESORT_PRODUCTS
+R&A FAMILY: R&A - CONFIG_REFERENCE
+R&A MODULE (schema file): ConfigurationResort.graphql
+REQUEST TYPE (Query field): configurationResort
+ENDPOINT: /rna/v1/graphql/
+
+========================
+GRAPHQL QUERY
+========================
+query configurationResortForRESORTPRODUCTS($limit: Int, $offset: Int, $input: ConfigurationResortQueryArgumentsType!) {
+  configurationResort(limit: $limit, offset: $offset, input: $input) {
+    closingScriptDetails {
+      resortType
+    }
+    itemPackageDetails {
+      product
+    }
+    membershipAwardProductsDetails {
+      packageDescription
+    }
+  }
+}
+
+========================
+VARIABLES (JSON)
+========================
+
+{
+  "limit": 1,
+  "offset": 0,
+  "input": {
+    "resortDetailsResort": {
+      "_eq": "{{inputs.hotel_id}}"
+    }
+  }
+}
+
+========================
+RESPONSE (EXAMPLE)
+========================
+
+{
+  "data": {
+    "configurationResort": [
+      {
+        "closingScriptDetails": {
+          "resortType": null
+        },
+        "itemPackageDetails": {
+          "product": "CRIB"
+        },
+        "membershipAwardProductsDetails": {
+          "packageDescription": "Selection of fine chocolates available for 500 Award Points"
+        },
+        "configurationResortRecordCount": 1
+      }
+    ]
+  },
+  "extensions": {
+    "count": {
+      "ConfigurationResort_configurationResort": 1
+    }
+  }
+}

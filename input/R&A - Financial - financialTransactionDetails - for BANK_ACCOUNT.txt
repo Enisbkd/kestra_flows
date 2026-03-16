@@ -1,0 +1,64 @@
+﻿TABLE: BANK_ACCOUNT
+R&A FAMILY: Financial
+R&A MODULE (schema file): FinancialTransactionDetails.graphql
+REQUEST TYPE (Query field): financialTransactionDetails
+ENDPOINT: /rna/v1/graphql/
+
+========================
+GRAPHQL QUERY
+========================
+query financialTransactionDetailsForBANKACCOUNT($limit: Int, $offset: Int, $input: FinancialTransactionDetailsQueryArgumentsType!) {
+  financialTransactionDetails(limit: $limit, offset: $offset, input: $input) {
+    financialTransactionDetails {
+      accountCode
+      accountid
+    }
+    reservationDetails {
+      resort
+    }
+  }
+}
+
+========================
+VARIABLES (JSON)
+========================
+
+{
+  "limit": 1,
+  "offset": 0,
+  "input": {
+    "financialtransDetailsResort": {
+      "_eq": "{{inputs.hotel_id}}"
+    },
+    "financialtransDetailsTrxDate": {
+      "_gte": "{{FromBusinessDate}}",
+      "_lte": "{{ToBusinessDate}}"
+    }
+  }
+}
+
+========================
+RESPONSE (EXAMPLE)
+========================
+
+{
+  "data": {
+    "financialTransactionDetails": [
+      {
+        "financialTransactionDetails": {
+          "accountCode": null,
+          "accountid": null
+        },
+        "reservationDetails": {
+          "resort": "CSEPROP1"
+        },
+        "financialTransactionDetailsRecordCount": 1
+      }
+    ]
+  },
+  "extensions": {
+    "count": {
+      "FinancialTransactionDetails_financialTransactionDetails": 1
+    }
+  }
+}

@@ -1,0 +1,74 @@
+﻿TABLE: EXTERNAL_REFERENCES
+R&A FAMILY: Bookings
+R&A MODULE (schema file): BookingsReservation.graphql
+REQUEST TYPE (Query field): bookingsReservation
+ENDPOINT: /rna/v1/graphql/
+
+========================
+GRAPHQL QUERY
+========================
+query bookingsReservationForEXTERNALREFERENCES($limit: Int, $offset: Int, $input: BookingsReservationQueryArgumentsType!) {
+  bookingsReservation(limit: $limit, offset: $offset, input: $input) {
+    externalReferencesDetails {
+      externalReferenceType
+    }
+    reservationDetails {
+      externalReference
+      insertDate
+      insertUser
+      resort
+      resvNameid
+      updateDate
+    }
+  }
+}
+
+========================
+VARIABLES (JSON)
+========================
+
+{
+  "limit": 1,
+  "offset": 0,
+  "input": {
+    "reservationDetailsTruncBeginDate": {
+      "_gte": "{{FromBusinessDate}}"
+    },
+    "reservationDetailsTruncEndDate": {
+      "_lte": "{{ToBusinessDate}}"
+    },
+    "reservationDetailsResort": {
+      "_eq": "{{inputs.hotel_id}}"
+    }
+  }
+}
+
+========================
+RESPONSE (EXAMPLE)
+========================
+
+{
+  "data": {
+    "bookingsReservation": [
+      {
+        "externalReferencesDetails": {
+          "externalReferenceType": null
+        },
+        "reservationDetails": {
+          "externalReference": null,
+          "insertDate": "2024-11-26 09:46:38",
+          "insertUser": 13277,
+          "resort": "CSEPROP1",
+          "resvNameid": 157820,
+          "updateDate": "2024-11-26 09:50:52"
+        },
+        "bookingsReservationRecordCount": 1
+      }
+    ]
+  },
+  "extensions": {
+    "count": {
+      "BookingsReservation_bookingsReservation": 1
+    }
+  }
+}

@@ -1,0 +1,13 @@
+query configurationResortForORIGINSOFBOOKINGTEMPLATE($limit: Int, $offset: Int, $input: ConfigurationResortQueryArgumentsType!) {
+  configurationResort(limit: $limit, offset: $offset, input: $input) {
+    creditCardAuthorizationRulesDetails {
+      sourceCode
+    }
+    membershipPointsDetails {
+      description
+    }
+    sourceGroupDetails {
+      parentSourceCode
+    }
+  }
+}

@@ -1,0 +1,21 @@
+query ratesCodesForRATEHEADERNEGOTIATED($limit: Int, $offset: Int, $input: RatesCodesQueryArgumentsType!) {
+  ratesCodes(limit: $limit, offset: $offset, input: $input) {
+    blockDetails {
+      ownerResort
+    }
+    financialTransactionDetails {
+      nameId
+    }
+    rateCodeDetails {
+      commissionCode
+      endDate
+      insertDate
+      orderBy
+      sdowBeginBookingDate
+      updateDate
+    }
+    rateCodeDetailsDetails {
+      rateCode
+    }
+  }
+}

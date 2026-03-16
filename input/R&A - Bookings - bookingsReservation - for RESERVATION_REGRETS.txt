@@ -1,0 +1,88 @@
+﻿TABLE: RESERVATION_REGRETS
+R&A FAMILY: Bookings
+R&A MODULE (schema file): BookingsReservation.graphql
+REQUEST TYPE (Query field): bookingsReservation
+ENDPOINT: /rna/v1/graphql/
+
+========================
+GRAPHQL QUERY
+========================
+query bookingsReservationForRESERVATIONREGRETS($limit: Int, $offset: Int, $input: BookingsReservationQueryArgumentsType!) {
+  bookingsReservation(limit: $limit, offset: $offset, input: $input) {
+    propertyPropertyDetails {
+      turnawayCode
+    }
+    reservationCancelPolicyDetails {
+      reservationCancelPolicyId
+      roomNights
+    }
+    reservationDetails {
+      arrivalDate
+      insertDate
+      insertUser
+      marketCode
+      numberOfRooms
+      resort
+      resvNameid
+      updateDate
+      updateUser
+    }
+  }
+}
+
+========================
+VARIABLES (JSON)
+========================
+
+{
+  "limit": 1,
+  "offset": 0,
+  "input": {
+    "reservationDetailsTruncBeginDate": {
+      "_gte": "{{FromBusinessDate}}"
+    },
+    "reservationDetailsTruncEndDate": {
+      "_lte": "{{ToBusinessDate}}"
+    },
+    "reservationDetailsResort": {
+      "_eq": "{{inputs.hotel_id}}"
+    }
+  }
+}
+
+========================
+RESPONSE (EXAMPLE)
+========================
+
+{
+  "data": {
+    "bookingsReservation": [
+      {
+        "propertyPropertyDetails": {
+          "turnawayCode": null
+        },
+        "reservationCancelPolicyDetails": {
+          "reservationCancelPolicyId": null,
+          "roomNights": null
+        },
+        "reservationDetails": {
+          "arrivalDate": "2023-02-01",
+          "insertDate": "2024-11-25 16:10:01",
+          "insertUser": 13277,
+          "marketCode": "GRP",
+          "numberOfRooms": 1,
+          "resort": "CSEPROP1",
+          "resvNameid": 157483,
+          "updateDate": "2025-01-25 14:34:17",
+          "updateUser": 14117
+        },
+        "bookingsReservationRecordCount": 1
+      }
+    ]
+  },
+  "extensions": {
+    "count": {
+      "BookingsReservation_bookingsReservation": 1
+    }
+  }
+}

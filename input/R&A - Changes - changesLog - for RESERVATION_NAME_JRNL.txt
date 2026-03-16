@@ -1,0 +1,59 @@
+﻿TABLE: RESERVATION_NAME_JRNL
+R&A FAMILY: Changes
+R&A MODULE (schema file): ChangesLog.graphql
+REQUEST TYPE (Query field): changesLog
+ENDPOINT: /rna/v1/graphql/
+
+========================
+GRAPHQL QUERY
+========================
+query changesLogForRESERVATIONNAMEJRNL($limit: Int, $offset: Int, $input: ChangesLogQueryArgumentsType!) {
+  changesLog(limit: $limit, offset: $offset, input: $input) {
+    actionDetails {
+      parentActionInstanceId
+    }
+    reservationDetails {
+      confirmationNo
+    }
+  }
+}
+
+========================
+VARIABLES (JSON)
+========================
+
+{
+  "limit": 1,
+  "offset": 0,
+  "input": {
+    "actionDetailsInsertDate": {
+      "_gte": "{{FromBusinessDate}}",
+      "_lte": "{{ToBusinessDate}}"
+    }
+  }
+}
+
+========================
+RESPONSE (EXAMPLE)
+========================
+
+{
+  "data": {
+    "changesLog": [
+      {
+        "actionDetails": {
+          "parentActionInstanceId": null
+        },
+        "reservationDetails": {
+          "confirmationNo": null
+        },
+        "changesLogRecordCount": 1
+      }
+    ]
+  },
+  "extensions": {
+    "count": {
+      "ChangesLog_changesLog": 1
+    }
+  }
+}

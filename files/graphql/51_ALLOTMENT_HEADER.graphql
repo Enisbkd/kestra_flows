@@ -1,0 +1,57 @@
+query simpleReportsBookingBlocksForALLOTMENTHEADER($limit: Int, $offset: Int, $input: SimpleReportsBookingBlocksQueryArgumentsType!) {
+  simpleReportsBookingBlocks(limit: $limit, offset: $offset, input: $input) {
+    salesEventBusinessBlockInformationDetails {
+      agentNameId
+      allotmentCode
+      allotmentHeaderId
+      attendees
+      beginDate
+      bookingStatus
+      bookingStatusorder
+      bookingtype
+      cancellationCode
+      cancellationDate
+      cancellationDescription
+      cancellationNo
+      catCanxCode
+      catCanxDate
+      catDecision
+      catOwnerCode
+      catStatus
+      cateringonlyYn
+      channel
+      companyNameId
+      conResort
+      contactNameId
+      description
+      endDate
+      inactiveDate
+      info
+      infoboard
+      insertDate
+      insertUser
+      marketCode
+      masterNameId
+      ownerCode
+      roomsDecision
+      source
+      sourceNameId
+      superBlockId
+      udfc01
+      udfc02
+      udfc03
+      udfc04
+      udfc05
+      udfc06
+      udfc07
+      udfc08
+      udfc09
+      udfc11
+      udfc12
+      udfc13
+      udfn02
+      updateDate
+      updateUser
+    }
+  }
+}

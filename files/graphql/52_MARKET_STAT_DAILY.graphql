@@ -1,0 +1,20 @@
+query StatisticsReservationsDaily_MarketStatDaily(
+  $input: StatisticsReservationsDailyQueryArgumentsType!
+  $limit: Int
+  $offset: Int
+) {
+  statisticsReservationsDaily(limit: $limit, offset: $offset, input: $input) {
+
+    reservationDailyStatisticsDetails {
+      businessDate
+      room
+      noShowReservations
+      gueststatusid
+    }
+
+    reservationDetails {
+      resort
+      marketCode
+    }
+  }
+}

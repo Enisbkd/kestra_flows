@@ -1,0 +1,100 @@
+﻿TABLE: RESERVATION_SUMMARY
+R&A FAMILY: Statistics
+R&A MODULE (schema file): StatisticsReservationsSummary.graphql
+REQUEST TYPE (Query field): statisticsReservationsSummary
+ENDPOINT: /rna/v1/graphql/
+
+========================
+GRAPHQL QUERY
+========================
+query statisticsReservationsSummaryForRESERVATIONSUMMARY($limit: Int, $offset: Int, $input: StatisticsReservationsSummaryQueryArgumentsType!) {
+  statisticsReservationsSummary(limit: $limit, offset: $offset, input: $input) {
+    parentCompanyProfileDeatils {
+      nationality
+    }
+    reservationDetails {
+      beginState
+      rdResvStatus
+      repChannel
+      resort
+      room
+      roomCategory
+    }
+    reservationSummaryDetails {
+      adults
+      agentId
+      allotmentHeaderId
+      arrivalPersons
+      blockStatus
+      bookedRoomCategory
+      bookingStatus
+      businessDateCreated
+      children
+      consideredDate
+      country
+      dayUsePersons
+      dayUseRooms
+      departurePersons
+      endDate
+      eventID
+      eventType
+      extraRevenue
+      foodRevenue
+      foodRevenueTax
+      groupId
+      marketCode
+      multipleOccupancyRooms
+      netRoomRevenue
+      nonRevenue
+      otherRevenue
+      otherRevenueTax
+      pickedUpBlockRooms
+      rateCode
+      regionCode
+      reservationType
+      roomClass
+      roomRevenue
+      roomRevenueTax
+      singleOccupancyRooms
+      sourceCode
+      sourceProfId
+      totalRevenue
+      totalRevenueTax
+      vipStatus
+    }
+  }
+}
+
+========================
+VARIABLES (JSON)
+========================
+
+{
+  "limit": 1,
+  "offset": 0,
+  "input": {
+    "resvsummaryDetailsConsideredDate": {
+      "_eq": "{{FromBusinessDate}}"
+    },
+    "resvsummaryDetailsResort": {
+      "_eq": "{{inputs.hotel_id}}"
+    }
+  }
+}
+
+========================
+RESPONSE (EXAMPLE)
+========================
+
+{
+  "data": {
+    "statisticsReservationsSummary": [
+      
+    ]
+  },
+  "extensions": {
+    "count": {
+      "StatisticsReservationsSummary_statisticsReservationsSummary": 0
+    }
+  }
+}

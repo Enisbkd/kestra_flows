@@ -1,0 +1,1361 @@
+TABLE: RESERVATION_DAILY_ELEMENT_NAME
+R&A FAMILY: Bookings
+R&A MODULE (schema file): BookingsReservation.graphql
+REQUEST TYPE (Query field): BookingsReservation
+ENDPOINT: /rna/v1/graphql/
+
+========================
+GRAPHQL QUERY
+========================
+query BookingsReservation_ReservationDailyElement($input: BookingsReservationQueryArgumentsType!) {
+  bookingsReservation(input: $input) {
+
+    # Main reservation block (many of your RDE fields are exposed here)
+    reservationDetails {
+      resort
+      resvNameid
+      reservationDate
+      adults
+      children
+      companyID
+      rateCode
+      shareOfRateAmount
+      travelAgentID
+    }
+
+    # Reservation daily element / detail-like fields live here (NOT under reservationDetails)
+    reservationDetailDetails {
+      resvDailyElSequence
+      sourceId
+      rateCode
+    }
+
+    # TC group/subgroup are exposed here
+    routingInstructionDetails {
+      tcGroup
+      tcSubgroup
+    }
+
+    # TRX code is exposed here
+    marketDetails {
+      trxCode
+    }
+
+    # Contact-like field exposed here
+    profileAllInformationDetails {
+      resvContact
+    }
+  }
+}
+
+
+
+========================
+VARIABLES (JSON)
+========================
+{
+  "input": {
+    "reservationDetailsResort": {
+      "_in": ["{{inputs.hotel_id}}"]
+    },
+    "reservationDetailsTruncBeginDate": {
+      "_gte": "2021-01-01"
+    },
+    "reservationDetailsTruncEndDate": {
+      "_lte": "2024-12-31"
+    }
+  }
+}
+
+
+
+========================
+RESPONSE (EXAMPLE)
+========================
+{
+    "data": {
+        "bookingsReservation": [
+            {
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "resvNameid": 157820,
+                    "reservationDate": "2023-02-01 00:00:00",
+                    "adults": 0,
+                    "children": 0,
+                    "companyID": null,
+                    "rateCode": null,
+                    "shareOfRateAmount": 0,
+                    "travelAgentID": 244006
+                },
+                "reservationDetailDetails": {
+                    "resvDailyElSequence": 359820,
+                    "sourceId": null,
+                    "rateCode": null
+                },
+                "routingInstructionDetails": {
+                    "tcGroup": null,
+                    "tcSubgroup": null
+                },
+                "marketDetails": {
+                    "trxCode": null
+                },
+                "profileAllInformationDetails": {
+                    "resvContact": null
+                },
+                "bookingsReservationRecordCount": 1
+            },
+            {
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "resvNameid": 157821,
+                    "reservationDate": "2023-02-01 00:00:00",
+                    "adults": 0,
+                    "children": 0,
+                    "companyID": null,
+                    "rateCode": null,
+                    "shareOfRateAmount": 0,
+                    "travelAgentID": 244006
+                },
+                "reservationDetailDetails": {
+                    "resvDailyElSequence": 359822,
+                    "sourceId": null,
+                    "rateCode": null
+                },
+                "routingInstructionDetails": {
+                    "tcGroup": null,
+                    "tcSubgroup": null
+                },
+                "marketDetails": {
+                    "trxCode": null
+                },
+                "profileAllInformationDetails": {
+                    "resvContact": null
+                },
+                "bookingsReservationRecordCount": 2
+            },
+            {
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "resvNameid": 157825,
+                    "reservationDate": "2023-05-25 00:00:00",
+                    "adults": 0,
+                    "children": 0,
+                    "companyID": null,
+                    "rateCode": null,
+                    "shareOfRateAmount": 0,
+                    "travelAgentID": null
+                },
+                "reservationDetailDetails": {
+                    "resvDailyElSequence": 359832,
+                    "sourceId": null,
+                    "rateCode": null
+                },
+                "routingInstructionDetails": {
+                    "tcGroup": null,
+                    "tcSubgroup": null
+                },
+                "marketDetails": {
+                    "trxCode": null
+                },
+                "profileAllInformationDetails": {
+                    "resvContact": null
+                },
+                "bookingsReservationRecordCount": 3
+            },
+            {
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "resvNameid": 157826,
+                    "reservationDate": "2023-05-26 00:00:00",
+                    "adults": 0,
+                    "children": 0,
+                    "companyID": null,
+                    "rateCode": null,
+                    "shareOfRateAmount": 0,
+                    "travelAgentID": null
+                },
+                "reservationDetailDetails": {
+                    "resvDailyElSequence": 359834,
+                    "sourceId": null,
+                    "rateCode": null
+                },
+                "routingInstructionDetails": {
+                    "tcGroup": null,
+                    "tcSubgroup": null
+                },
+                "marketDetails": {
+                    "trxCode": null
+                },
+                "profileAllInformationDetails": {
+                    "resvContact": null
+                },
+                "bookingsReservationRecordCount": 4
+            },
+            {
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "resvNameid": 157827,
+                    "reservationDate": "2023-05-25 00:00:00",
+                    "adults": 0,
+                    "children": 0,
+                    "companyID": null,
+                    "rateCode": null,
+                    "shareOfRateAmount": 0,
+                    "travelAgentID": null
+                },
+                "reservationDetailDetails": {
+                    "resvDailyElSequence": 359836,
+                    "sourceId": null,
+                    "rateCode": null
+                },
+                "routingInstructionDetails": {
+                    "tcGroup": null,
+                    "tcSubgroup": null
+                },
+                "marketDetails": {
+                    "trxCode": null
+                },
+                "profileAllInformationDetails": {
+                    "resvContact": null
+                },
+                "bookingsReservationRecordCount": 5
+            },
+            {
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "resvNameid": 157828,
+                    "reservationDate": "2023-05-26 00:00:00",
+                    "adults": 0,
+                    "children": 0,
+                    "companyID": null,
+                    "rateCode": null,
+                    "shareOfRateAmount": 0,
+                    "travelAgentID": null
+                },
+                "reservationDetailDetails": {
+                    "resvDailyElSequence": 359839,
+                    "sourceId": null,
+                    "rateCode": null
+                },
+                "routingInstructionDetails": {
+                    "tcGroup": null,
+                    "tcSubgroup": null
+                },
+                "marketDetails": {
+                    "trxCode": null
+                },
+                "profileAllInformationDetails": {
+                    "resvContact": null
+                },
+                "bookingsReservationRecordCount": 6
+            },
+            {
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "resvNameid": 157829,
+                    "reservationDate": "2023-05-26 00:00:00",
+                    "adults": 0,
+                    "children": 0,
+                    "companyID": null,
+                    "rateCode": null,
+                    "shareOfRateAmount": 0,
+                    "travelAgentID": null
+                },
+                "reservationDetailDetails": {
+                    "resvDailyElSequence": 359843,
+                    "sourceId": null,
+                    "rateCode": null
+                },
+                "routingInstructionDetails": {
+                    "tcGroup": null,
+                    "tcSubgroup": null
+                },
+                "marketDetails": {
+                    "trxCode": null
+                },
+                "profileAllInformationDetails": {
+                    "resvContact": null
+                },
+                "bookingsReservationRecordCount": 7
+            },
+            {
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "resvNameid": 157830,
+                    "reservationDate": "2023-05-26 00:00:00",
+                    "adults": 0,
+                    "children": 0,
+                    "companyID": null,
+                    "rateCode": null,
+                    "shareOfRateAmount": 0,
+                    "travelAgentID": null
+                },
+                "reservationDetailDetails": {
+                    "resvDailyElSequence": 359847,
+                    "sourceId": null,
+                    "rateCode": null
+                },
+                "routingInstructionDetails": {
+                    "tcGroup": null,
+                    "tcSubgroup": null
+                },
+                "marketDetails": {
+                    "trxCode": null
+                },
+                "profileAllInformationDetails": {
+                    "resvContact": null
+                },
+                "bookingsReservationRecordCount": 8
+            },
+            {
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "resvNameid": 157833,
+                    "reservationDate": "2023-05-26 00:00:00",
+                    "adults": 0,
+                    "children": 0,
+                    "companyID": null,
+                    "rateCode": null,
+                    "shareOfRateAmount": 0,
+                    "travelAgentID": null
+                },
+                "reservationDetailDetails": {
+                    "resvDailyElSequence": 359859,
+                    "sourceId": null,
+                    "rateCode": null
+                },
+                "routingInstructionDetails": {
+                    "tcGroup": null,
+                    "tcSubgroup": null
+                },
+                "marketDetails": {
+                    "trxCode": null
+                },
+                "profileAllInformationDetails": {
+                    "resvContact": null
+                },
+                "bookingsReservationRecordCount": 9
+            },
+            {
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "resvNameid": 157835,
+                    "reservationDate": "2023-02-11 00:00:00",
+                    "adults": 0,
+                    "children": 0,
+                    "companyID": null,
+                    "rateCode": null,
+                    "shareOfRateAmount": 0,
+                    "travelAgentID": 244006
+                },
+                "reservationDetailDetails": {
+                    "resvDailyElSequence": 359867,
+                    "sourceId": null,
+                    "rateCode": null
+                },
+                "routingInstructionDetails": {
+                    "tcGroup": null,
+                    "tcSubgroup": null
+                },
+                "marketDetails": {
+                    "trxCode": null
+                },
+                "profileAllInformationDetails": {
+                    "resvContact": null
+                },
+                "bookingsReservationRecordCount": 10
+            },
+            {
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "resvNameid": 157836,
+                    "reservationDate": "2023-02-11 00:00:00",
+                    "adults": 0,
+                    "children": 0,
+                    "companyID": null,
+                    "rateCode": null,
+                    "shareOfRateAmount": 0,
+                    "travelAgentID": 244006
+                },
+                "reservationDetailDetails": {
+                    "resvDailyElSequence": 359871,
+                    "sourceId": null,
+                    "rateCode": null
+                },
+                "routingInstructionDetails": {
+                    "tcGroup": null,
+                    "tcSubgroup": null
+                },
+                "marketDetails": {
+                    "trxCode": null
+                },
+                "profileAllInformationDetails": {
+                    "resvContact": null
+                },
+                "bookingsReservationRecordCount": 11
+            },
+            {
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "resvNameid": 124191,
+                    "reservationDate": "2023-06-17 00:00:00",
+                    "adults": 1,
+                    "children": 0,
+                    "companyID": 98975,
+                    "rateCode": "GRP1",
+                    "shareOfRateAmount": 100,
+                    "travelAgentID": null
+                },
+                "reservationDetailDetails": {
+                    "resvDailyElSequence": 298537,
+                    "sourceId": null,
+                    "rateCode": "GRP1"
+                },
+                "routingInstructionDetails": {
+                    "tcGroup": null,
+                    "tcSubgroup": null
+                },
+                "marketDetails": {
+                    "trxCode": null
+                },
+                "profileAllInformationDetails": {
+                    "resvContact": null
+                },
+                "bookingsReservationRecordCount": 12
+            },
+            {
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "resvNameid": 124191,
+                    "reservationDate": "2023-06-17 00:00:00",
+                    "adults": 1,
+                    "children": 0,
+                    "companyID": 98975,
+                    "rateCode": "GRP1",
+                    "shareOfRateAmount": 100,
+                    "travelAgentID": null
+                },
+                "reservationDetailDetails": {
+                    "resvDailyElSequence": 298387,
+                    "sourceId": null,
+                    "rateCode": "GRP1"
+                },
+                "routingInstructionDetails": {
+                    "tcGroup": null,
+                    "tcSubgroup": null
+                },
+                "marketDetails": {
+                    "trxCode": null
+                },
+                "profileAllInformationDetails": {
+                    "resvContact": null
+                },
+                "bookingsReservationRecordCount": 13
+            },
+            {
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "resvNameid": 124192,
+                    "reservationDate": "2023-06-17 00:00:00",
+                    "adults": 1,
+                    "children": 0,
+                    "companyID": 98975,
+                    "rateCode": "GRP1",
+                    "shareOfRateAmount": 100,
+                    "travelAgentID": null
+                },
+                "reservationDetailDetails": {
+                    "resvDailyElSequence": 298538,
+                    "sourceId": null,
+                    "rateCode": "GRP1"
+                },
+                "routingInstructionDetails": {
+                    "tcGroup": null,
+                    "tcSubgroup": null
+                },
+                "marketDetails": {
+                    "trxCode": null
+                },
+                "profileAllInformationDetails": {
+                    "resvContact": null
+                },
+                "bookingsReservationRecordCount": 14
+            },
+            {
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "resvNameid": 124192,
+                    "reservationDate": "2023-06-17 00:00:00",
+                    "adults": 1,
+                    "children": 0,
+                    "companyID": 98975,
+                    "rateCode": "GRP1",
+                    "shareOfRateAmount": 100,
+                    "travelAgentID": null
+                },
+                "reservationDetailDetails": {
+                    "resvDailyElSequence": 297884,
+                    "sourceId": null,
+                    "rateCode": "GRP1"
+                },
+                "routingInstructionDetails": {
+                    "tcGroup": null,
+                    "tcSubgroup": null
+                },
+                "marketDetails": {
+                    "trxCode": null
+                },
+                "profileAllInformationDetails": {
+                    "resvContact": null
+                },
+                "bookingsReservationRecordCount": 15
+            },
+            {
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "resvNameid": 124193,
+                    "reservationDate": "2023-06-17 00:00:00",
+                    "adults": 1,
+                    "children": 0,
+                    "companyID": 98975,
+                    "rateCode": "GRP1",
+                    "shareOfRateAmount": 100,
+                    "travelAgentID": null
+                },
+                "reservationDetailDetails": {
+                    "resvDailyElSequence": 297765,
+                    "sourceId": null,
+                    "rateCode": "GRP1"
+                },
+                "routingInstructionDetails": {
+                    "tcGroup": null,
+                    "tcSubgroup": null
+                },
+                "marketDetails": {
+                    "trxCode": null
+                },
+                "profileAllInformationDetails": {
+                    "resvContact": null
+                },
+                "bookingsReservationRecordCount": 16
+            },
+            {
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "resvNameid": 124193,
+                    "reservationDate": "2023-06-17 00:00:00",
+                    "adults": 1,
+                    "children": 0,
+                    "companyID": 98975,
+                    "rateCode": "GRP1",
+                    "shareOfRateAmount": 100,
+                    "travelAgentID": null
+                },
+                "reservationDetailDetails": {
+                    "resvDailyElSequence": 297885,
+                    "sourceId": null,
+                    "rateCode": "GRP1"
+                },
+                "routingInstructionDetails": {
+                    "tcGroup": null,
+                    "tcSubgroup": null
+                },
+                "marketDetails": {
+                    "trxCode": null
+                },
+                "profileAllInformationDetails": {
+                    "resvContact": null
+                },
+                "bookingsReservationRecordCount": 17
+            },
+            {
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "resvNameid": 124194,
+                    "reservationDate": "2023-06-17 00:00:00",
+                    "adults": 1,
+                    "children": 0,
+                    "companyID": 98975,
+                    "rateCode": "GRP1",
+                    "shareOfRateAmount": 100,
+                    "travelAgentID": null
+                },
+                "reservationDetailDetails": {
+                    "resvDailyElSequence": 297633,
+                    "sourceId": null,
+                    "rateCode": "GRP1"
+                },
+                "routingInstructionDetails": {
+                    "tcGroup": null,
+                    "tcSubgroup": null
+                },
+                "marketDetails": {
+                    "trxCode": null
+                },
+                "profileAllInformationDetails": {
+                    "resvContact": null
+                },
+                "bookingsReservationRecordCount": 18
+            },
+            {
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "resvNameid": 124194,
+                    "reservationDate": "2023-06-17 00:00:00",
+                    "adults": 1,
+                    "children": 0,
+                    "companyID": 98975,
+                    "rateCode": "GRP1",
+                    "shareOfRateAmount": 100,
+                    "travelAgentID": null
+                },
+                "reservationDetailDetails": {
+                    "resvDailyElSequence": 297766,
+                    "sourceId": null,
+                    "rateCode": "GRP1"
+                },
+                "routingInstructionDetails": {
+                    "tcGroup": null,
+                    "tcSubgroup": null
+                },
+                "marketDetails": {
+                    "trxCode": null
+                },
+                "profileAllInformationDetails": {
+                    "resvContact": null
+                },
+                "bookingsReservationRecordCount": 19
+            },
+            {
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "resvNameid": 156319,
+                    "reservationDate": "2024-11-18 00:00:00",
+                    "adults": 0,
+                    "children": 0,
+                    "companyID": 200862,
+                    "rateCode": null,
+                    "shareOfRateAmount": 0,
+                    "travelAgentID": null
+                },
+                "reservationDetailDetails": {
+                    "resvDailyElSequence": 355834,
+                    "sourceId": null,
+                    "rateCode": null
+                },
+                "routingInstructionDetails": {
+                    "tcGroup": null,
+                    "tcSubgroup": null
+                },
+                "marketDetails": {
+                    "trxCode": null
+                },
+                "profileAllInformationDetails": {
+                    "resvContact": null
+                },
+                "bookingsReservationRecordCount": 20
+            },
+            {
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "resvNameid": 157443,
+                    "reservationDate": "2023-11-23 00:00:00",
+                    "adults": 1,
+                    "children": 0,
+                    "companyID": null,
+                    "rateCode": "DAILY",
+                    "shareOfRateAmount": 0,
+                    "travelAgentID": null
+                },
+                "reservationDetailDetails": {
+                    "resvDailyElSequence": 359176,
+                    "sourceId": null,
+                    "rateCode": "DAILY"
+                },
+                "routingInstructionDetails": {
+                    "tcGroup": null,
+                    "tcSubgroup": null
+                },
+                "marketDetails": {
+                    "trxCode": null
+                },
+                "profileAllInformationDetails": {
+                    "resvContact": null
+                },
+                "bookingsReservationRecordCount": 21
+            },
+            {
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "resvNameid": 157443,
+                    "reservationDate": "2023-11-23 00:00:00",
+                    "adults": 1,
+                    "children": 0,
+                    "companyID": null,
+                    "rateCode": "DAILY",
+                    "shareOfRateAmount": 0,
+                    "travelAgentID": null
+                },
+                "reservationDetailDetails": {
+                    "resvDailyElSequence": 359177,
+                    "sourceId": null,
+                    "rateCode": "DAILY"
+                },
+                "routingInstructionDetails": {
+                    "tcGroup": null,
+                    "tcSubgroup": null
+                },
+                "marketDetails": {
+                    "trxCode": null
+                },
+                "profileAllInformationDetails": {
+                    "resvContact": null
+                },
+                "bookingsReservationRecordCount": 22
+            },
+            {
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "resvNameid": 157740,
+                    "reservationDate": "2023-02-01 00:00:00",
+                    "adults": 0,
+                    "children": 0,
+                    "companyID": null,
+                    "rateCode": null,
+                    "shareOfRateAmount": 0,
+                    "travelAgentID": 244021
+                },
+                "reservationDetailDetails": {
+                    "resvDailyElSequence": 359326,
+                    "sourceId": null,
+                    "rateCode": null
+                },
+                "routingInstructionDetails": {
+                    "tcGroup": null,
+                    "tcSubgroup": null
+                },
+                "marketDetails": {
+                    "trxCode": null
+                },
+                "profileAllInformationDetails": {
+                    "resvContact": null
+                },
+                "bookingsReservationRecordCount": 23
+            },
+            {
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "resvNameid": 157742,
+                    "reservationDate": "2023-02-01 00:00:00",
+                    "adults": 0,
+                    "children": 0,
+                    "companyID": null,
+                    "rateCode": null,
+                    "shareOfRateAmount": 0,
+                    "travelAgentID": 244021
+                },
+                "reservationDetailDetails": {
+                    "resvDailyElSequence": 359330,
+                    "sourceId": null,
+                    "rateCode": null
+                },
+                "routingInstructionDetails": {
+                    "tcGroup": null,
+                    "tcSubgroup": null
+                },
+                "marketDetails": {
+                    "trxCode": null
+                },
+                "profileAllInformationDetails": {
+                    "resvContact": null
+                },
+                "bookingsReservationRecordCount": 24
+            },
+            {
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "resvNameid": 157758,
+                    "reservationDate": "2023-02-02 00:00:00",
+                    "adults": 0,
+                    "children": 0,
+                    "companyID": null,
+                    "rateCode": null,
+                    "shareOfRateAmount": 0,
+                    "travelAgentID": 244006
+                },
+                "reservationDetailDetails": {
+                    "resvDailyElSequence": 359388,
+                    "sourceId": null,
+                    "rateCode": null
+                },
+                "routingInstructionDetails": {
+                    "tcGroup": null,
+                    "tcSubgroup": null
+                },
+                "marketDetails": {
+                    "trxCode": null
+                },
+                "profileAllInformationDetails": {
+                    "resvContact": null
+                },
+                "bookingsReservationRecordCount": 25
+            },
+            {
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "resvNameid": 157761,
+                    "reservationDate": "2023-02-02 00:00:00",
+                    "adults": 0,
+                    "children": 0,
+                    "companyID": null,
+                    "rateCode": null,
+                    "shareOfRateAmount": 0,
+                    "travelAgentID": 244006
+                },
+                "reservationDetailDetails": {
+                    "resvDailyElSequence": 359398,
+                    "sourceId": null,
+                    "rateCode": null
+                },
+                "routingInstructionDetails": {
+                    "tcGroup": null,
+                    "tcSubgroup": null
+                },
+                "marketDetails": {
+                    "trxCode": null
+                },
+                "profileAllInformationDetails": {
+                    "resvContact": null
+                },
+                "bookingsReservationRecordCount": 26
+            },
+            {
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "resvNameid": 157763,
+                    "reservationDate": "2023-02-01 00:00:00",
+                    "adults": 0,
+                    "children": 0,
+                    "companyID": null,
+                    "rateCode": null,
+                    "shareOfRateAmount": 0,
+                    "travelAgentID": 244006
+                },
+                "reservationDetailDetails": {
+                    "resvDailyElSequence": 359403,
+                    "sourceId": null,
+                    "rateCode": null
+                },
+                "routingInstructionDetails": {
+                    "tcGroup": null,
+                    "tcSubgroup": null
+                },
+                "marketDetails": {
+                    "trxCode": null
+                },
+                "profileAllInformationDetails": {
+                    "resvContact": null
+                },
+                "bookingsReservationRecordCount": 27
+            },
+            {
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "resvNameid": 157775,
+                    "reservationDate": "2023-02-01 00:00:00",
+                    "adults": 0,
+                    "children": 0,
+                    "companyID": null,
+                    "rateCode": null,
+                    "shareOfRateAmount": 0,
+                    "travelAgentID": 244006
+                },
+                "reservationDetailDetails": {
+                    "resvDailyElSequence": 359439,
+                    "sourceId": null,
+                    "rateCode": null
+                },
+                "routingInstructionDetails": {
+                    "tcGroup": null,
+                    "tcSubgroup": null
+                },
+                "marketDetails": {
+                    "trxCode": null
+                },
+                "profileAllInformationDetails": {
+                    "resvContact": null
+                },
+                "bookingsReservationRecordCount": 28
+            },
+            {
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "resvNameid": 157778,
+                    "reservationDate": "2023-02-01 00:00:00",
+                    "adults": 0,
+                    "children": 0,
+                    "companyID": null,
+                    "rateCode": null,
+                    "shareOfRateAmount": 0,
+                    "travelAgentID": 244006
+                },
+                "reservationDetailDetails": {
+                    "resvDailyElSequence": 359447,
+                    "sourceId": null,
+                    "rateCode": null
+                },
+                "routingInstructionDetails": {
+                    "tcGroup": null,
+                    "tcSubgroup": null
+                },
+                "marketDetails": {
+                    "trxCode": null
+                },
+                "profileAllInformationDetails": {
+                    "resvContact": null
+                },
+                "bookingsReservationRecordCount": 29
+            },
+            {
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "resvNameid": 157790,
+                    "reservationDate": "2023-02-02 00:00:00",
+                    "adults": 0,
+                    "children": 0,
+                    "companyID": null,
+                    "rateCode": null,
+                    "shareOfRateAmount": 0,
+                    "travelAgentID": 244006
+                },
+                "reservationDetailDetails": {
+                    "resvDailyElSequence": 359500,
+                    "sourceId": null,
+                    "rateCode": null
+                },
+                "routingInstructionDetails": {
+                    "tcGroup": null,
+                    "tcSubgroup": null
+                },
+                "marketDetails": {
+                    "trxCode": null
+                },
+                "profileAllInformationDetails": {
+                    "resvContact": null
+                },
+                "bookingsReservationRecordCount": 30
+            },
+            {
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "resvNameid": 157483,
+                    "reservationDate": "2023-02-03 00:00:00",
+                    "adults": 1,
+                    "children": 0,
+                    "companyID": null,
+                    "rateCode": "OC1",
+                    "shareOfRateAmount": 200,
+                    "travelAgentID": 244006
+                },
+                "reservationDetailDetails": {
+                    "resvDailyElSequence": 358099,
+                    "sourceId": null,
+                    "rateCode": "OC1"
+                },
+                "routingInstructionDetails": {
+                    "tcGroup": null,
+                    "tcSubgroup": null
+                },
+                "marketDetails": {
+                    "trxCode": null
+                },
+                "profileAllInformationDetails": {
+                    "resvContact": null
+                },
+                "bookingsReservationRecordCount": 31
+            },
+            {
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "resvNameid": 157483,
+                    "reservationDate": "2023-02-03 00:00:00",
+                    "adults": 1,
+                    "children": 0,
+                    "companyID": null,
+                    "rateCode": "OC1",
+                    "shareOfRateAmount": 200,
+                    "travelAgentID": 244006
+                },
+                "reservationDetailDetails": {
+                    "resvDailyElSequence": 358100,
+                    "sourceId": null,
+                    "rateCode": "OC1"
+                },
+                "routingInstructionDetails": {
+                    "tcGroup": null,
+                    "tcSubgroup": null
+                },
+                "marketDetails": {
+                    "trxCode": null
+                },
+                "profileAllInformationDetails": {
+                    "resvContact": null
+                },
+                "bookingsReservationRecordCount": 32
+            },
+            {
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "resvNameid": 157783,
+                    "reservationDate": "2023-02-03 00:00:00",
+                    "adults": 1,
+                    "children": 0,
+                    "companyID": null,
+                    "rateCode": "OC1",
+                    "shareOfRateAmount": 200,
+                    "travelAgentID": 244006
+                },
+                "reservationDetailDetails": {
+                    "resvDailyElSequence": 359466,
+                    "sourceId": null,
+                    "rateCode": "OC1"
+                },
+                "routingInstructionDetails": {
+                    "tcGroup": null,
+                    "tcSubgroup": null
+                },
+                "marketDetails": {
+                    "trxCode": null
+                },
+                "profileAllInformationDetails": {
+                    "resvContact": null
+                },
+                "bookingsReservationRecordCount": 33
+            },
+            {
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "resvNameid": 157783,
+                    "reservationDate": "2023-02-03 00:00:00",
+                    "adults": 1,
+                    "children": 0,
+                    "companyID": null,
+                    "rateCode": "OC1",
+                    "shareOfRateAmount": 200,
+                    "travelAgentID": 244006
+                },
+                "reservationDetailDetails": {
+                    "resvDailyElSequence": 359467,
+                    "sourceId": null,
+                    "rateCode": "OC1"
+                },
+                "routingInstructionDetails": {
+                    "tcGroup": null,
+                    "tcSubgroup": null
+                },
+                "marketDetails": {
+                    "trxCode": null
+                },
+                "profileAllInformationDetails": {
+                    "resvContact": null
+                },
+                "bookingsReservationRecordCount": 34
+            },
+            {
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "resvNameid": 157784,
+                    "reservationDate": "2023-02-03 00:00:00",
+                    "adults": 1,
+                    "children": 0,
+                    "companyID": null,
+                    "rateCode": "OC1",
+                    "shareOfRateAmount": 250,
+                    "travelAgentID": 244006
+                },
+                "reservationDetailDetails": {
+                    "resvDailyElSequence": 359469,
+                    "sourceId": null,
+                    "rateCode": "OC1"
+                },
+                "routingInstructionDetails": {
+                    "tcGroup": null,
+                    "tcSubgroup": null
+                },
+                "marketDetails": {
+                    "trxCode": null
+                },
+                "profileAllInformationDetails": {
+                    "resvContact": null
+                },
+                "bookingsReservationRecordCount": 35
+            },
+            {
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "resvNameid": 157784,
+                    "reservationDate": "2023-02-03 00:00:00",
+                    "adults": 1,
+                    "children": 0,
+                    "companyID": null,
+                    "rateCode": "OC1",
+                    "shareOfRateAmount": 250,
+                    "travelAgentID": 244006
+                },
+                "reservationDetailDetails": {
+                    "resvDailyElSequence": 359470,
+                    "sourceId": null,
+                    "rateCode": "OC1"
+                },
+                "routingInstructionDetails": {
+                    "tcGroup": null,
+                    "tcSubgroup": null
+                },
+                "marketDetails": {
+                    "trxCode": null
+                },
+                "profileAllInformationDetails": {
+                    "resvContact": null
+                },
+                "bookingsReservationRecordCount": 36
+            },
+            {
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "resvNameid": 157785,
+                    "reservationDate": "2023-02-03 00:00:00",
+                    "adults": 1,
+                    "children": 0,
+                    "companyID": null,
+                    "rateCode": "OC1",
+                    "shareOfRateAmount": 0,
+                    "travelAgentID": 244006
+                },
+                "reservationDetailDetails": {
+                    "resvDailyElSequence": 359469,
+                    "sourceId": null,
+                    "rateCode": "OC1"
+                },
+                "routingInstructionDetails": {
+                    "tcGroup": null,
+                    "tcSubgroup": null
+                },
+                "marketDetails": {
+                    "trxCode": null
+                },
+                "profileAllInformationDetails": {
+                    "resvContact": null
+                },
+                "bookingsReservationRecordCount": 37
+            },
+            {
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "resvNameid": 157785,
+                    "reservationDate": "2023-02-03 00:00:00",
+                    "adults": 1,
+                    "children": 0,
+                    "companyID": null,
+                    "rateCode": "OC1",
+                    "shareOfRateAmount": 0,
+                    "travelAgentID": 244006
+                },
+                "reservationDetailDetails": {
+                    "resvDailyElSequence": 359470,
+                    "sourceId": null,
+                    "rateCode": "OC1"
+                },
+                "routingInstructionDetails": {
+                    "tcGroup": null,
+                    "tcSubgroup": null
+                },
+                "marketDetails": {
+                    "trxCode": null
+                },
+                "profileAllInformationDetails": {
+                    "resvContact": null
+                },
+                "bookingsReservationRecordCount": 38
+            },
+            {
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "resvNameid": 157484,
+                    "reservationDate": "2023-02-03 00:00:00",
+                    "adults": 1,
+                    "children": 0,
+                    "companyID": null,
+                    "rateCode": "OC1",
+                    "shareOfRateAmount": 125,
+                    "travelAgentID": 244006
+                },
+                "reservationDetailDetails": {
+                    "resvDailyElSequence": 358102,
+                    "sourceId": null,
+                    "rateCode": "OC1"
+                },
+                "routingInstructionDetails": {
+                    "tcGroup": null,
+                    "tcSubgroup": null
+                },
+                "marketDetails": {
+                    "trxCode": null
+                },
+                "profileAllInformationDetails": {
+                    "resvContact": null
+                },
+                "bookingsReservationRecordCount": 39
+            },
+            {
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "resvNameid": 157484,
+                    "reservationDate": "2023-02-03 00:00:00",
+                    "adults": 1,
+                    "children": 0,
+                    "companyID": null,
+                    "rateCode": "OC1",
+                    "shareOfRateAmount": 125,
+                    "travelAgentID": 244006
+                },
+                "reservationDetailDetails": {
+                    "resvDailyElSequence": 358103,
+                    "sourceId": null,
+                    "rateCode": "OC1"
+                },
+                "routingInstructionDetails": {
+                    "tcGroup": null,
+                    "tcSubgroup": null
+                },
+                "marketDetails": {
+                    "trxCode": null
+                },
+                "profileAllInformationDetails": {
+                    "resvContact": null
+                },
+                "bookingsReservationRecordCount": 40
+            },
+            {
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "resvNameid": 157485,
+                    "reservationDate": "2023-02-03 00:00:00",
+                    "adults": 1,
+                    "children": 0,
+                    "companyID": null,
+                    "rateCode": "OC1",
+                    "shareOfRateAmount": 125,
+                    "travelAgentID": 244006
+                },
+                "reservationDetailDetails": {
+                    "resvDailyElSequence": 358102,
+                    "sourceId": null,
+                    "rateCode": "OC1"
+                },
+                "routingInstructionDetails": {
+                    "tcGroup": null,
+                    "tcSubgroup": null
+                },
+                "marketDetails": {
+                    "trxCode": null
+                },
+                "profileAllInformationDetails": {
+                    "resvContact": null
+                },
+                "bookingsReservationRecordCount": 41
+            },
+            {
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "resvNameid": 157485,
+                    "reservationDate": "2023-02-03 00:00:00",
+                    "adults": 1,
+                    "children": 0,
+                    "companyID": null,
+                    "rateCode": "OC1",
+                    "shareOfRateAmount": 125,
+                    "travelAgentID": 244006
+                },
+                "reservationDetailDetails": {
+                    "resvDailyElSequence": 358103,
+                    "sourceId": null,
+                    "rateCode": "OC1"
+                },
+                "routingInstructionDetails": {
+                    "tcGroup": null,
+                    "tcSubgroup": null
+                },
+                "marketDetails": {
+                    "trxCode": null
+                },
+                "profileAllInformationDetails": {
+                    "resvContact": null
+                },
+                "bookingsReservationRecordCount": 42
+            },
+            {
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "resvNameid": 157486,
+                    "reservationDate": "2023-02-03 00:00:00",
+                    "adults": 1,
+                    "children": 0,
+                    "companyID": null,
+                    "rateCode": "OC1",
+                    "shareOfRateAmount": 350,
+                    "travelAgentID": 244006
+                },
+                "reservationDetailDetails": {
+                    "resvDailyElSequence": 358105,
+                    "sourceId": null,
+                    "rateCode": "OC1"
+                },
+                "routingInstructionDetails": {
+                    "tcGroup": null,
+                    "tcSubgroup": null
+                },
+                "marketDetails": {
+                    "trxCode": null
+                },
+                "profileAllInformationDetails": {
+                    "resvContact": null
+                },
+                "bookingsReservationRecordCount": 43
+            },
+            {
+                "reservationDetails": {
+                    "resort": "CSEPROP1",
+                    "resvNameid": 157486,
+                    "reservationDate": "2023-02-03 00:00:00",
+                    "adults": 1,
+                    "children": 0,
+                    "companyID": null,
+                    "rateCode": "OC1",
+                    "shareOfRateAmount": 350,
+                    "travelAgentID": 244006
+                },
+                "reservationDetailDetails": {
+                    "resvDailyElSequence": 358106,
+                    "sourceId": null,
+                    "rateCode": "OC1"
+                },
+                "routingInstructionDetails": {
+                    "tcGroup": null,
+                    "tcSubgroup": null
+                },
+                "marketDetails": {
+                    "trxCode": null
+                },
+                "profileAllInformationDetails": {
+                    "resvContact": null
+                },
+                "bookingsReservationRecordCount": 44
+            }
+        ]
+    },
+    "extensions": {
+        "count": {
+            "BookingsReservation_bookingsReservation": 44
+        }
+    }
+}

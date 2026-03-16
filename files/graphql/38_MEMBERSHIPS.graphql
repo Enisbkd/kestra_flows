@@ -1,0 +1,25 @@
+query profilesContactsForMEMBERSHIPS($limit: Int, $offset: Int, $input: ProfilesContactsQueryArgumentsType!) {
+  profilesContacts(limit: $limit, offset: $offset, input: $input) {
+    contactDetails {
+      chainCode
+      inactiveDate
+      updateDate
+    }
+    profileCommunicationDetails {
+      insertDate
+    }
+    profileMembershipDetails {
+      expirationDate
+      joinedDate
+      membershipID
+      membershipLevel
+      membershipNumber
+      membershipType
+      nameOnCard
+      orderBy
+    }
+    profilePreferenceDetails {
+      nameId
+    }
+  }
+}

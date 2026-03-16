@@ -1,0 +1,20 @@
+query cateringEventsAndResourcesForGEMEVENT($limit: Int, $offset: Int, $input: CateringEventsAndResourcesQueryArgumentsType!) {
+  cateringEventsAndResources(limit: $limit, offset: $offset, input: $input) {
+    eventDetails {
+      attendees
+      endDateTime
+      evResort
+      evType
+      eventID
+      roomid
+      startDateTime
+    }
+    eventMenuDetails {
+      name
+    }
+    eventRoomWaitDetails {
+      bookId
+      status
+    }
+  }
+}

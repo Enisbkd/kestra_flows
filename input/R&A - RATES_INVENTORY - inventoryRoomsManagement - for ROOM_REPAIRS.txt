@@ -1,0 +1,82 @@
+﻿TABLE: ROOM_REPAIRS
+R&A FAMILY: R&A - RATES_INVENTORY
+R&A MODULE (schema file): InventoryRoomsManagement.graphql
+REQUEST TYPE (Query field): inventoryRoomsManagement
+ENDPOINT: /rna/v1/graphql/
+
+========================
+GRAPHQL QUERY
+========================
+query inventoryRoomsManagementForROOMREPAIRS($limit: Int, $offset: Int, $input: InventoryRoomsManagementQueryArgumentsType!) {
+  inventoryRoomsManagement(limit: $limit, offset: $offset, input: $input) {
+    propertyPropertyDetails {
+      endDate
+    }
+    reservationDailyElementsDetails {
+      blockResort
+    }
+    roomDetails {
+      assignDate
+      returnStatus
+      room
+      roomStatus
+    }
+    roomRepairsDetails {
+      completedDate
+      reasonCode
+      remarks
+      seq
+    }
+  }
+}
+
+========================
+VARIABLES (JSON)
+========================
+
+{
+  "limit": 1,
+  "offset": 0,
+  "input": {
+    "roomDetailsResort": {
+      "_eq": "{{inputs.hotel_id}}"
+    }
+  }
+}
+
+========================
+RESPONSE (EXAMPLE)
+========================
+
+{
+  "data": {
+    "inventoryRoomsManagement": [
+      {
+        "propertyPropertyDetails": {
+          "endDate": null
+        },
+        "reservationDailyElementsDetails": {
+          "blockResort": null
+        },
+        "roomDetails": {
+          "assignDate": "2025-05-27 08:34:33",
+          "returnStatus": null,
+          "room": "121",
+          "roomStatus": "IP"
+        },
+        "roomRepairsDetails": {
+          "completedDate": null,
+          "reasonCode": null,
+          "remarks": null,
+          "seq": null
+        },
+        "inventoryRoomsManagementRecordCount": 1
+      }
+    ]
+  },
+  "extensions": {
+    "count": {
+      "InventoryRoomsManagement_inventoryRoomsManagement": 1
+    }
+  }
+}

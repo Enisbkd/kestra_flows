@@ -1,0 +1,11 @@
+query configurationChainForPRODUCTS($limit: Int, $offset: Int, $input: ConfigurationChainQueryArgumentsType!) {
+  configurationChain(limit: $limit, offset: $offset, input: $input) {
+    chainDetails {
+      description
+    }
+    membershipEnrollmentCodeDetails {
+      chainCode
+      property
+    }
+  }
+}

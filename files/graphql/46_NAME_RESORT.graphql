@@ -1,0 +1,16 @@
+query profilesIndividualsForNAMERESORT($limit: Int, $offset: Int, $input: ProfilesIndividualsQueryArgumentsType!) {
+  profilesIndividuals(limit: $limit, offset: $offset, input: $input) {
+    profileAllInformationDetails {
+      actionCode
+      priority
+      repCompetitionCode
+      roomsPotential
+    }
+    profileNoteDetails {
+      resort
+    }
+    profilePreferenceDetails {
+      nameId
+    }
+  }
+}

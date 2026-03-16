@@ -1,0 +1,8 @@
+query bookingsBlockForMARKETCODESTEMPLATE($limit: Int, $offset: Int, $input: BookingsBlockQueryArgumentsType!) {
+  bookingsBlock(limit: $limit, offset: $offset, input: $input) {
+    blockDetails {
+      marketCode
+      marketDescription
+    }
+  }
+}

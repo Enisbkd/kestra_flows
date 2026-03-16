@@ -1,0 +1,81 @@
+﻿TABLE: NAME_MERGE_LOG
+R&A FAMILY: Profiles
+R&A MODULE (schema file): ProfilesIndividuals.graphql
+REQUEST TYPE (Query field): profilesIndividuals
+ENDPOINT: /rna/v1/graphql/
+
+========================
+GRAPHQL QUERY
+========================
+query profilesIndividualsForNAMEMERGELOG($limit: Int, $offset: Int, $input: ProfilesIndividualsQueryArgumentsType!) {
+  profilesIndividuals(limit: $limit, offset: $offset, input: $input) {
+    profileAddressDetails {
+      name
+    }
+    profileAllInformationDetails {
+      addressType
+      displayName
+      fMembershipType
+      nameType
+    }
+    profileCommunicationDetails {
+      insertUser
+    }
+    profileRelationshipDetails {
+      fromProfileID
+      relationshipToNameID
+    }
+  }
+}
+
+========================
+VARIABLES (JSON)
+========================
+
+{
+  "limit": 1,
+  "offset": 0,
+  "input": {
+    "profileallDetailsChainCode": {
+      "_eq": "{{ChainCode}}"
+    },
+    "profileallDetailsUpdateDate": {
+      "_gte": "{{FromBusinessDate}}",
+      "_lte": "{{ToBusinessDate}}"
+    }
+  }
+}
+
+========================
+RESPONSE (EXAMPLE)
+========================
+{
+  "data": {
+    "profilesIndividuals": [
+      {
+        "profileAddressDetails": {
+          "name": "Laura"
+        },
+        "profileAllInformationDetails": {
+          "addressType": "HOME",
+          "displayName": "Laura, Grace",
+          "fMembershipType": null,
+          "nameType": "D"
+        },
+        "profileCommunicationDetails": {
+          "insertUser": null
+        },
+        "profileRelationshipDetails": {
+          "fromProfileID": null,
+          "relationshipToNameID": null
+        },
+        "profilesIndividualsRecordCount": 1
+      }
+    ]
+  },
+  "extensions": {
+    "count": {
+      "ProfilesIndividuals_profilesIndividuals": 1
+    }
+  }
+}

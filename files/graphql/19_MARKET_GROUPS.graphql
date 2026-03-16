@@ -1,0 +1,11 @@
+query configurationResortForMARKETGROUPS($limit: Int, $offset: Int, $input: ConfigurationResortQueryArgumentsType!) {
+  configurationResort(limit: $limit, offset: $offset, input: $input) {
+    closingScriptDetails {
+      resortType
+    }
+    membershipPointsDetails {
+      description
+      marketGroup
+    }
+  }
+}

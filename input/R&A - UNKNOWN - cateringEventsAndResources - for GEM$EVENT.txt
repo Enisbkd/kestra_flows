@@ -1,0 +1,84 @@
+﻿TABLE: GEM$EVENT
+R&A FAMILY: R&A - UNKNOWN
+R&A MODULE (schema file): CateringEventsAndResources.graphql
+REQUEST TYPE (Query field): cateringEventsAndResources
+ENDPOINT: /rna/v1/graphql/
+
+========================
+GRAPHQL QUERY
+========================
+query cateringEventsAndResourcesForGEMEVENT($limit: Int, $offset: Int, $input: CateringEventsAndResourcesQueryArgumentsType!) {
+  cateringEventsAndResources(limit: $limit, offset: $offset, input: $input) {
+    eventDetails {
+      attendees
+      endDateTime
+      evResort
+      evType
+      eventID
+      roomid
+      startDateTime
+    }
+    eventMenuDetails {
+      name
+    }
+    eventRoomWaitDetails {
+      bookId
+      status
+    }
+  }
+}
+
+========================
+VARIABLES (JSON)
+========================
+
+{
+  "limit": 1,
+  "offset": 0,
+  "input": {
+    "eventDetailsEndDateTime": {
+      "_lte": "{{ToBusinessDate}}"
+    },
+    "eventDetailsEvResort": {
+      "_eq": "{{inputs.hotel_id}}"
+    },
+    "eventDetailsStartDateTime": {
+      "_gte": "{{FromBusinessDate}}"
+    }
+  }
+}
+
+========================
+RESPONSE (EXAMPLE)
+========================
+
+{
+  "data": {
+    "cateringEventsAndResources": [
+      {
+        "eventDetails": {
+          "attendees": 20,
+          "endDateTime": "2022-07-01",
+          "evResort": "CSEPROP1",
+          "evType": "LUN",
+          "eventID": 21465,
+          "roomid": "CHAPEL",
+          "startDateTime": "2022-07-01"
+        },
+        "eventMenuDetails": {
+          "name": null
+        },
+        "eventRoomWaitDetails": {
+          "bookId": null,
+          "status": null
+        },
+        "cateringEventsAndResourcesRecordCount": 1
+      }
+    ]
+  },
+  "extensions": {
+    "count": {
+      "CateringEventsAndResources_cateringEventsAndResources": 1
+    }
+  }
+}

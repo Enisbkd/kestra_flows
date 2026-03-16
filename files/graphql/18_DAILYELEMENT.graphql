@@ -1,0 +1,22 @@
+query configurationResortForDAILYELEMENT($limit: Int, $offset: Int, $input: ConfigurationResortQueryArgumentsType!) {
+  configurationResort(limit: $limit, offset: $offset, input: $input) {
+    chainDetails {
+      nameId
+    }
+    closingScriptDetails {
+      resortType
+    }
+    codeGeneratesDetails {
+      id
+    }
+    barScheduleDetails {
+      date
+    }
+    sellMessagesDetails {
+      roomCategory
+    }
+    preferenceDetails {
+      source
+    }
+  }
+}

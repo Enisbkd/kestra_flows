@@ -1,0 +1,81 @@
+﻿TABLE: NAME_COMMISSION
+R&A FAMILY: Profiles
+R&A MODULE (schema file): ProfilesIndividuals.graphql
+REQUEST TYPE (Query field): profilesIndividuals
+ENDPOINT: /rna/v1/graphql/
+
+========================
+GRAPHQL QUERY
+========================
+query profilesIndividualsForNAMECOMMISSION($limit: Int, $offset: Int, $input: ProfilesIndividualsQueryArgumentsType!) {
+  profilesIndividuals(limit: $limit, offset: $offset, input: $input) {
+    profileAllInformationDetails {
+      commissionCode
+      updateDate
+    }
+    profileCommunicationDetails {
+      insertDate
+    }
+    profileNoteDetails {
+      resort
+    }
+    profilePreferenceDetails {
+      nameId
+    }
+  }
+}
+
+========================
+VARIABLES (JSON)
+========================
+
+{
+  "limit": 1,
+  "offset": 0,
+  "input": {
+    "profileallDetailsChainCode": {
+      "_eq": "{{ChainCode}}"
+    },
+    "profileallDetailsUpdateDate": {
+      "_gte": "{{FromBusinessDate}}",
+      "_lte": "{{ToBusinessDate}}"
+    }
+  }
+}
+
+========================
+RESPONSE (EXAMPLE)
+========================
+
+{
+  "data": {
+    "profilesIndividuals": [
+      {
+        "profileAllInformationDetails": {
+          "commissionCode": null,
+          "updateDate": "2024-12-19 10:37:53"
+        },
+        "profileCommunicationDetails": {
+          "insertDate": null
+        },
+        "profileNoteDetails": {
+          "resort": null
+        },
+        "profilePreferenceDetails": {
+          "nameId": null
+        },
+        "profilesIndividualsRecordCount": 1
+      }
+    ]
+  },
+  "extensions": {
+    "count": {
+      "ProfilesIndividuals_profilesIndividuals": 1
+    }
+  }
+}
+========================
+NOTES
+========================
+WARNING: These mapped payload fields were NOT found in the GraphQL schema (searched up to depth 4 from the query return type), so they are NOT included in the selection set:
+profilesIndividuals

@@ -1,0 +1,60 @@
+﻿TABLE: MARKET_CODES_TEMPLATE
+R&A FAMILY: Bookings
+R&A MODULE (schema file): BookingsBlock.graphql
+REQUEST TYPE (Query field): bookingsBlock
+ENDPOINT: /rna/v1/graphql/
+
+========================
+GRAPHQL QUERY
+========================
+query bookingsBlockForMARKETCODESTEMPLATE($limit: Int, $offset: Int, $input: BookingsBlockQueryArgumentsType!) {
+  bookingsBlock(limit: $limit, offset: $offset, input: $input) {
+    blockDetails {
+      marketCode
+      marketDescription
+    }
+  }
+}
+
+========================
+VARIABLES (JSON)
+========================
+
+{
+  "limit": 1,
+  "offset": 0,
+  "input": {
+    "allotmentDetailsEndDate": {
+      "_lte": "{{ToBusinessDate}}"
+    },
+    "allotmentDetailsResort": {
+      "_eq": "{{inputs.hotel_id}}"
+    },
+    "allotmentDetailsBeginDate": {
+      "_gte": "{{FromBusinessDate}}"
+    }
+  }
+}
+
+========================
+RESPONSE (EXAMPLE)
+========================
+
+{
+  "data": {
+    "bookingsBlock": [
+      {
+        "blockDetails": {
+          "marketCode": "BAR",
+          "marketDescription": "Best Available Rate"
+        },
+        "bookingsBlockRecordCount": 1
+      }
+    ]
+  },
+  "extensions": {
+    "count": {
+      "BookingsBlock_bookingsBlock": 1
+    }
+  }
+}

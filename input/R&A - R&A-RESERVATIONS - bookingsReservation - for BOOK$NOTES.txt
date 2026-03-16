@@ -1,0 +1,80 @@
+﻿TABLE: BOOK$NOTES
+R&A FAMILY: R&A - RESERVATIONS
+R&A MODULE (schema file): BookingsReservation.graphql
+REQUEST TYPE (Query field): bookingsReservation
+ENDPOINT: /rna/v1/graphql/
+
+========================
+GRAPHQL QUERY
+========================
+query bookingsReservationForBOOKNOTES($limit: Int, $offset: Int, $input: BookingsReservationQueryArgumentsType!) {
+  bookingsReservation(limit: $limit, offset: $offset, input: $input) {
+    reservationDetails {
+      blockID
+      insertDate
+      insertUser
+    }
+    reservationThresholdsDetails {
+      transactionDiversionNotes
+    }
+    reservationCommentDetails {
+      noteTitle
+    }
+    guestReservationTracesDetails {
+      noteCode
+    }
+  }
+}
+
+========================
+VARIABLES (JSON)
+========================
+
+{
+  "limit": 1,
+  "offset": 0,
+  "input": {
+    "reservationDetailsTruncBeginDate": {
+      "_gte": "{{FromBusinessDate}}"
+    },
+    "reservationDetailsTruncEndDate": {
+      "_lte": "{{ToBusinessDate}}"
+    },
+    "reservationDetailsResort": {
+      "_eq": "{{inputs.hotel_id}}"
+    }
+  }
+}
+
+========================
+RESPONSE (EXAMPLE)
+========================
+
+{
+  "data": {
+    "bookingsReservation": [
+      {
+        "reservationDetails": {
+          "blockID": null,
+          "insertDate": "2024-11-26 09:46:38",
+          "insertUser": 13277
+        },
+        "reservationThresholdsDetails": {
+          "transactionDiversionNotes": null
+        },
+        "reservationCommentDetails": {
+          "noteTitle": null
+        },
+        "guestReservationTracesDetails": {
+          "noteCode": null
+        },
+        "bookingsReservationRecordCount": 1
+      }
+    ]
+  },
+  "extensions": {
+    "count": {
+      "BookingsReservation_bookingsReservation": 1
+    }
+  }
+}

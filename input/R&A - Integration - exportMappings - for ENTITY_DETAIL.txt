@@ -1,0 +1,64 @@
+﻿TABLE: ENTITY_DETAIL
+R&A FAMILY: Integration
+R&A MODULE (schema file): ExportMappings.graphql
+REQUEST TYPE (Query field): exportMappings
+ENDPOINT: /rna/v1/graphql/
+
+========================
+GRAPHQL QUERY
+========================
+query exportMappingsForENTITYDETAIL($limit: Int, $offset: Int, $input: ExportMappingsQueryArgumentsType!) {
+  exportMappings(limit: $limit, offset: $offset, input: $input) {
+    exportMappingDetails {
+      chainCode
+    }
+    propertyPropertyDetails {
+      insertDate
+      updateDate
+    }
+  }
+}
+
+========================
+VARIABLES (JSON)
+========================
+
+{
+  "limit": 1,
+  "offset": 0,
+  "input": {
+    "expmappingDetailsResort": {
+      "_eq": "{{inputs.hotel_id}}"
+    }
+  }
+}
+
+========================
+RESPONSE (EXAMPLE)
+========================
+
+{
+  "data": {
+    "exportMappings": [
+      {
+        "exportMappingDetails": {
+          "chainCode": "CSE"
+        },
+        "propertyPropertyDetails": {
+          "insertDate": "2022-06-14 16:06:12",
+          "updateDate": "2025-09-09 16:45:30"
+        },
+        "exportMappingsRecordCount": 1
+      }
+    ]
+  },
+  "extensions": {
+    "count": {
+      "ExportMappings_exportMappings": 1
+    }
+  }
+}
+========================
+NOTES
+========================
+WARNING: These mapped payload fields could not be located in the schema tree (depth<=2) for this query return type, so they were NOT included in the selection set: exportMappings

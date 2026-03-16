@@ -1,0 +1,11 @@
+query financialTransactionDetailsForBANKCURRENCY($limit: Int, $offset: Int, $input: FinancialTransactionDetailsQueryArgumentsType!) {
+  financialTransactionDetails(limit: $limit, offset: $offset, input: $input) {
+    financialTransactionDetails {
+      accountid
+      currencyCode
+    }
+    reservationDetails {
+      resort
+    }
+  }
+}

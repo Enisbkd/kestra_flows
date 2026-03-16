@@ -1,0 +1,17 @@
+query profilesIndividualsForNAMECOMMISSION($limit: Int, $offset: Int, $input: ProfilesIndividualsQueryArgumentsType!) {
+  profilesIndividuals(limit: $limit, offset: $offset, input: $input) {
+    profileAllInformationDetails {
+      commissionCode
+      updateDate
+    }
+    profileCommunicationDetails {
+      insertDate
+    }
+    profileNoteDetails {
+      resort
+    }
+    profilePreferenceDetails {
+      nameId
+    }
+  }
+}

@@ -1,0 +1,29 @@
+query bookingsReservationForRESERVATIONDAILYELEMENTS($limit: Int, $offset: Int, $input: BookingsReservationQueryArgumentsType!) {
+  bookingsReservation(limit: $limit, offset: $offset, input: $input) {
+    fixedChargesDetails {
+      percentage
+    }
+    marketDetails {
+      trxCode
+    }
+    reservationDetailDetails {
+      allotmentHeaderId
+      dueOutYn
+      resvDailyElSequence
+      resvStatus
+    }
+    reservationDetails {
+      bookedRoomCategory
+      marketCode
+      originOfBooking
+      reservationDate
+      resort
+      room
+      roomCategory
+      roomClass
+    }
+    reservationItemsDetails {
+      startDate
+    }
+  }
+}

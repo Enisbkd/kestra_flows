@@ -1,0 +1,10 @@
+query configurationResortForROOMSTATUSREASONTEMPLATE($limit: Int, $offset: Int, $input: ConfigurationResortQueryArgumentsType!) {
+  configurationResort(limit: $limit, offset: $offset, input: $input) {
+    acctFlagReasonDetails {
+      centralFlaggedReasonCode
+    }
+    membershipPointsDetails {
+      description
+    }
+  }
+}

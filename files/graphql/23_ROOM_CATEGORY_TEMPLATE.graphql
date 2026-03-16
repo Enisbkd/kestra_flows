@@ -1,0 +1,17 @@
+query configurationResortForROOMCATEGORYTEMPLATE($limit: Int, $offset: Int, $input: ConfigurationResortQueryArgumentsType!) {
+  configurationResort(limit: $limit, offset: $offset, input: $input) {
+    membershipPointsDetails {
+      rateCode
+      roomClass
+    }
+    productDetails {
+      shortDescription
+    }
+    qualifyingRatesDetails {
+      label
+    }
+    sellMessagesDetails {
+      roomCategory
+    }
+  }
+}

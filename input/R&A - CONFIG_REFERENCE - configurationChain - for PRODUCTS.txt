@@ -1,0 +1,51 @@
+﻿TABLE: PRODUCTS
+R&A FAMILY: R&A - CONFIG_REFERENCE
+R&A MODULE (schema file): ConfigurationChain.graphql
+REQUEST TYPE (Query field): configurationChain
+ENDPOINT: /rna/v1/graphql/
+
+========================
+GRAPHQL QUERY
+========================
+query configurationChainForPRODUCTS($limit: Int, $offset: Int, $input: ConfigurationChainQueryArgumentsType!) {
+  configurationChain(limit: $limit, offset: $offset, input: $input) {
+    chainDetails {
+      description
+    }
+    membershipEnrollmentCodeDetails {
+      chainCode
+      property
+    }
+  }
+}
+
+========================
+VARIABLES (JSON)
+========================
+
+{
+  "limit": 1,
+  "offset": 0,
+  "input": {
+    "chainDetailsChainCode": {
+      "_eq": "SBM01"
+    }
+  }
+}
+
+========================
+RESPONSE (EXAMPLE)
+========================
+
+{
+  "data": {
+    "configurationChain": [
+      
+    ]
+  },
+  "extensions": {
+    "count": {
+      "ConfigurationChain_configurationChain": 0
+    }
+  }
+}

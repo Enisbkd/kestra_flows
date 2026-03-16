@@ -1,0 +1,42 @@
+query bookingsReservationForRESERVATIONPRODUCTS($limit: Int, $offset: Int, $input: BookingsReservationQueryArgumentsType!) {
+  bookingsReservation(limit: $limit, offset: $offset, input: $input) {
+    fixedChargesDetails {
+      endDate
+    }
+    locatorsDetails {
+      beginDate
+    }
+    rateCodeDetails {
+      postingRhythm
+    }
+    reservationDepositScheduleDetails {
+      productId
+    }
+    reservationDetails {
+      currencyCode
+      insertDate
+      insertUser
+      quantity
+      resort
+      resvNameid
+      updateDate
+      updateUser
+    }
+    reservationItemsDetails {
+      reservationProductId
+    }
+    reservationProductsDetails {
+      calculationRule
+      cateringYn
+      excludedQuantity
+      forecastNextDayYN
+      fromValidTime
+      includedInRateYN
+      posAccountYn
+      posNextDayYn
+      printSeparateYn
+      ticketsYn
+      toValidTime
+    }
+  }
+}

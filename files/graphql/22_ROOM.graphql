@@ -1,0 +1,20 @@
+query configurationResortForROOM($limit: Int, $offset: Int, $input: ConfigurationResortQueryArgumentsType!) {
+  configurationResort(limit: $limit, offset: $offset, input: $input) {
+    membershipPointsDetails {
+      description
+      pseudoRuleYn
+      roomClass
+    }
+    propertyPropertyDetails {
+      insertDate
+      maxOccupancy
+      updateDate
+    }
+    sellMessagesDetails {
+      roomCategory
+    }
+    transactionDiversionRuleDetails {
+      room
+    }
+  }
+}

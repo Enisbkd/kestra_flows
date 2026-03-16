@@ -1,0 +1,13 @@
+query configurationResortForRESORTPRODUCTS($limit: Int, $offset: Int, $input: ConfigurationResortQueryArgumentsType!) {
+  configurationResort(limit: $limit, offset: $offset, input: $input) {
+    closingScriptDetails {
+      resortType
+    }
+    itemPackageDetails {
+      product
+    }
+    membershipAwardProductsDetails {
+      packageDescription
+    }
+  }
+}

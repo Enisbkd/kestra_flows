@@ -1,0 +1,22 @@
+query bookingsReservationForRESERVATIONREGRETS($limit: Int, $offset: Int, $input: BookingsReservationQueryArgumentsType!) {
+  bookingsReservation(limit: $limit, offset: $offset, input: $input) {
+    propertyPropertyDetails {
+      turnawayCode
+    }
+    reservationCancelPolicyDetails {
+      reservationCancelPolicyId
+      roomNights
+    }
+    reservationDetails {
+      arrivalDate
+      insertDate
+      insertUser
+      marketCode
+      numberOfRooms
+      resort
+      resvNameid
+      updateDate
+      updateUser
+    }
+  }
+}

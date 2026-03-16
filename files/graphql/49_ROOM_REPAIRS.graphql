@@ -1,0 +1,22 @@
+query inventoryRoomsManagementForROOMREPAIRS($limit: Int, $offset: Int, $input: InventoryRoomsManagementQueryArgumentsType!) {
+  inventoryRoomsManagement(limit: $limit, offset: $offset, input: $input) {
+    propertyPropertyDetails {
+      endDate
+    }
+    reservationDailyElementsDetails {
+      blockResort
+    }
+    roomDetails {
+      assignDate
+      returnStatus
+      room
+      roomStatus
+    }
+    roomRepairsDetails {
+      completedDate
+      reasonCode
+      remarks
+      seq
+    }
+  }
+}

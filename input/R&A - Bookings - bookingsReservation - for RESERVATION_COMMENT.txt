@@ -1,0 +1,84 @@
+﻿TABLE: RESERVATION_COMMENT
+R&A FAMILY: Bookings
+R&A MODULE (schema file): BookingsReservation.graphql
+REQUEST TYPE (Query field): bookingsReservation
+ENDPOINT: /rna/v1/graphql/
+
+========================
+GRAPHQL QUERY
+========================
+query bookingsReservationForRESERVATIONCOMMENT($limit: Int, $offset: Int, $input: BookingsReservationQueryArgumentsType!) {
+  bookingsReservation(limit: $limit, offset: $offset, input: $input) {
+    channelDetails {
+      comments
+    }
+    reservationCommentDetails {
+      commentType
+      externalCommentId
+      internalYN
+    }
+    reservationDetails {
+      insertDate
+      insertUser
+      resort
+      resvNameid
+      updateDate
+      updateUser
+    }
+  }
+}
+
+========================
+VARIABLES (JSON)
+========================
+
+{
+  "limit": 1,
+  "offset": 0,
+  "input": {
+    "reservationDetailsTruncBeginDate": {
+      "_gte": "{{FromBusinessDate}}"
+    },
+    "reservationDetailsTruncEndDate": {
+      "_lte": "{{ToBusinessDate}}"
+    },
+    "reservationDetailsResort": {
+      "_eq": "{{inputs.hotel_id}}"
+    }
+  }
+}
+
+========================
+RESPONSE (EXAMPLE)
+========================
+
+{
+  "data": {
+    "bookingsReservation": [
+      {
+        "channelDetails": {
+          "comments": null
+        },
+        "reservationCommentDetails": {
+          "commentType": null,
+          "externalCommentId": null,
+          "internalYN": null
+        },
+        "reservationDetails": {
+          "insertDate": "2023-09-20 14:45:48",
+          "insertUser": 15760,
+          "resort": "CSEPROP1",
+          "resvNameid": 124191,
+          "updateDate": "2025-07-18 23:04:10",
+          "updateUser": 8334
+        },
+        "bookingsReservationRecordCount": 1
+      }
+    ]
+  },
+  "extensions": {
+    "count": {
+      "BookingsReservation_bookingsReservation": 1
+    }
+  }
+}

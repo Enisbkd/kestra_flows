@@ -1,0 +1,40 @@
+query BookingsReservation_ReservationDailyElement($input: BookingsReservationQueryArgumentsType!) {
+  bookingsReservation(input: $input) {
+
+    # Main reservation block (many of your RDE fields are exposed here)
+    reservationDetails {
+      resort
+      resvNameid
+      reservationDate
+      adults
+      children
+      companyID
+      rateCode
+      shareOfRateAmount
+      travelAgentID
+    }
+
+    # Reservation daily element / detail-like fields live here (NOT under reservationDetails)
+    reservationDetailDetails {
+      resvDailyElSequence
+      sourceId
+      rateCode
+    }
+
+    # TC group/subgroup are exposed here
+    routingInstructionDetails {
+      tcGroup
+      tcSubgroup
+    }
+
+    # TRX code is exposed here
+    marketDetails {
+      trxCode
+    }
+
+    # Contact-like field exposed here
+    profileAllInformationDetails {
+      resvContact
+    }
+  }
+}

@@ -1,0 +1,73 @@
+﻿TABLE: APPLICATION$_USER
+R&A FAMILY: Integration
+R&A MODULE (schema file): ExportMappings.graphql
+REQUEST TYPE (Query field): exportMappings
+ENDPOINT: /rna/v1/graphql/
+
+========================
+GRAPHQL QUERY
+========================
+query exportMappingsForAPPLICATIONUSER($limit: Int, $offset: Int, $input: ExportMappingsQueryArgumentsType!) {
+  exportMappings(limit: $limit, offset: $offset, input: $input) {
+    exportMappingDetails {
+      exportMappingId
+      typeInsertUser
+    }
+    propertyPropertyDetails {
+      defaultRateCode
+      nameIdLink
+      nightAuditCashierID
+      reconcileDate
+    }
+  }
+}
+
+========================
+VARIABLES (JSON)
+========================
+
+{
+  "limit": 1,
+  "offset": 0,
+  "input": {
+    "expmappingDetailsResort": {
+      "_eq": "{{inputs.hotel_id}}"
+    }
+  }
+}
+
+========================
+RESPONSE (EXAMPLE)
+========================
+
+
+{
+  "data": {
+    "exportMappings": [
+      {
+        "exportMappingDetails": {
+          "exportMappingId": 17128,
+          "typeInsertUser": -1
+        },
+        "propertyPropertyDetails": {
+          "defaultRateCode": null,
+          "nameIdLink": null,
+          "nightAuditCashierID": null,
+          "reconcileDate": "2022-06-14 16:06:12"
+        },
+        "exportMappingsRecordCount": 1
+      }
+    ]
+  },
+  "extensions": {
+    "count": {
+      "ExportMappings_exportMappings": 1
+    }
+  }
+}
+========================
+NOTES
+========================
+NOTE: These columns are mapped to payload field 'exportMappings' in the P1 sheet, which is a *query name* (not a selectable field): APP_USER, APP_USER_ID, EMPLOYEE_NUMBER, INACTIVE_DATE, IS_SUPERUSER, MALE_FEMALE, TERM_REASON. They cannot be fetched as-is via this GraphQL schema and likely need mapping review.
+
+(Structure derived from the R&A GraphQL schema in data-apis.zip; response values are illustrative examples.)

@@ -1,0 +1,36 @@
+query bookingsReservationForRATEHEADER($limit: Int, $offset: Int, $input: BookingsReservationQueryArgumentsType!) {
+  bookingsReservation(limit: $limit, offset: $offset, input: $input) {
+    accompanyingGuestDetails {
+      nameID
+    }
+    fixedChargesDetails {
+      endDate
+    }
+    guestReservationMessagesDetails {
+      description
+    }
+    locatorsDetails {
+      beginDate
+    }
+    marketDetails {
+      trxCode
+    }
+    rateCodeDetails {
+      rateCategory
+      sdowBeginBookingDate
+      sdowEndBookingDate
+    }
+    reservationDetailDetails {
+      resvStatus
+    }
+    reservationDetails {
+      confirmationNo
+      insertUser
+      rateCode
+      resort
+      resvNameid
+      updateDate
+      yieldableYn
+    }
+  }
+}

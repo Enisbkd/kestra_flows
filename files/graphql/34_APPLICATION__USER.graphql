@@ -1,0 +1,14 @@
+query exportMappingsForAPPLICATIONUSER($limit: Int, $offset: Int, $input: ExportMappingsQueryArgumentsType!) {
+  exportMappings(limit: $limit, offset: $offset, input: $input) {
+    exportMappingDetails {
+      exportMappingId
+      typeInsertUser
+    }
+    propertyPropertyDetails {
+      defaultRateCode
+      nameIdLink
+      nightAuditCashierID
+      reconcileDate
+    }
+  }
+}
