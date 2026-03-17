@@ -1,0 +1,35 @@
+id: op_47_preferences
+namespace: opera.cloud
+inputs:
+  - id: chain_code
+    type: STRING
+    defaults: SBMDEVE
+  - id: from_update_date
+    type: STRING
+    defaults: "2021-01-01 00:00:00"
+  - id: to_update_date
+    type: STRING
+    defaults: "2028-01-01 00:00:00"
+tasks:
+  - id: run
+    type: io.kestra.plugin.core.flow.Subflow
+    namespace: opera.cloud
+    flowId: op_02_generic_fetch_and_publish
+    wait: true
+    inputs:
+      chain_code: "{{inputs.chain_code}}"
+      from_update_date: "{{ inputs.from_update_date }}"
+      to_update_date: "{{ inputs.to_update_date }}"
+      kafka_topic: "opera.profiles"
+      record_key_field: "externalPreferenceId"
+      gql_input_json: |
+        {
+          "profileallDetailsChainCode": {
+            "_eq": "{{inputs.chain_code}}"
+          },
+          "profileallDetailsUpdateDate": {
+            "_gte": "{{inputs.from_update_date}}",
+            "_lte": "{{inputs.to_update_date}}"
+          }
+        }
+      graphql_query: "{{ read('graphql/47_PREFERENCES.graphql') }}"

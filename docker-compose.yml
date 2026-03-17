@@ -8,13 +8,14 @@ volumes:
   minio_data:
     driver: local
 networks:
-  lakehouse:
+  bridge:
+    external: true
 
 
 services:
   zookeeper:
     networks:
-      lakehouse:
+      bridge:
     image: confluentinc/cp-zookeeper:latest
     hostname: zookeeper
     container_name: zookeeper_kestra
@@ -24,7 +25,7 @@ services:
 
   broker:
     networks:
-      lakehouse:
+      bridge:
     image: confluentinc/cp-kafka:latest
     hostname: broker
     container_name: broker
@@ -70,7 +71,7 @@ services:
 
   akhq-local:
     networks:
-      lakehouse:
+      bridge:
     image: tchiotludo/akhq
     container_name: akhq_local_simphony
     ports:
@@ -87,7 +88,7 @@ services:
 
   pgdatabase:
     networks:
-      lakehouse:
+      bridge:
     image: postgres:18
     environment:
       POSTGRES_USER: root
@@ -100,7 +101,7 @@ services:
 
   pgadmin:
     networks:
-      lakehouse:
+      bridge:
     image: dpage/pgadmin4
     environment:
       - PGADMIN_DEFAULT_EMAIL=admin@admin.com
@@ -110,7 +111,7 @@ services:
 
   kestra_postgres:
     networks:
-      lakehouse:
+      bridge:
     image: postgres:18
     volumes:
       - kestra_postgres_data:/var/lib/postgresql
@@ -126,7 +127,7 @@ services:
 
   kestra:
     networks:
-      lakehouse:
+      bridge:
     image: kestra/kestra:v1.1
     container_name: kestra
     pull_policy: always
@@ -143,10 +144,10 @@ services:
       - /etc/pki/ca-trust/extracted/java/cacerts:/opt/java/openjdk/lib/security/cacerts
     environment:
       # Proxy configuration
-      HTTP_PROXY: "http://10.62.1.10:3128"
-      HTTPS_PROXY: "http://10.62.1.10:3128"
-      http_proxy: "http://10.62.1.10:3128"
-      https_proxy: "http://10.62.1.10:3128"
+#      HTTP_PROXY: "http://10.62.1.10:3128"
+#      HTTPS_PROXY: "http://10.62.1.10:3128"
+#      http_proxy: "http://10.62.1.10:3128"
+#      https_proxy: "http://10.62.1.10:3128"
 #      NO_PROXY: "localhost,127.0.0.1,kestra_postgres,pgdatabase,minio,broker,zookeeper"
 #      no_proxy: "localhost,127.0.0.1,kestra_postgres,pgdatabase,minio,broker,zookeeper"
 #      # Java-specific proxy settings (Kestra runs on JVM)
@@ -164,6 +165,10 @@ services:
             username: kestra
             password: k3str4
         kestra:
+          tasks:
+            scripts:
+              docker:
+                network: kestra_flows_lakehouse
           http:
             client:
               ssl:
@@ -192,7 +197,7 @@ services:
         condition: service_started
   minio:
     networks:
-      lakehouse:
+      bridge:
     image: minio/minio:latest
     container_name: minio
     ports:
@@ -212,7 +217,7 @@ services:
       retries: 5
   iceberg-rest:
     networks:
-      lakehouse:
+      bridge:
     image: tabulario/iceberg-rest
     container_name: iceberg
     ports:
@@ -231,7 +236,7 @@ services:
 
   kafka-connect:
     networks:
-      lakehouse:
+      bridge:
     image: confluentinc/cp-kafka-connect:7.5.0
     hostname: kafka-connect
     container_name: kafka-connect
@@ -263,7 +268,7 @@ services:
       CONNECT_LOG4J_LOGGERS: org.apache.kafka.connect.runtime.isolation.DelegatingClassLoader=DEBUG,org.reflections=ERROR
   trino:
     networks:
-      lakehouse:
+      bridge:
     image: trinodb/trino:445
     container_name: trino
     ports:

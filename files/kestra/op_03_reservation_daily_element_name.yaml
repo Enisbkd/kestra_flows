@@ -1,0 +1,39 @@
+id: op_03_reservation_daily_element_name
+namespace: opera.cloud
+inputs:
+  - id: chain_code
+    type: STRING
+    defaults: SBMDEVE
+  - id: from_update_date
+    type: STRING
+    defaults: "2021-01-01 00:00:00"
+  - id: to_update_date
+    type: STRING
+    defaults: "2028-01-01 00:00:00"
+tasks:
+  - id: run
+    type: io.kestra.plugin.core.flow.Subflow
+    namespace: opera.cloud
+    flowId: op_02_generic_fetch_and_publish
+    wait: true
+    inputs:
+      chain_code: "{{inputs.chain_code}}"
+      from_update_date: "{{ inputs.from_update_date }}"
+      to_update_date: "{{ inputs.to_update_date }}"
+      kafka_topic: "opera.bookings"
+      record_key_field: "sourceId"
+      gql_input_json: |
+        {
+          "reservationDetailsResort": {
+            "_in": [
+              "{{inputs.hotel_id}}"
+            ]
+          },
+          "reservationDetailsTruncBeginDate": {
+            "_gte": "2021-01-01"
+          },
+          "reservationDetailsTruncEndDate": {
+            "_lte": "2024-12-31"
+          }
+        }
+      graphql_query: "{{ read('graphql/03_RESERVATION_DAILY_ELEMENT_NAME.graphql') }}"

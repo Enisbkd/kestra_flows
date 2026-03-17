@@ -1,15 +1,14 @@
 {
-  "name": "iceberg-fintrans",
+  "name": "iceberg-fintrans-default",
   "config": {
     "connector.class": "org.apache.iceberg.connect.IcebergSinkConnector",
     "tasks.max": "1",
     "topics": "opera.financial-transactions",
     "iceberg.catalog.type": "rest",
     "iceberg.catalog.uri": "http://iceberg:8181",
-    "iceberg.tables": "default.fintrans2",
+    "iceberg.tables": "default.fintrans-default",
     "iceberg.tables.auto-create-enabled": "true",
     "iceberg.tables.default-partition-by": "transactionPostingDate",
-    "iceberg.tables.default-id-columns": "financialTransactionDetails_trxNo",
     "iceberg.catalog.warehouse": "s3://warehouse",
     "iceberg.catalog.s3.endpoint": "http://minio:9000",
     "iceberg.catalog.s3.path-style-access": "true",
@@ -22,12 +21,6 @@
     "key.converter": "org.apache.kafka.connect.storage.StringConverter",
     "value.converter": "org.apache.kafka.connect.json.JsonConverter",
     "value.converter.schemas.enable": "false",
-    "errors.deadletterqueue.topic.name": "opera.financial-transactions-dlq",
-    "transforms": "flatten,extractPostingDate",
-    "transforms.flatten.type": "org.apache.kafka.connect.transforms.Flatten$Value",
-    "transforms.flatten.delimiter": "_",
-    "transforms.extractPostingDate.type": "org.apache.kafka.connect.transforms.ReplaceField$Value",
-    "transforms.extractPostingDate.renames": "financialTransactionDetails_transactionPostingDate:transactionPostingDate",
-    "iceberg.tables.default-partition-spec": "days(transactionPostingDate)"
+    "errors.deadletterqueue.topic.name": "opera.financial-transactions-dlq"
   }
 }

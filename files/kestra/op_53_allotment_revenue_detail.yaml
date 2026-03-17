@@ -1,0 +1,34 @@
+id: op_53_allotment_revenue_detail
+namespace: opera.cloud
+inputs:
+  - id: chain_code
+    type: STRING
+    defaults: SBMDEVE
+  - id: from_update_date
+    type: STRING
+    defaults: "2021-01-01 00:00:00"
+  - id: to_update_date
+    type: STRING
+    defaults: "2028-01-01 00:00:00"
+tasks:
+  - id: run
+    type: io.kestra.plugin.core.flow.Subflow
+    namespace: opera.cloud
+    flowId: op_02_generic_fetch_and_publish
+    wait: true
+    inputs:
+      chain_code: "{{inputs.chain_code}}"
+      from_update_date: "{{ inputs.from_update_date }}"
+      to_update_date: "{{ inputs.to_update_date }}"
+      kafka_topic: "opera.statistics"
+      record_key_field: "id"
+      gql_input_json: |
+        {
+          "resvsummaryDetailsConsideredDate": {
+            "_eq": "{{inputs.from_update_date}}"
+          },
+          "resvsummaryDetailsResort": {
+            "_eq": "{{inputs.hotel_id}}"
+          }
+        }
+      graphql_query: "{{ read('graphql/53_ALLOTMENT_REVENUE_DETAIL.graphql') }}"
