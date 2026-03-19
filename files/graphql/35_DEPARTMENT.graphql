@@ -1,8 +1,0 @@
-query exportMappingsForDEPARTMENT($limit: Int, $offset: Int, $input: ExportMappingsQueryArgumentsType!) {
-  exportMappings(limit: $limit, offset: $offset, input: $input) {
-    exportMappingDetails {
-      chainCode
-      exportMappingId
-    }
-  }
-}

@@ -3,7 +3,7 @@
   "config": {
     "connector.class": "org.apache.iceberg.connect.IcebergSinkConnector",
     "tasks.max": "1",
-    "topics": "opera.financial-transactions",
+    "topics": "opera.33_FinancialTransactions",
     "iceberg.catalog.type": "rest",
     "iceberg.catalog.uri": "http://iceberg:8181",
     "iceberg.tables": "default.fintrans2",

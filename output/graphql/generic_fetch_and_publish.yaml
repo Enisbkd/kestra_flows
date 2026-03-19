@@ -1,0 +1,221 @@
+id: op_02_generic_fetch_and_publish
+namespace: opera.cloud
+description: >
+  Generic reusable flow: fetches any GraphQL data type page by page, and publishes each page separately to Kafka.
+
+inputs:
+  - id: chain_code
+    type: STRING
+    defaults: SBMDEVE
+  - id: from_update_date
+    type: STRING
+    defaults: 2021-01-01
+  - id: to_update_date
+    type: STRING
+    defaults: 2028-01-01
+  - id: kafka_topic
+    type: STRING
+  - id: graphql_query
+    type: STRING
+  - id: gql_input_json
+    type: STRING
+  - id: record_key_field
+    type: STRING
+    defaults: ""
+
+variables:
+  opera_base_url: "https://apm-dev0.sbm.interne"
+  graphql_path: "/operara/v1/rna/v1/graphql/"
+  page_size: 1000
+  kafka_bootstrap: "broker:29092"
+
+tasks:
+  # ── 1. Auth token ─────────────────────────────────────────────────────────
+  - id: get_token
+    type: io.kestra.plugin.core.flow.Subflow
+    namespace: opera.cloud
+    flowId: op_01_manage_tokens
+    wait: true
+
+  # ── 2. Fetch pages and publish each one directly to Kafka ─────────────────
+  - id: fetch_and_publish
+    type: io.kestra.plugin.scripts.python.Script
+    taskRunner:
+      type: io.kestra.plugin.scripts.runner.docker.Docker
+      networkMode: kestra_flows_lakehouse
+    beforeCommands:
+      - pip install requests confluent-kafka --proxy http://10.62.1.10:3128
+    script: |
+      import json
+      import logging
+      from typing import Any, Dict, List, Optional, Tuple
+
+      import requests
+      from confluent_kafka import Producer
+
+      logging.basicConfig(level=logging.INFO)
+      logger = logging.getLogger(__name__)
+
+      # ── Kestra-rendered constants ──────────────────────────────────────────
+      PAGE_SIZE       = {{ vars.page_size }}
+      URL             = "{{ vars.opera_base_url }}{{ vars.graphql_path }}"
+      KAFKA_BOOTSTRAP = "{{ vars.kafka_bootstrap }}"
+      KAFKA_TOPIC     = "{{ inputs.kafka_topic }}"
+      GQL_INPUT       = json.loads("""{{ inputs.gql_input_json }}""")
+      QUERY           = """{{ inputs.graphql_query }}"""
+      KEY_PATH        = "{{ inputs.record_key_field }}".strip()
+
+      HEADERS = {
+          "Content-Type": "application/json",
+          "x-app-key":     "{{ kv('app_key') }}",
+          "x-api-key":     "{{ kv('api_key_ra') }}",
+          "Authorization": "Bearer {{ outputs.get_token.outputs.token }}",
+      }
+
+      # ── GraphQL helpers ────────────────────────────────────────────────────
+
+      def extract_root_field(body: Dict[str, Any]) -> Tuple[List[Dict[str, Any]], Optional[int]]:
+          data = body.get("data")
+          if not isinstance(data, dict) or not data:
+              raise ValueError(f"Invalid GraphQL response: missing/empty 'data'. Body: {body}")
+
+          root_key   = next(iter(data))
+          root_value = data[root_key]
+
+          if isinstance(root_value, dict):
+              total_count: Optional[int] = root_value.get("totalCount")
+              for list_key in ("nodes", "items", "edges", "results", "data"):
+                  if list_key in root_value and isinstance(root_value[list_key], list):
+                      return root_value[list_key], total_count
+              raise ValueError(
+                  f"Root field '{root_key}' is a dict with no recognised list sub-field. "
+                  f"Keys: {list(root_value.keys())}"
+              )
+
+          if isinstance(root_value, list):
+              return root_value, None
+
+          if root_value is None:
+              logger.warning("Root field '%s' is null – treating as empty page.", root_key)
+              return [], None
+
+          raise ValueError(f"Unexpected type for root field '{root_key}': {type(root_value).__name__}")
+
+
+      def execute_query(
+          session: requests.Session,
+          offset: int,
+          page_size: int,
+      ) -> Tuple[List[Dict[str, Any]], Optional[int]]:
+          payload = {
+              "query": QUERY,
+              "variables": {"limit": page_size, "offset": offset, "input": GQL_INPUT},
+          }
+          resp = session.post(URL, json=payload, headers=HEADERS, timeout=30, verify=False)
+          resp.raise_for_status()
+          print("Status code:", resp.status_code)
+          print("Response body:", resp.text)
+          body = resp.json()
+          if body.get("errors"):
+              raise RuntimeError(f"GraphQL errors: {body['errors']}")
+          return extract_root_field(body)
+
+
+      def extract_key(record: Dict[str, Any], path: str) -> str:
+          if not path:
+              return ""
+          val = record
+          for part in path.split("."):
+              val = val.get(part, "") if isinstance(val, dict) else ""
+          return str(val) if val is not None else ""
+
+      # ── Kafka delivery callback ────────────────────────────────────────────
+
+      def on_delivery(err, msg):
+          if err:
+              logger.error("Kafka delivery failed: %s", err)
+          else:
+              logger.debug("Delivered to %s [%d] @ %d", msg.topic(), msg.partition(), msg.offset())
+
+      # ── Main ──────────────────────────────────────────────────────────────
+
+      producer = Producer({
+          "bootstrap.servers": KAFKA_BOOTSTRAP,
+          "compression.type":  "gzip",
+          "acks":              "all",
+      })
+
+      offset            = 0
+      known_total       = None
+      consecutive_empty = 0
+      MAX_EMPTY         = 3
+      total_records     = 0
+      page_index        = 0
+
+      with requests.Session() as session:
+          while True:
+              if known_total is not None and offset >= known_total:
+                  logger.info("offset=%d >= totalCount=%d — done.", offset, known_total)
+                  break
+
+              records, total_count = execute_query(session, offset, PAGE_SIZE)
+
+              # ── Detect non-paginating API (resets on every request) ──────────
+              if page_index > 0 and records:
+                  first_record_count = records[0].get("configurationResortRecordCount")
+                  if first_record_count == 1:
+                      logger.info(
+                          "Page %d: first record's configurationResortRecordCount reset to 1 "
+                          "— API does not support offset pagination. Stopping after %d pages.",
+                          page_index, page_index
+                      )
+                      break
+
+              if total_count is not None and known_total is None:
+                  known_total = total_count
+                  logger.info("Server reported totalCount=%d", known_total)
+
+              count = len(records)
+              logger.info("Page %d | offset=%d | fetched=%d | known_total=%s",
+                          page_index, offset, count, known_total)
+
+              if count == 0:
+                  consecutive_empty += 1
+                  logger.warning("Empty page at offset=%d (%d consecutive)", offset, consecutive_empty)
+                  if consecutive_empty >= MAX_EMPTY:
+                      logger.error("Aborting: %d consecutive empty pages.", MAX_EMPTY)
+                      break
+                  offset += PAGE_SIZE
+                  continue
+
+              consecutive_empty = 0
+
+              for record in records:
+                  key   = extract_key(record, KEY_PATH)
+                  value = json.dumps(record).encode("utf-8")
+                  producer.produce(
+                      topic    = KAFKA_TOPIC,
+                      key      = key.encode("utf-8") if key else None,
+                      value    = value,
+                      callback = on_delivery,
+                  )
+                  producer.poll(0)
+
+              producer.flush()
+              logger.info("Page %d flushed to Kafka (%d records)", page_index, count)
+
+              total_records += count
+              offset        += PAGE_SIZE
+              page_index    += 1
+
+              if count < PAGE_SIZE:
+                  logger.info("Partial page (%d < %d) — pagination complete.", count, PAGE_SIZE)
+                  break
+
+      logger.info("Done. %d pages, %d total records published to %s.",
+                  page_index, total_records, KAFKA_TOPIC)
+
+  # ── 3. Summary log ────────────────────────────────────────────────────────
+  - id: log_done
+    type: io.kestra.plugin.core.log.Log
+    message: "Fetch-and-publish complete for topic {{ inputs.kafka_topic }}"

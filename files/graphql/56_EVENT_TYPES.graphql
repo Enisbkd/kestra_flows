@@ -1,8 +1,0 @@
-query cateringEventTypesForEVENTTYPES($limit: Int, $offset: Int, $input: CateringEventTypesQueryArgumentsType!) {
-  cateringEventTypes(limit: $limit, offset: $offset, input: $input) {
-    eventTypeDetails {
-      eventType
-      eventTypeDescription
-    }
-  }
-}
